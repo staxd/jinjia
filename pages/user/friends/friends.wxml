@@ -1,0 +1,7 @@
+<view class='fiendList'>
+<block wx:for='{{patientList}}' wx:key='item.patient_id'>
+  <view class='fiendList_fiends'>{{item.name}}<view class='fiendList_fiends_image' bindtap='alterBtn'><image src='../../../images/modify.png'></image>修改</view><view class='fiendList_fiends_btn'>设为默认<radio value="" checked=""/></view>
+  </view>
+  </block>
+</view>
+<button bindtap='addBtn' type="warn" hover-class='none'>新增</button>

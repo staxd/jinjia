@@ -1,0 +1,67 @@
+{
+  "pages":[
+    
+    "pages/index/index",
+    "pages/physical/physical",
+    "pages/autognosis/autognosis",
+    "pages/autognosis/tongue/tongue",
+    "pages/autognosis/tongue/tongueDetail/tongueDetail",
+    "pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail",
+    "pages/login/login",    
+    "pages/user/user",
+    "pages/user/help/help",
+    "pages/user/friends/friends",
+    "pages/user/friends/friendsAlter/friendsAlter",
+    "pages/user/friends/friendsadd/friendsadd",
+    "pages/user/invite/invite",
+    "pages/user/archives/archives",
+    "pages/user/archives/archivesDetail/archivesDetail",
+    "pages/user/aboutUs/aboutUs",
+    "pages/classical/classical",
+    "pages/classical/symptom/symptom",
+    "pages/classical/symptom/symptomPage/symptomPage",
+    "pages/classical/symptom/symptomPage/symptomDetail/symptomDetail",
+    "pages/classical/disease/disease",
+    "pages/classical/disease/diseasePage/diseasePage",
+    "pages/classical/disease/diseasePage/diseaseDetail/diseaseDetail",
+    "pages/classical/sickness/sickness",
+    "pages/classical/sickness/sicknessPage/sicknessPage",
+    "pages/classical/sickness/sicknessPage/sicknessDetail/sicknessDetail",
+    "pages/classical/classicalDetail/classicalDetail",
+    "pages/start/start",
+    "pages/radar/index",
+    "pages/radar/index/radarDetail/radarDetail"
+        
+    
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  } ,
+  "tabBar": {
+    "color": "#9B9B9B",
+    "selectedColor": "#C15C3E",
+    "list": [
+      {
+        "selectedIconPath": "images/indexSelect.png",
+        "iconPath": "images/index.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },{
+        "selectedIconPath": "images/classicalSelect.png",
+        "iconPath": "images/classical.png",
+        "pagePath": "pages/classical/classical",
+        "text": "经方"
+      },
+      {
+        "selectedIconPath": "images/userSelect.png",
+        "iconPath": "images/user.png",
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+<block wx:for='{{patientList}}' wx:key='item.patient_id'>
+<view class="molist" data-id='{{item.patient_id}}' bindtap='listDetail'>
+  <view class='molist_name' >{{item.name}}</view>
+  <view class='user-body-box-textRight'></view>
+</view>
+</block>

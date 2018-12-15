@@ -1,0 +1,37 @@
+
+<view wx:if="{{canIUse}}" >
+  <view class="user-userinfo" style="opacity:1.0">
+          <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+</view>
+<view wx:else>请升级微信版本</view>
+  <view class='user-body'>
+    <view class='user-body-box ul' bindtap='archives'>
+        <image src='/images/dangan.png' class='dangan'></image>
+      <view class='user-body-box-text'>档案</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
+    <view class='user-body-box ul' bindtap='friends'>
+        <image src='/images/qinyou.png'></image>
+      <view class='user-body-box-text'>亲友</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
+        <view class='user-body-box' bindtap='invite'>
+        <image src='/images/yaoqing.png'></image>
+      <view class='user-body-box-text'>邀请</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
+    </view>
+    <view class='user-body'>
+        <view class='user-body-box ul' bindtap='help'>
+        <image src='/images/bangzhu.png'></image>
+      <view class='user-body-box-text'>帮助</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
+        <view class='user-body-box' bindtap='aboutUs'>
+        <image src='/images/shezhi.png' ></image>
+      <view class='user-body-box-text'>关于我们</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
+  </view>

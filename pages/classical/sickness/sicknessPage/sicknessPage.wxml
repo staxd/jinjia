@@ -1,0 +1,14 @@
+
+<block wx:for-items="{{list}}" wx:key="{{item.category_id}}">
+<view data-openList="{{index}}" class='classical_title'>
+  {{item.category_title}}
+</view>
+  <view data-openList="{{index}}"  bindtap='listIndex'>
+  <block wx:for-items="{{item.medicineList}}"  wx:key="{{item.medicine_id}}">
+  <view data-openList="{{index}}" bindtap='medicineListIndex' class='classical_list'>{{item.name}}</view>
+  <view class='classical_list_right'></view>
+  </block>
+  </view>
+
+
+</block>

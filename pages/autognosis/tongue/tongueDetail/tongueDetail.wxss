@@ -1,0 +1,167 @@
+cover-view{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background:rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+cover-image{
+  display: block;
+  width: 400rpx;
+  height: 200rpx;
+}
+page{
+  background: #f5f5f5;
+}
+
+.tongue{
+  width: 750rpx;
+  min-height: 1rpx;
+  background: #fff;
+  position: relative;
+}
+.tongue_title{
+  
+  border-bottom: 4rpx solid #f5f5f5;
+  width: 690rpx;
+  height: 88rpx;
+  font-size: 30rpx;
+  color: #36353A;
+  line-height: 88rpx;
+  margin-left: 30rpx;
+}
+.tongue{
+
+  margin-top: 20rpx;
+
+}
+.tongue_content{
+  padding-top: 30rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.tongue_content_box_btn{
+  width: 208rpx;
+  height: 54rpx;
+  border: #BDBDBD 1rpx solid;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 54rpx;
+  color: #9B9B9B;
+  margin-bottom: 30rpx;
+  margin-left: 30rpx;
+}
+.smTitle{
+  width: 750rpx;
+  height: 88rpx;
+  background: #fff;
+  color:#36353A;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  padding-left:30rpx; 
+}
+.smTitle_box{
+  width: 750rpx;
+  height: 60rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  padding-left: 30rpx;
+  color: #9B9B9B;
+}
+.sub{
+  width: 750rpx;
+  height: 120rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 10000;
+}
+.sub_btn{
+  width: 640rpx;
+  height: 80rpx;
+  left: 0;
+  right: 0;
+  margin: 20rpx auto;
+  background:rgba(193,92,62,1);
+  border-radius: 50rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+  z-index: 100;
+}
+.container{
+  position: relative;
+  width: 750rpx;
+  height: 575rpx;
+  background: #fff;
+z-index: 1;
+
+}
+ec-canvas {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  color: #36353A;
+z-index: 1;
+}
+
+.message{
+  width: 750rpx;
+  height: 130rpx;
+  text-align: center;
+  line-height: 130rpx;
+  font-size: 26rpx;
+  color: #9B9B9B;
+  
+}
+.message_bottom{
+  width:750rpx;
+  height: 120rpx;
+  background: #fff;
+}
+.btn1,.btn2,.btn3,.btn4,.btn5{
+  width: 100rpx;
+  height: 60rpx;
+  /* background: red; */
+  z-index: 98;
+  position: absolute;
+}
+.btn1{
+left:325rpx;
+top:130rpx;
+
+}
+.btn2{
+left:50rpx;
+top:300rpx;
+
+}
+.btn3{
+left:50rpx;
+top:580rpx;
+width: 200rpx;
+
+}
+.btn4{
+left:460rpx;
+top:580rpx;
+
+width: 200rpx;
+
+
+}
+.btn5{
+left:600rpx;
+top:300rpx;
+width: 130rpx;
+}

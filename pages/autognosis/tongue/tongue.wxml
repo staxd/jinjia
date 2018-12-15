@@ -1,0 +1,39 @@
+<view class='shetai' wx:for-index="key"  wx:for="{{symptomList}}" wx:key="">
+  <block wx:if="{{key=='舌苔'}}">
+  <view class='shetai_title'>{{key}}</view>
+  <view class='shetai_content'>
+    <view class='shetai_content_box' wx:for="{{item}}" wx:for-item="shetaiList" wx:key="symptom_id" data-id="{{shetaiList.symptom_id}}">
+      <view class='shetai_content_box_img' bindtap='clickSelect' data-key="{{shetaiList.group}}" data-id="{{index}}" ><image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{shetaiList.pictures}}'></image></view>
+      <view bindtap='clickSelect' data-key="{{shetaiList.group}}" data-id="{{index}}" class='shetai_content_box_btn {{shetaiList.select?"select":""}}'>{{shetaiList.name}}</view>
+    </view>
+    </view>
+    </block>
+
+    <block wx:elif="{{key == '舌体'}}">
+         <view class='sheti_title'>{{key}}</view>
+          <view class='sheti_content'>
+            <view class='sheti_content_box' wx:for="{{item}}" wx:for-item="shetiList" wx:key="symptom_id" data-id="{{shetiList.symptom_id}}">
+              <view class='sheti_content_box_img' bindtap='clickSelect' data-key="{{shetiList.group}}" data-id="{{index}}"><image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{shetiList.pictures}}'></image></view>
+              <view bindtap='clickSelect' data-key="{{shetiList.group}}" data-id="{{index}}"  class='sheti_content_box_btn {{shetiList.select?"select":""}}'>{{shetiList.name}}</view>
+            </view>
+          </view>
+    </block>
+
+    <block wx:elif="{{key == '脉象'}}">
+      <view class='maixiang'>
+  <view class='maixiang_title'>{{key}}</view>
+  <view class='maixiang_content'>
+      <view bindtap='clickSelect' wx:for="{{item}}" wx:for-item="maixiangList" wx:key="symptom_id" data-id="{{maixiangList.symptom_id}}" data-key="{{maixiangList.group}}" data-id="{{index}}"  class='maixiang_content_box_btn {{maixiangList.select?"select":""}}'>{{maixiangList.name}}</view>
+  </view>
+</view>
+    </block>
+
+</view>
+
+
+
+
+
+<view class='sub'>
+  <view class='sub_btn' bindtap="subBtn">确认</view>
+</view>

@@ -1,0 +1,51 @@
+<view class='zizhen_left'>
+  <block wx:for='{{contentList}}' wx:key='item.body_part_id'>
+  <block wx:if="{{item.select}}">
+  <view bindtap='imageSelect' data-bodyId='{{item.body_part_id}}' data-id='{{index}}' class='zizhen_left_box T' >
+  <image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{item.icon_selected}}'></image>
+  {{item.name}}</view>
+  </block>
+  <block wx:else>
+  <view bindtap='imageSelect' data-bodyId='{{item.body_part_id}}' data-id='{{index}}' class='zizhen_left_box' >
+  <image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{item.icon_unselected}}'></image>
+  {{item.name}}</view>
+  </block>
+  </block>
+</view>
+<view class='zizhen_right'>
+<block wx:for='{{contentList}}' wx:key="body_part_id">
+<block wx:if="{{item.select}}">
+<block wx:for="{{item.symptomList}}" wx:key="{{index}}">
+
+<block wx:if="{{item.group_name}}">
+  <view class="kind-list-item">
+    <view data-openList="{{index}}" class="kind-list-item-hd" bindtap="kindToggle">
+      <view data-openList="{{index}}">{{item.group_name}}</view>
+     
+      <view data-openList="{{index}}"  class=" {{item.open ? 'navigator-arrow-show' : 'navigator-arrow'}}"></view>
+    </view>
+
+    <view data-openList="{{index}}"  class=' {{item.open?"kind-list-item-bd-show":"kind-list-item-bd"}}'>
+      <view data-openList="{{index}}" class=' {{item.open?"navigator-show":"kind-list-item-bd"}}'>
+      <view wx:for="{{item.group_list}}" data-id="{{index}}" bindtap='groupList' wx:key='symptom_id' class="symptomArrow {{item.open ? 'select' : ''}}">
+      {{item.name}}
+      </view>
+      </view>
+    </view>
+  </view>
+  </block>
+
+  <block wx:if="{{item.name}}">
+  <view class="kind-list-item">
+    <view data-openList="{{index}}" class="kind-list-item-hd {{item.open?'select':''}}" bindtap="kindToggle">
+      <view data-openList="{{index}}">{{item.name}}</view>
+    </view>
+  </view>
+  </block>
+</block>
+</block>
+</block>
+</view>
+<view class='sub'>
+  <view class='sub_btn' bindtap="subBtn">下一步</view>
+</view>

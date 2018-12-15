@@ -1,0 +1,30 @@
+page{
+  background: #F5F5F5;
+}
+.molist{
+  width: 750rpx;
+  height: 120rpx;
+  background: #fff;
+  border-top: 4rpx solid #F5F5F5;
+}
+.user-body-box-textRight{
+  margin-top: 48rpx;
+  float:right;
+  margin-right: 30rpx;
+  display: inline-block;
+  border-right: 4rpx solid #C7C7CC;
+  border-top: 4rpx solid #C7C7CC;
+  height: 15rpx;
+  width: 15rpx;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  border-left: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+}
+.molist_name{
+  float: left;
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  color: #4A4A4A;
+  line-height: 124rpx;
+}

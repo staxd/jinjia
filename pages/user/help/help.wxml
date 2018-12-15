@@ -1,0 +1,12 @@
+<block wx:for-items="{{list}}" wx:key="{{item.title}}">
+  <view class="kind-list-item">
+    <view data-openList="{{index}}" class="kind-list-item-hd" bindtap="kindToggle">
+      <view data-openList="{{index}}">{{index+1}} . {{item.title}}</view>
+      <view data-openList="{{index}}"  class=" {{openList[index].open ? 'navigator-arrow-show' : 'navigator-arrow'}}"></view>
+      
+    </view>
+    <view data-openList="{{index}}"  class=' {{openList[index].open?"kind-list-item-bd-show":"kind-list-item-bd"}}'>
+      <view data-openList="{{index}}" class=' {{openList[index].open?"navigator-show":"kind-list-item-bd"}}'>{{item.content}}</view>
+    </view>
+  </view>
+</block>

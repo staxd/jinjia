@@ -1,0 +1,6 @@
+<block wx:for-items="{{list}}" wx:key="{{item.category_id}}">
+<view data-openList="{{index}}" class='classical_list' bindtap='toClassical'>
+  {{item.category_title}}
+  <view class='classical_list_right'></view>
+</view>
+</block>

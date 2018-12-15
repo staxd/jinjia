@@ -1,0 +1,23 @@
+<!--pages/physical/physical.wxml-->
+<view class='physical'>
+<view class='physical-box'>
+
+      <view class='physical-box-content'>
+     <block wx:for="{{mbList}}" wx:for-index="key" wx:key="">
+     <view class='physical-box-content-up'>{{key}}</view>
+     <view class='physical-box-content-down' >
+     
+      <view bindtap="clickSelect" data-isshow="{{language.isshow}}" class="physical-box-content-down-button {{language.isshow?'active':''}}" wx:for="{{item}}" wx:for-item="language"wx:key="option_id" data-id="{{language.option_id}}"  >{{language.name}}</view>
+      </view>
+      </block>
+ 
+   
+    </view>
+
+
+</view>
+</view>
+
+<view class='sub'>
+  <view class='sub_btn' bindtap="subBtn">下一步</view>
+</view>

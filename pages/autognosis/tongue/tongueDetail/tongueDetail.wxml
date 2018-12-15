@@ -1,0 +1,37 @@
+ <view class='tongue'>
+  <view class='tongue_title'>症状</view>
+  <view class='tongue_content'>
+      <view class='tongue_content_box_btn' bindtap='symptomDetail' data-name='{{item.name}}' data-id='{{item.symptom_id}}' wx:for='{{symptomInfo}}' wx:key='key'>{{item.name}}</view>
+  </view>
+</view>
+
+<view class='smTitle'>舌脉</view>
+<view class='smTitle_box'>舌象</view>
+<view class='tongue_content'>
+      <view class='tongue_content_box_btn'  bindtap='tongueDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{tonguePic}}' wx:key='symptom_id'>{{item.name}}</view>
+  </view>
+  <view class='smTitle_box'>脉象</view>
+<view class='tongue_content'>
+      <view class='tongue_content_box_btn' bindtap='pulseDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{pulseCondition}}' wx:key='symptom_id'>{{item.name}}</view>
+</view>
+ <view class='tongue'>
+  <view class='tongue_title'>处方</view>
+  <view bindtap='btn1' class='btn1'></view>
+<view bindtap='btn2' class='btn2'></view>
+<view bindtap='btn3' class='btn3'></view>
+<view bindtap='btn4' class='btn4'></view>
+<view bindtap='btn5' class='btn5'></view>
+  <view class='tongue_content'>
+      <view class="container">
+  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph"  ec="{{ec}}"></ec-canvas>
+  
+   
+</view>
+  </view>
+</view>
+<view class='message'>仅供参考，请遵医嘱</view>
+<view class='message_bottom'></view>
+<cover-view class='sub' wx:if='{{!hide}}'>
+  <cover-view class='sub_btn' bindtap="subBtn">完成</cover-view>
+</cover-view>
+<cover-view wx:if='{{okBtn}}'><cover-image src='../../../../images/zizhenOk.png'></cover-image></cover-view>

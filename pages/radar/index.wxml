@@ -1,0 +1,14 @@
+<view class="radar_title">标准体质<view bindtap='subBtn' wx:if="{{!hide}}">完成</view></view>
+<view bindtap='btn1' class='btn1'></view>
+<view bindtap='btn2' class='btn2'></view>
+<view bindtap='btn3' class='btn3'></view>
+<view bindtap='btn4' class='btn4'></view>
+<view bindtap='btn5' class='btn5'></view>
+<view bindtap='btn6' class='btn6'></view>
+<view bindtap='btn7' class='btn7'></view>
+<view bindtap='btn8' class='btn8'></view>
+<view bindtap='btn9' class='btn9'></view>
+<view class="container" >
+  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
+</view>
+<cover-view wx:if='{{okBtn}}'><cover-image src='../../images/tizhiOk.png'></cover-image></cover-view>

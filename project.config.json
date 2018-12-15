@@ -1,0 +1,160 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.0",
+	"appid": "wx86f0a2d39b2e279e",
+	"projectname": "%E9%87%91%E8%8D%9A",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 19,
+			"list": [
+				{
+					"id": -1,
+					"name": "user",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "start",
+					"pathName": "pages/start/start",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tizhi",
+					"pathName": "pages/physical/physical",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "yaoqing",
+					"pathName": "pages/invite/invite",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "zhuce",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "denglu",
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "help",
+					"pathName": "pages/user/help/help",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "us",
+					"pathName": "pages/user/aboutUs/aboutUs",
+					"query": ""
+				},
+				{
+					"id": 8,
+					"name": "jingfang",
+					"pathName": "pages/classical/classical",
+					"query": ""
+				},
+				{
+					"id": 9,
+					"name": "zz",
+					"pathName": "pages/classical/symptom/symptom",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ra",
+					"pathName": "pages/radar/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "archives",
+					"pathName": "pages/user/archives/archives",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "archivesd",
+					"pathName": "pages/user/archives/archivesDetail/archivesDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "friends",
+					"pathName": "pages/user/friends/friends",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "add",
+					"pathName": "pages/user/friends/friendsadd/friendsadd",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "aa",
+					"pathName": "pages/user/friends/friendsAlter/friendsAlter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "zizhen",
+					"pathName": "pages/autognosis/autognosis",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shemai",
+					"pathName": "pages/autognosis/tongue/tongue",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "tongueDetail",
+					"pathName": "pages/autognosis/tongue/tongueDetail/tongueDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "toDeail",
+					"pathName": "pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail"
+				}
+			]
+		}
+	}
+}

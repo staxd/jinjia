@@ -1,0 +1,5 @@
+<view class='index'>
+  <view class='index_tizhi' bindtap="tizhiBtn"><image src='/images/tizhi.png'></image><text>体质</text></view>
+  <view class='index_zizhen' bindtap="zizhenBtn"><image src='/images/zizhen.png'></image><text>自诊</text></view>
+ 
+</view>

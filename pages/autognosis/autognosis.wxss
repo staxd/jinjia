@@ -1,0 +1,141 @@
+page{
+  border-top: 4rpx solid #e1e1e1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.zizhen_left{
+  width:188rpx;
+  float: left;
+  margin-bottom: 120rpx;
+  
+}
+.zizhen_left_box{
+  width: 186rpx;
+  height: 188rpx;
+  border-right: 1rpx solid #e1e1e1;
+  border-bottom: 1rpx solid #e1e1e1;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 26rpx;
+  color: #4A4A4A;
+  background: #f5f5f5;
+}
+.zizhen_left_box image{
+  width: 88rpx;
+  height: 88rpx;
+  margin-top: 24rpx;
+  margin-bottom: 18rpx;
+}
+.T{
+  background: #fff;
+  border-right: none;
+  width: 188rpx;
+
+}
+.zizhen_right{
+  width: 100%;
+  background: #fff;
+  float: left;
+  margin-bottom: 120rpx;
+
+}
+page{
+  background: #f5f5f5;
+}
+.kind-list-item {
+  background-color: #fff;
+  overflow: hidden;
+}
+.kind-list-item-hd {
+  width: 750rpx;
+  height: 88rpx;
+  color: #4A4A4A;
+  font-size: 34rpx;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s;
+  margin-left: 30rpx;
+  border-bottom: 2rpx solid #e7e7e7;
+}
+.navigator-arrow-show {
+  position: absolute;
+  right: 40rpx;
+}
+.navigator-arrow-show:after {
+  content: " ";
+  display: inline-block;
+  height: 14rpx;
+  width: 14rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c7c7cc;
+  border-style: solid;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.navigator-arrow {
+  position: absolute;
+  right: 40rpx;
+}
+
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 14rpx;
+  width: 14rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #c7c7cc;
+  border-style: solid;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.kind-list-item-bd-show {
+  height: auto;
+}
+.kind-list-item-bd {
+  height: 0;
+  overflow: hidden;
+}
+.navigator-show{
+  font-size: 30rpx;
+  line-height: 88rpx;
+  color: #9B9B9B;
+  width: 682rpx;
+}
+
+
+.symptomArrow{
+  width: 98%;
+  height: 88rpx;
+  border-bottom: 1rpx solid #e1e1e1;
+  padding-left: 30rpx;
+  background: #f5f5f5;
+  color: #9B9B9B;
+}
+.select{
+  color: rgba(193,92,62,1);
+
+}
+.sub{
+  width: 750rpx;
+  height: 120rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+}
+.sub_btn{
+  width: 640rpx;
+  height: 80rpx;
+  left: 0;
+  right: 0;
+  margin: 20rpx auto;
+  background:rgba(193,92,62,1);
+  border-radius: 50rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #fff;
+}
+
+

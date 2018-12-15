@@ -1,0 +1,10 @@
+<view class='invite'>
+  <view class='invite_title'>赶快邀请好友一起帮忙</view>
+  <view class='invite_content'>还差<view class='invite_content_num'>1</view>人 距结束 <view class='invite_content_time'>08:46:52</view></view>
+  <view class='invite_pic'>
+    <view class='invite_pic_box'><view class='invite_pic_box_img'></view>张三</view>
+    <view class='invite_pic_box'><view class='invite_pic_box_img'></view>待邀请</view>
+    <view class='invite_pic_box'><view class='invite_pic_box_img'></view>待邀请</view>
+  </view>
+  <button type="warn" open-type="share" data-tag="share1" id="btn_share1" hover-class='none'>邀请好友助力</button>
+</view>

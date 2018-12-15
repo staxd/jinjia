@@ -1,0 +1,25 @@
+<view class='leftLine'></view>
+<view class="box">
+
+  <view class='box_year'>{{year}}</view>
+
+  <view class='box_border' style='{{item.isshow?"display:none":""}}' data-index ='{{index}}' wx:for='{{archiveList}}' wx:key='item.archive_id'>
+    <view wx:if="{{item.type=='constitution'}}" >
+        <view class='box_border_month'>{{item.created_time}}</view>
+        <view class='box_border_title' data-index='{{index}}' data-symptoms = "{{item.symptoms}}" bindtap='todetailBtn'>体质</view>
+        <view class='box_border_content'>{{item.name}}</view>
+        <image src='../../../../images/tizhiBorder.png'></image>
+        <view data-id ="{{item.archive_id}}" data-isshow ="{{item.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
+    </view>
+
+    <view wx:if="{{item.type=='self_diagnosis'}}" >
+        <view class='box_border_month'>{{item.created_time}}</view>
+        <view class='box_border_zizhen' data-index='{{index}}' data-symptoms = "{{item.symptoms}}" bindtap='zizhendetailBtn'>自诊</view>
+        <view class='box_border_content'>{{item.name}}</view>
+        <image src='../../../../images/zizhenBorder.png'></image>
+        <view data-id ="{{item.archive_id}}" data-isshow ="{{item.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
+    </view>
+  </view>
+
+</view>
+
