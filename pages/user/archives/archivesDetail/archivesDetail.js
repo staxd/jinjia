@@ -1,6 +1,8 @@
   var url = require('../../../../config.js')
   const sendAjax = require('../../../../utils/sendAjax.js')
   const util = require('../../../../utils/util.js')
+
+var app = getApp();
   Page({
 
     /**
@@ -66,10 +68,10 @@
       }
       let infoCb = {}
       infoCb.success = function (res) {
-        console.log(res.symptomList)
+        console.log(res)
         wx.setStorageSync('symptomInfo', res.symptomList.body)
         wx.setStorageSync('tongueList', res.symptomList)
-      wx.setStorageSync('matchMedicinesName', archiveList[index].results)
+        app.data.matchedMedicineList = archiveList[index].results
         wx.navigateTo({
           url: '../../../autognosis/tongue/tongueDetail/tongueDetail?hide=' + true
         })

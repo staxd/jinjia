@@ -1,5 +1,6 @@
 var url = require('../../../config.js')
 const sendAjax = require('../../../utils/sendAjax.js')
+var app = getApp();
 Page({
 
   /**
@@ -27,12 +28,23 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
-      console.log(res.patientList)
-      var name = res.patientList[0].name
-      var patientList = res.patientList
+      // console.log(res.patientList)
+      var paList = res.patientList
+      var patientList = []
+      var headList = []
+      for (let i in paList) {
+        if (paList[i].is_default == '1') {
+          console.log(paList[i])
+          headList = paList[i]
+        } else {
+          patientList.push(paList[i])
+        }
+
+      }
+      patientList.unshift(headList)
+      // console.log(patientList)
       that.setData({
-        patientList,
-        name
+        patientList
       })
     }
     infoCb.beforeSend = () => { }
@@ -44,7 +56,8 @@ Page({
   },
   listDetail:function(e){
     var id = e.target.dataset.id
-    console.log(id)
+    var name = e.target.dataset.name
+    // console.log(id)
     var that = this
     let infoOpt = {
       url: '/archive',
@@ -58,7 +71,7 @@ Page({
       // console.log(res)
       wx.setStorageSync("archiveList", res.archiveList)
       wx.navigateTo({
-        url: 'archivesDetail/archivesDetail?title='+that.data.name
+        url: 'archivesDetail/archivesDetail?title=' + name
       })
     }
     infoCb.beforeSend = () => { }

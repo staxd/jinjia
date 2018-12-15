@@ -8,11 +8,11 @@
 <view class='smTitle'>舌脉</view>
 <view class='smTitle_box'>舌象</view>
 <view class='tongue_content'>
-      <view class='tongue_content_box_btn'  bindtap='tongueDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{tonguePic}}' wx:key='symptom_id'>{{item.name}}</view>
+      <view class='tongue_content_box_btn'  bindtap='tongueDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{tongueList.tongue}}' wx:key='symptom_id'>{{item.name}}</view>
   </view>
   <view class='smTitle_box'>脉象</view>
 <view class='tongue_content'>
-      <view class='tongue_content_box_btn' bindtap='pulseDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{pulseCondition}}' wx:key='symptom_id'>{{item.name}}</view>
+      <view class='tongue_content_box_btn' bindtap='pulseDetail' data-name='{{item.name}}' data-id='{{item.related_id}}' wx:for='{{tongueList.pulse}}' wx:key='symptom_id'>{{item.name}}</view>
 </view>
  <view class='tongue'>
   <view class='tongue_title'>处方</view>

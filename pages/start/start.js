@@ -27,6 +27,7 @@ Page({
           })
           wx.getUserInfo({
                   success: userResult => {
+                    wx.setStorageSync("isFirst", userResult.userInfo)
                     that.setData({
                       userInfo: userResult.userInfo
                     })
@@ -50,17 +51,9 @@ Page({
                 },
                 success(res) {
                   console.log(res);
-                  // wx.setStorageSync("userId", res.data.userId)
-                  // wx.setStorageSync("isLogin", 1)
-                  // that.globalData.nickName = res.data.userName
-                  // that.globalData.headimgurl = res.data.avatar
-                  // wx.setStorageSync("nickName", res.data.userName)
-                  // wx.setStorageSync("isbound", res.data.isbound)
-                  // wx.setStorageSync("avatar", res.data.avatar)
-                  // wx.setStorageSync("userKey", res.data.userKey)
-                  // wx.setStorageSync("authorization", res.data.authorization)
-                  // wx.setStorageSync("userId", res.data.userId)
-                  // console.log(res.data.authorization)
+                  wx.setStorageSync("api_token", res.data.api_token)
+                  wx.setStorageSync("mobile", res.data.mobile)
+                  wx.setStorageSync("user_id", res.data.user_id)
                 }
               })
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回

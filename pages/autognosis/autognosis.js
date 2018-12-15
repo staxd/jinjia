@@ -1,6 +1,7 @@
 var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
 
+var app = getApp();
 Page({
 
   /**
@@ -46,7 +47,7 @@ Page({
             type: 'POST',
             data: {
               body_part_id: res[i].body_part_id,
-              patient_id: "169"
+              patient_id: app.data.patient_id
             }
           }
           let infoCb = {}

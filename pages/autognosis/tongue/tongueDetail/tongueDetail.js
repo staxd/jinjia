@@ -3,6 +3,7 @@ import * as echarts from '../../../../ec-canvas/echarts';
 var url = require('../../../../config.js')
 const sendAjax = require('../../../../utils/sendAjax.js')
 
+var app = getApp();
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -64,9 +65,8 @@ function initChart(canvas, width, height) {
     }]
   };
   // console.log(option.radar.indicator)
-  
-  var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
-  // console.log(matchMedicinesName)
+  var matchMedicinesName = app.data.matchedMedicineList
+  console.log(matchMedicinesName)
   var rateList = []
   var indicator = []
   for(let i =0 ;i<5;i++){
@@ -121,17 +121,11 @@ Page({
     console.log(symptomInfo)
 
     var tongueList = wx.getStorageSync('tongueList')
-    // console.log(tongueList)
-    if (tongueList.pulse){
-      var pulseCondition = tongueList.pulse
-    }
-    if (tongueList.tongue){
-      var tonguePic = tongueList.tongue
-    }
+    console.log(tongueList)
+    
     this.setData({
       symptomInfo,
-      pulseCondition,
-      tonguePic
+      tongueList
     })
     
   },
@@ -144,7 +138,7 @@ Page({
     });
   }, 
   tongueDetail(e) {
-
+    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: 'tongueToDetail/tongueToDetail?id=' + e.currentTarget.dataset.id + "&title=" + e.currentTarget.dataset.name + "&group=1"
     });
@@ -156,7 +150,7 @@ Page({
     });
   },
   btn1(e){
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     if (matchMedicinesName[0]){
       wx.navigateTo({
@@ -166,7 +160,7 @@ Page({
     
   },
   btn2(e) {
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     if (matchMedicinesName[1]) {
       wx.navigateTo({
@@ -176,7 +170,7 @@ Page({
 
   },
   btn3(e) {
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     if (matchMedicinesName[2]) {
       wx.navigateTo({
@@ -186,7 +180,7 @@ Page({
 
   },
   btn4(e) {
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     if (matchMedicinesName[3]) {
       wx.navigateTo({
@@ -196,7 +190,7 @@ Page({
 
   },
   btn5(e) {
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     if (matchMedicinesName[4]) {
       wx.navigateTo({
@@ -207,14 +201,14 @@ Page({
   },
   subBtn(){
     var getInfoId = wx.getStorageSync('getInfoId')
-    var matchMedicinesName = wx.getStorageSync("matchMedicinesName")
+    var matchMedicinesName = app.data.matchedMedicineList
     // console.log(matchMedicinesName)
     var that = this
     let infoOpt = {
       url: '/selfDiagnosis/addArchive',
       type: 'POST',
       data: {
-        patient_id: '169',
+        patient_id: app.data.patient_id,
         symptoms: getInfoId,
         matchedMedicineList: JSON.stringify(matchMedicinesName)
       }

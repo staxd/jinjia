@@ -1,8 +1,16 @@
 <view class='addBox'>
-<view class='addBox_name'>患者姓名 <input   type='text' bindinput='userCode' placeholder="输入患者姓名"></input></view>
-<view class='addBox_sex'>患者性别<view class='addBox_sex_man'><radio value="" checked=""/>男</view><view class='addBox_sex_women'><radio value="" checked=""/>女</view></view>
-<view class='addBox_age ul'>患者年龄 <input  type='number' bindinput='userCode' placeholder="输入患者年龄"></input></view>
+<view class='addBox_name'>患者姓名 <input   type='text' bindinput='userName' placeholder="输入患者姓名"></input></view>
+<view class='addBox_sex'>患者性别<view class='addBox_sex_man'>
+   <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}" wx:key='{{index}}'>
+          <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+   </radio-group>
+</view>
+</view>
+<view class='addBox_age ul'>患者年龄 <input  type='number' bindinput='number' placeholder="输入患者年龄"></input></view>
 </view>
 <view class='addDisease'>病史
 <textarea type='text' bindinput="userProposal"  placeholder="输入病史描述"></textarea></view>
+<!-- <view class='addFriend'>默认亲友：<radio data-id="0"  bindtap="friendChange" value="1" checked=""/></view> -->
 <button bindtap='addBtn' type="warn" hover-class='none'>保存</button>

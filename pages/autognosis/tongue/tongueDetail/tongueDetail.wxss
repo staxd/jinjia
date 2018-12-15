@@ -68,6 +68,7 @@ page{
   font-size: 30rpx;
   line-height: 88rpx;
   padding-left:30rpx; 
+  margin-top: 20rpx;
 }
 .smTitle_box{
   width: 750rpx;

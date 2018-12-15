@@ -1,7 +1,15 @@
 <view class='fiendList'>
+
+<radio-group  bindchange="radioChange">
 <block wx:for='{{patientList}}' wx:key='item.patient_id'>
-  <view class='fiendList_fiends'>{{item.name}}<view class='fiendList_fiends_image' bindtap='alterBtn'><image src='../../../images/modify.png'></image>修改</view><view class='fiendList_fiends_btn'>设为默认<radio value="" checked=""/></view>
+  <view class='fiendList_fiends'>{{item.name}}<view data-id='{{index}}' class='fiendList_fiends_image' bindtap='alterBtn'><image src='../../../images/modify.png'></image>修改</view><view class='fiendList_fiends_btn'>设为默认
+  
+          <radio value="{{item.patient_id}}" checked="{{item.is_default =='1'?true:false}}"/>
+   
+   </view>
   </view>
-  </block>
+    </block>
+  </radio-group>
+
 </view>
 <button bindtap='addBtn' type="warn" hover-class='none'>新增</button>

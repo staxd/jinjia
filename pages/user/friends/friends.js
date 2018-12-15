@@ -1,5 +1,7 @@
 var url = require('../../../config.js')
 const sendAjax = require('../../../utils/sendAjax.js')
+
+var app = getApp();
 Page({
 
   /**
@@ -8,9 +10,11 @@ Page({
   data: {
     patient_id: '',
     patientList: [],
-    name: ''
+    name: '',
+    
   },
 
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -27,12 +31,23 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
-      console.log(res.patientList)
-      var name = res.patientList[0].name
-      var patientList = res.patientList
+      // console.log(res.patientList)
+      var paList = res.patientList
+      var patientList = []
+      var headList = []
+      for (let i in paList) {
+        if (paList[i].is_default == '1') {
+          console.log(paList[i])
+          headList = paList[i]
+        } else {
+          patientList.push(paList[i])
+        }
+
+      }
+      patientList.unshift(headList)
+      // console.log(patientList)
       that.setData({
-        patientList,
-        name
+        patientList
       })
     }
     infoCb.beforeSend = () => { }
@@ -43,14 +58,66 @@ Page({
     });
   },
   addBtn:function(){
+    var patientList = this.data.patientList
+    console.log(patientList)
     wx.navigateTo({
       url: 'friendsadd/friendsadd',
     })
   },
-  alterBtn: function () {
+  alterBtn: function (e) {
+    // console.log(e.currentTarget.dataset.id)
+    var that = this
+    var id = e.currentTarget.dataset.id
+    var patientList = that.data.patientList
+    // console.log(patientList[id])
+    wx.setStorageSync('patientList', patientList[id])
     wx.navigateTo({
       url: 'friendsAlter/friendsAlter',
     })
+  },
+  radioChange: function (e) {
+    var that = this
+    var paList = that.data.patientList
+    console.log(e.detail.value)
+    var patient_id = e.detail.value
+    var patientList =[]
+    var headList =[]
+    
+    let infoOpt = {
+      url: '/selfDiagnosis/setDefaultPatient',
+      type: 'POST',
+      data: {
+        patient_id
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res)
+      for (let i in paList) {
+        if (paList[i].patient_id == patient_id) {
+          app.data.patient_id = patient_id
+          console.log(paList[i])
+          paList[i]['is_default'] = "1"
+          headList = paList[i]
+        } else {
+          paList[i]['is_default'] = "0"
+          patientList.push(paList[i])
+        }
+
+      }
+      patientList.unshift(headList)
+      // console.log(app.data.patient_id)
+      that.setData({
+        patientList
+      })
+
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

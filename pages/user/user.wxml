@@ -12,16 +12,16 @@
       <view class='user-body-box-text'>档案</view>
       <view class='user-body-box-textRight'></view>
     </view>
-    <view class='user-body-box ul' bindtap='friends'>
+    <view class='user-body-box ' bindtap='friends'>
         <image src='/images/qinyou.png'></image>
       <view class='user-body-box-text'>亲友</view>
       <view class='user-body-box-textRight'></view>
     </view>
-        <view class='user-body-box' bindtap='invite'>
+        <!-- <view class='user-body-box' bindtap='invite'>
         <image src='/images/yaoqing.png'></image>
       <view class='user-body-box-text'>邀请</view>
       <view class='user-body-box-textRight'></view>
-    </view>
+    </view> -->
     </view>
     <view class='user-body'>
         <view class='user-body-box ul' bindtap='help'>

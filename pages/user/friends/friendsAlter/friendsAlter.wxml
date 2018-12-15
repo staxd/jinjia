@@ -1,9 +1,15 @@
 <view class='alterBox'>
-<view class='alterBox_name'>患者姓名 <input   type='text' bindinput='userCode' placeholder="输入患者姓名"></input></view>
-<view class='alterBox_sex'>患者性别<view class='alterBox_sex_man'><radio value="" checked=""/>男</view><view class='alterBox_sex_women'><radio value="" checked=""/>女</view></view>
-<view class='alterBox_age ul'>患者年龄 <input  type='number' bindinput='userCode' placeholder="输入患者年龄"></input></view>
+<view class='alterBox_name'>患者姓名 <input type='text' bindinput='userName' value="{{patientList.name}}"></input></view>
+<view class='alterBox_sex'>患者性别
+   <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}" wx:key='{{index}}'>
+          <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+   </radio-group>
+</view>
+<view class='alterBox_age ul'>患者年龄 <input  type='number' bindinput='number' value="{{patientList.age}}"></input></view>
 </view>
 <view class='alterDisease'>病史
-<textarea type='text' bindinput="userProposal"  placeholder="输入病史描述"></textarea></view>
+<textarea type='text' bindinput="userProposal"  value="{{patientList.medical_history}}"></textarea></view>
 <button bindtap='alterBtn' type="warn" hover-class='none'>保存</button>
-<view class="alterDelect">删除患者</view>
+<view bindtap='alterDelect' class="alterDelect">删除患者</view>

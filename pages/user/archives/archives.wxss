@@ -6,11 +6,14 @@ page{
   height: 120rpx;
   background: #fff;
   border-top: 4rpx solid #F5F5F5;
+  position: relative
 }
 .user-body-box-textRight{
-  margin-top: 48rpx;
-  float:right;
-  margin-right: 30rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto 30rpx; 
   display: inline-block;
   border-right: 4rpx solid #C7C7CC;
   border-top: 4rpx solid #C7C7CC;
@@ -22,8 +25,8 @@ page{
   border-bottom: 1px solid transparent;
 }
 .molist_name{
-  float: left;
-  margin-left: 30rpx;
+  position: absolute;
+  left: 30rpx;
   font-size: 32rpx;
   color: #4A4A4A;
   line-height: 124rpx;

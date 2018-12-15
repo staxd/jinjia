@@ -1,7 +1,8 @@
 import * as echarts from '../../ec-canvas/echarts';
 var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
-const app = getApp();
+
+var app = getApp();
 
 function initChart(canvas, width, height) {
   
@@ -213,7 +214,7 @@ Page({
       url: '/constitution/addArchive',
       type: 'POST',
       data: {
-        patient_id: '169',
+        patient_id: app.data.patient_id,
         symptoms: option,
         matchedConstitutionList: rateJson
       }

@@ -1,5 +1,6 @@
 //app.js
 var url = require('config.js')
+const sendAjax = require('/utils/sendAjax.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -77,6 +78,35 @@ App({
         })
       }
     })
+    this.getPatientId()
+  },
+  getPatientId(){
+    var that = this
+    let infoOpt = {
+      url: '/selfDiagnosis/getPatientList',
+      type: 'GET',
+      data: {
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      var patientList = res.patientList
+      for (let i in patientList) {
+        if (patientList[i].is_default == '1') {
+          var patient_id = patientList[i].patient_id
+        }
+      }
+      console.log(patient_id)
+      
+      that.data.patient_id = patient_id
+      
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
 
   },
   
@@ -90,5 +120,10 @@ App({
     authorization: '',
     isbound: '',
 
+  },
+  data:{
+    patient_id:"",
+    matchedMedicineList:[]
   }
+
 })

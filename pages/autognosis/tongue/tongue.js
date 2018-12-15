@@ -1,5 +1,7 @@
 var url = require('../../../config.js')
 const sendAjax = require('../../../utils/sendAjax.js')
+
+var app = getApp();
 Page({
 
   /**
@@ -99,10 +101,10 @@ Page({
           // console.log(symptomId)
           
           if (symptomList[i][j].group == "脉象"){
-            if (symptomList[i][j]){
-              pulseCondition.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id })
+            console.log(symptomList[i][j] )
+            pulseCondition.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id })
               tongueList["pulse"] = pulseCondition
-            }
+            
             
           }else{
             tonguePic.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id})
@@ -114,7 +116,8 @@ Page({
       }
 
     }
-    
+    console.log(tongueList)
+    wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
       var infoId = wx.getStorageSync('infoId')
       infoId = infoId.substring(1, infoId.length)
       symptomId = symptomId.substring(1, symptomId.length)
@@ -133,14 +136,17 @@ Page({
         url: '/selfDiagnosis/matchMedicines',
         type: 'POST',
         data: {
-          patient_id: "169",
+          patient_id: app.data.patient_id,
           symptoms: symptomId
         }
       }
       let infoCb = {}
       infoCb.success = function (res) {
         console.log(res.matchedMedicineList)
-        wx.setStorageSync("matchMedicinesName", res.matchedMedicineList)
+        app.data.matchedMedicineList = res.matchedMedicineList
+        wx.navigateTo({
+          url: 'tongueDetail/tongueDetail'
+        })
 
       }
       infoCb.beforeSend = () => { }
@@ -152,10 +158,7 @@ Page({
 
 
 
-      wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
-      wx: wx.navigateTo({
-        url: 'tongueDetail/tongueDetail'
-      })
+      
     
     }
       

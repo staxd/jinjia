@@ -38,11 +38,11 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
   };
 
   bcallback()
-  wx.showToast({
-    title: '正在加载...',
-    icon: 'loading',
-    duration: 10000
-  })
+  // wx.showToast({
+  //   title: '正在加载...',
+  //   icon: 'loading',
+  //   duration: 10000
+  // })
   wx.request({
     url: url.host + _sets.url,
     method: _sets.type,
@@ -59,11 +59,11 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
         scallback(res.data)
         
       }else {
-            // wx.showModal({
-            //   title: '提示',
-            //   content: res.data.message || '处理失败',
-            //   showCancel: false
-            // });
+            wx.showModal({
+              title: '提示',
+              content: res.data.message || '处理失败',
+              showCancel: false
+            });
          
         }
       
