@@ -59,11 +59,28 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
         scallback(res.data)
         
       }else {
-            wx.showModal({
-              title: '提示',
-              content: res.data.message || '处理失败',
-              showCancel: false
-            });
+            
+        if (res.data.message == "请登录"){
+          wx.showModal({
+            title: '提示',
+            content: res.data.message || '处理失败',
+            showCancel: false,
+            success: function (res) {
+              console.log(res)
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '/pages/login/login',
+                })
+              }
+            }
+          });
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: res.data.message || '处理失败',
+            showCancel: false,
+          });
+        }
          
         }
       
