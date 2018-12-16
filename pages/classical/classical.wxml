@@ -6,9 +6,11 @@
  <view class='classical_nav_jb' bindtap='disease'>疾病</view>
  <view class='classical_nav_bb' bindtap='sickness'>病性</view>
 </view>
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" bindscrolltolower="scroll" style="height:{{scrollHeight}}px;">
 <block wx:for-items="{{list}}" wx:key="{{item.medicine_id}}">
 <view data-openList="{{index}}" class='classical_list' bindtap='toClassical'>
   {{item.name}}
   <view class='classical_list_right'></view>
 </view>
 </block>
+</scroll-view> 

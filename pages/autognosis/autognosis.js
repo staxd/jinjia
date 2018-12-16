@@ -184,10 +184,10 @@ Page({
         duration: 1000
       })
     }else{
-      wx.setStorageSync('infoId', infoId)
+      
       wx.setStorageSync('symptomInfo', symptomInfo)
       wx.navigateTo({
-        url: 'tongue/tongue',
+        url: 'tongue/tongue?infoId=' + infoId,
       })
     }
 

@@ -44,6 +44,7 @@ page{
   width: 150rpx;
   height: 150rpx;
   /* background: red; */
+  padding-bottom: 30rpx;
 }
 .shetai_content_box_img image,.sheti_content_box_img image{
   width: 150rpx;
@@ -51,7 +52,6 @@ page{
   /* background: red; */
 }
 .shetai_content_box_btn,.sheti_content_box_btn{
-  margin-top: 30rpx;
   width: 148rpx;
   height: 54rpx;
   border: #BDBDBD 1rpx solid;

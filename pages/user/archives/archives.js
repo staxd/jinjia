@@ -69,9 +69,8 @@ Page({
     let infoCb = {}
     infoCb.success = function (res) {
       // console.log(res)
-      wx.setStorageSync("archiveList", res.archiveList)
       wx.navigateTo({
-        url: 'archivesDetail/archivesDetail?title=' + name
+        url: 'archivesDetail/archivesDetail?title=' + name + '&archiveList=' + JSON.stringify(res.archiveList)
       })
     }
     infoCb.beforeSend = () => { }

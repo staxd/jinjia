@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    symptomList:[]
+    symptomList:[],
+    infoId:""
   },
   getSLi(){
     var that = this
@@ -118,7 +119,7 @@ Page({
     }
     console.log(tongueList)
     wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
-      var infoId = wx.getStorageSync('infoId')
+      var infoId = this.data.infoId
       infoId = infoId.substring(1, infoId.length)
       symptomId = symptomId.substring(1, symptomId.length)
     if (symptomId == ""){
@@ -170,6 +171,11 @@ Page({
    */
   onLoad: function (options) {
     this.getSLi()
+    var infoId = options.infoId
+    this.setData({
+      infoId
+    
+    })
   },
 
   /**

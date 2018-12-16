@@ -37,10 +37,15 @@ Page({
     infoCb.success = function (res) {
       wx.hideToast();
       console.log(res)
-      that.setData({
-        list: that.data.list.concat(res.medicineList),
-        pagecount: res.pagecount
-      })
+      if (that.data.curpage <= res.pagecount) {
+
+        that.setData({
+          list: that.data.list.concat(res.medicineList),
+          pagecount: res.pagecount
+        })
+
+      }
+      
     }
     infoCb.beforeSend = () => { }
     infoCb.complete = () => {
@@ -158,11 +163,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    
     var that = this;
     var curpage = that.data.curpage;
     curpage++;
     var  pagecount= that.data.pagecount;
-    if (curpage < pagecount){
+    if (curpage <= pagecount){
       wx.showToast({
         title: '正在加载...',
         icon: 'loading',
@@ -173,6 +179,12 @@ Page({
       })
       this.getList();
 
+    }else{
+      wx.showToast({
+        title: '到底啦！',
+        icon: 'none',
+        duration: 1000
+      })
     }
     
     

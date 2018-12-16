@@ -9,15 +9,15 @@ App({
     wx.setStorageSync('logs', logs)
     wx.setStorageSync("isLogin", 0)
     var isFir = wx.getStorageSync("isFirst")
-    // if(!isFir){
-    //   wx.redirectTo({
-    //     url:"pages/start/start"
-    //   })
-    // }else{
-    //   wx.switchTab({
-    //     url: 'pages/index/index'
-    //   })
-    // }
+    if(!isFir){
+      wx.redirectTo({
+        url:"pages/start/start"
+      })
+    }else{
+      wx.switchTab({
+        url: 'pages/index/index'
+      })
+    }
     // 登录
     wx.login({
       success: resp => {
@@ -58,11 +58,13 @@ App({
                     },
                     success(res) {
                       console.log(res);
+                      
                       wx.setStorageSync("api_token", res.data.api_token)
                       wx.setStorageSync("mobile", res.data.mobile)
                       wx.setStorageSync("user_id", res.data.user_id)
                     }
                   })
+                  that.getPatientId()
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                   // 所以此处加入 callback 以防止这种情况
                   // console.log(that.userInfoReadyCallback);
@@ -78,7 +80,7 @@ App({
         })
       }
     })
-    this.getPatientId()
+    
   },
   getPatientId(){
     var that = this

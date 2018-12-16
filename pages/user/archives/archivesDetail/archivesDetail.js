@@ -21,18 +21,20 @@ var app = getApp();
       wx.setNavigationBarTitle({
         title: options.title+'的档案'
       })
+      var archiveList = JSON.parse(options.archiveList)
       var time = util.formatTime(new Date());
       var year = time.substring(0, 4)
       // console.log(year)
       this.setData({
-        year
+        year,
+        archiveList
       })
       this.getArchivesList()
     },
     getArchivesList:function(){
       
       var that = this
-      var archiveList = wx.getStorageSync("archiveList")
+      var archiveList = that.data.archiveList
       
       // console.log(archiveList)
       for (let i = 0; i < archiveList.length;i++){
