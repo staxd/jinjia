@@ -27,7 +27,6 @@ Page({
           })
           wx.getUserInfo({
                   success: userResult => {
-                    wx.setStorageSync("isFirst", userResult.userInfo)
                     that.setData({
                       userInfo: userResult.userInfo
                     })
@@ -70,8 +69,9 @@ Page({
             
         }
       })
-      
       //授权成功后，跳转进入小程序首页
+      wx.setStorageSync("isFirst", true)
+
       wx.switchTab({
         url: '/pages/index/index'
       })

@@ -3,7 +3,6 @@ page{
 }
 .fiendList{
   width: 750rpx;
-  min-height: 100rpx;
   background: #fff;
   border-top: 4rpx solid #f5f5f5;
 }

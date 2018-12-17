@@ -61,27 +61,15 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
         
       }else {
             
-        // if (res.data.message == "请登录" || res.data.message == "未绑定手机号"){
-        //   wx.showModal({
-        //     title: '提示',
-        //     content: res.data.message || '处理失败',
-        //     showCancel: false,
-        //     success: function (res) {
-        //       console.log(res)
-        //       if (res.confirm) {
-        //         wx.navigateTo({
-        //           url: '/pages/login/login',
-        //         })
-        //       }
-        //     }
-        //   });
-        // }else{
+        if (res.data.message == "请登录" || res.data.message == "未绑定手机号"){
+          
+        }else{
           wx.showModal({
             title: '提示',
             content: res.data.message || '处理失败',
             showCancel: false,
           });
-        // }
+        }
          
         }
       

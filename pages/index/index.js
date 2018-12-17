@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+let app = getApp()
 
 Page({
   data: {
@@ -9,8 +9,8 @@ Page({
   tizhiBtn: function () {
     
     var mobile = app.data.mobile
-    if(app.data.show){
-      if (mobile == "") {
+    console.log(mobile)
+      if (mobile == undefined) {
         wx.showModal({
           title: '提示',
           content: '请您先绑定手机号！',
@@ -26,18 +26,20 @@ Page({
         });
 
       } else {
-        wx.navigateTo({
-          url: '/pages/physical/physical'
-        })
+        if(app.data.show){
+          wx.navigateTo({
+            url: '/pages/physical/physical'
+          })
+        }
+        
       }
-    }
+    
     
 
   },
    zizhenBtn: function () {
      var mobile = app.data.mobile
-     if (app.data.show) {
-     if (mobile == "") {
+     if (mobile == undefined) {
        wx.showModal({
          title: '提示',
          content: '请您先绑定手机号！',
@@ -53,11 +55,14 @@ Page({
        });
       
     } else {
-     wx.navigateTo({
-       url: '/pages/autognosis/autognosis',
-     })
+      if(app.data.show){
+        wx.navigateTo({
+          url: '/pages/autognosis/autognosis',
+        })
+      }
+     
     }
-     }
+     
   },
   onLoad: function () {
     app.onLaunch()
