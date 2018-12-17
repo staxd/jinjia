@@ -55,10 +55,12 @@ Page({
     });
   },
   listDetail:function(e){
-    var id = e.target.dataset.id
-    var name = e.target.dataset.name
-    // console.log(id)
     var that = this
+    var patientList = that.data.patientList
+    var id = e.currentTarget.dataset.id
+    var name = e.currentTarget.dataset.name
+    // console.log(e)
+    
     let infoOpt = {
       url: '/archive',
       type: 'POST',

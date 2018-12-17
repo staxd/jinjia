@@ -15,8 +15,8 @@ Page({
     // console.log(e)
     var _this = this;
 
-    var option_id = e.target.dataset.id
-    var isshow = e.target.dataset.isshow
+    var option_id = e.currentTarget.dataset.id
+    var isshow = e.currentTarget.dataset.isshow
     var mbList = _this.data.mbList
 
     // console.log(mbList)
