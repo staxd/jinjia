@@ -97,7 +97,9 @@ App({
       var patientList = res.patientList
       for (let i in patientList) {
         if (patientList[i].is_default == '1') {
-          var patient_id = patientList[i].patient_id
+            that.data.patient_id = patientList[i].patient_id
+          console.log(patientList[i].patient_id)
+            return
         }
       }
       console.log(patient_id)

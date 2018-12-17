@@ -1,5 +1,6 @@
 var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
+var app = getApp()
 Page({
 
   /**
@@ -36,6 +37,7 @@ Page({
   },
 
   onLoad: function (options) {
+    app.getPatientId();
     this.getOptionList();
     this.getPatientId();
   },
