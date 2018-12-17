@@ -1,6 +1,9 @@
 page{
 background: #f5f5f5;
 }
+.addBox input{
+  width: 500rpx;
+}
 .addBox{
   width: 750rpx;
   min-height: 88rpx;

@@ -1,6 +1,9 @@
 page{
 background: #f5f5f5;
 }
+.alterBox input{
+  width: 500rpx;
+}
 .alterBox{
   width: 750rpx;
   min-height: 88rpx;
