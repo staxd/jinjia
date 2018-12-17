@@ -1,8 +1,8 @@
-<block wx:if="{{archiveLength !=0}}">
-<view wx:if='{{archiveList.length !=0}}' class='leftLine'></view>
+<block wx:if="{{archiveLength!=0}}">
+<view wx:if='{{arList.length!=0}}' class='leftLine'></view>
 <view class="box">
 
-  <view wx:if='{{archiveList.length !=0}}' class='box_year'>{{year}}</view>
+  <view wx:if='{{arList.length!=0}}' class='box_year'>{{year}}</view>
 
   <view class='box_border' style='{{item.isshow?"display:none":""}}' data-index ='{{index}}' wx:for='{{archiveList}}' wx:key='item.archive_id'>
     <view wx:if="{{item.type=='constitution'}}" >

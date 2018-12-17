@@ -11,7 +11,7 @@ var app = getApp();
     data: {
       archiveList:[],
       year:'', //获取当前年份
-      nameData:[]
+      nameData:[],
     },
 
     /**
@@ -47,12 +47,13 @@ var app = getApp();
           // console.log(nameData)
           archiveList[i]['name'] = nameData[0].name
             archiveList[i]['isshow'] = false
-            that.setData({
-              archiveList
-            })
+            
         }
 
       }
+      that.setData({
+        archiveList
+      })
       console.log(archiveList)
       },
     zizhendetailBtn(e){
