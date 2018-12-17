@@ -71,8 +71,12 @@ Page({
     let infoCb = {}
     infoCb.success = function (res) {
       // console.log(res)
+      if (res.archiveList.length==0){
+        console.log("aaa")
+        var archiveLength = 0
+      }
       wx.navigateTo({
-        url: 'archivesDetail/archivesDetail?title=' + name + '&archiveList=' + JSON.stringify(res.archiveList)
+        url: 'archivesDetail/archivesDetail?title=' + name + '&archiveList=' + JSON.stringify(res.archiveList) + '&archiveLength=' + archiveLength
       })
     }
     infoCb.beforeSend = () => { }

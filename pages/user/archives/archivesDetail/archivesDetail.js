@@ -22,12 +22,14 @@ var app = getApp();
         title: options.title+'的档案'
       })
       var archiveList = JSON.parse(options.archiveList)
+      var archiveLength = options.archiveLength
       var time = util.formatTime(new Date());
       var year = time.substring(0, 4)
       // console.log(year)
       this.setData({
         year,
-        archiveList
+        archiveList,
+        archiveLength
       })
       this.getArchivesList()
     },
