@@ -221,7 +221,7 @@ Page({
       })
       var timer = setTimeout(function () {
         wx.switchTab({
-          url: '../../../index/index',
+          url: '/pages/index/index',
         })
       }, 2000);
 

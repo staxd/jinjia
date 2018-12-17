@@ -37,7 +37,7 @@ Page({
                     platUserInfoMap["signature"] = userResult.signature;
                     platUserInfoMap["encryptedData"] = userResult.encryptedData;
                     platUserInfoMap["iv"] = userResult.iv;
-                    console.log(platUserInfoMap);
+                    // console.log(platUserInfoMap);
                     //request请求
               wx.request({
                 url: url.loginUrl,
@@ -51,9 +51,9 @@ Page({
                 },
                 success(res) {
                   console.log(res);
-                  wx.setStorageSync("api_token", res.data.api_token)
-                  wx.setStorageSync("mobile", res.data.mobile)
-                  wx.setStorageSync("user_id", res.data.user_id)
+                  app.data.api_token = res.data.api_token
+                  app.data.mobile = res.data.mobile
+                  app.data.user_id = res.data.user_id
                 }
               })
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -73,7 +73,7 @@ Page({
       
       //授权成功后，跳转进入小程序首页
       wx.switchTab({
-        url: '../index/index'
+        url: '/pages/index/index'
       })
     } else {
       //用户按了拒绝按钮

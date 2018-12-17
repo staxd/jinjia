@@ -1,7 +1,7 @@
 const url = require('../config.js')
 
 function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
-
+  
   // 登录信息过期处理类型
   // const OTCB = outTimeAuthCbOrNeedAuth || function() {
   //   getCurrentPages().pop().onLoad(getCurrentPages().pop().options)
@@ -26,11 +26,11 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
   _sets.type = _sets.type.toUpperCase();
 
   const bcallback = callback.beforeSend || function(data) {
-    wx.showToast({
-      title: '正在加载...',
-      icon: 'loading',
-      duration: 10000
-    })
+    // wx.showToast({
+    //   title: '正在加载...',
+    //   icon: 'loading',
+    //   duration: 10000
+    // })
   };
   const scallback = callback.success || function(data) {};
   const ccallback = callback.complete || function(data) {
@@ -43,13 +43,14 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
   //   icon: 'loading',
   //   duration: 10000
   // })
+  
   wx.request({
     url: url.host + _sets.url,
     method: _sets.type,
     data: _sets.data,
     header: {
       'content-type': 'application/x-www-form-urlencoded',
-      'api_token': wx.getStorageSync("api_token")
+      'api_token': getApp().data.api_token
 
     },
     success(res) {
@@ -60,27 +61,27 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
         
       }else {
             
-        if (res.data.message == "请登录"){
+        // if (res.data.message == "请登录" || res.data.message == "未绑定手机号"){
+        //   wx.showModal({
+        //     title: '提示',
+        //     content: res.data.message || '处理失败',
+        //     showCancel: false,
+        //     success: function (res) {
+        //       console.log(res)
+        //       if (res.confirm) {
+        //         wx.navigateTo({
+        //           url: '/pages/login/login',
+        //         })
+        //       }
+        //     }
+        //   });
+        // }else{
           wx.showModal({
             title: '提示',
             content: res.data.message || '处理失败',
             showCancel: false,
-            success: function (res) {
-              console.log(res)
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '/pages/login/login',
-                })
-              }
-            }
           });
-        }else{
-          wx.showModal({
-            title: '提示',
-            content: res.data.message || '处理失败',
-            showCancel: false,
-          });
-        }
+        // }
          
         }
       

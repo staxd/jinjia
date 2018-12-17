@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageUrl:"",
     userPhone:"",
     userCode:"",
     currentTime: 61,//限制60s
@@ -117,47 +118,50 @@ Page({
             duration: 2000
           })
         } else {
-          var key = true
-          let infoOpt = {
-            url: '/user/bindMobile',
-            type: 'POST',
+
+          wx.request({
+            url: url.host + '/user/bindMobile',
+            method: 'POST',
             data: {
               code: code,
               mobile: userPhone,
               text_code: userCode
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success(res) {
+              if(res.data.code == 200){
+                console.log(res)
+                app.data.api_token = res.data.api_token
+                app.data.mobile = res.data.mobile
+                app.data.user_id = res.data.user_id
+                wx.showModal({
+                  title: '提示',
+                  content: '绑定成功！',
+                  showCancel: false,
+                  success: function (res) {
+                    console.log(res)
+                    if (res.confirm) {
+                      var pageUrl = that.data.pageUrl
+                      wx.redirectTo({
+                        url: pageUrl
+                      })
+                    }
+                  }
+                });
+                
+              } else if (res.data.code == 400 ){
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message || '处理失败',
+                  showCancel: false,
+                });
+              }
+              
             }
-          }
-          let infoCb = {}
-          infoCb.success = function (res) {
-            key = false
-            // console.log(res)
-            wx.setStorageSync("api_token", res.data.api_token)
-            wx.setStorageSync("mobile", res.data.mobile)
-            wx.setStorageSync("user_id", res.data.user_id)
-            
-          }
-          infoCb.beforeSend = () => { }
-          infoCb.complete = () => {
-
-          }
-          sendAjax(infoOpt, infoCb, () => {
-          });
-          if(key){
-            wx.showToast({
-              title: '验证码出错，绑定失败！',
-              icon: 'none',
-              duration: 2000
-            })
-          }else{
-            wx.showToast({
-              title: '绑定成功！',
-              icon: 'success',
-              duration: 2000
-            })
-            wx.redirectTo({
-              url: "pages/physical/physical"
-            })
-          }
+          })
+          
         }
       
       
@@ -174,7 +178,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var pageUrl = options.pageUrl
+    this.setData({
+      pageUrl
+    })
   },
 
   /**

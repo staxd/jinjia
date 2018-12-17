@@ -7,33 +7,60 @@ Page({
    
   },
   tizhiBtn: function () {
-    var user_id = wx.getStorageSync("mobile")
-    if (user_id == "") {
-      wx.navigateTo({
-        url: '../login/login'
-      })
-    } else {
-      wx.navigateTo({
-        url: '../physical/physical'
-      })
+    
+    var mobile = app.data.mobile
+    if(app.data.show){
+      if (mobile == "") {
+        wx.showModal({
+          title: '提示',
+          content: '请您先绑定手机号！',
+          showCancel: true,
+          success: function (res) {
+            console.log(res)
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
+              })
+            }
+          }
+        });
+
+      } else {
+        wx.navigateTo({
+          url: '/pages/physical/physical'
+        })
+      }
     }
+    
 
   },
    zizhenBtn: function () {
-    var user_id = wx.getStorageSync("mobile")
-    if (user_id == "") {
-      wx.navigateTo({
-        url: '../login/login'
-      })
+     var mobile = app.data.mobile
+     if (app.data.show) {
+     if (mobile == "") {
+       wx.showModal({
+         title: '提示',
+         content: '请您先绑定手机号！',
+         showCancel: true,
+         success: function (res) {
+           console.log(res)
+           if (res.confirm) {
+             wx.navigateTo({
+               url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
+             })
+           }
+         }
+       });
+      
     } else {
      wx.navigateTo({
-       url: '../autognosis/autognosis',
+       url: '/pages/autognosis/autognosis',
      })
     }
-
+     }
   },
   onLoad: function () {
-   
+    app.onLaunch()
   },
   getUserInfo: function(e) {
   }

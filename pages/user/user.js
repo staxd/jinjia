@@ -13,6 +13,7 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     platUserInfoMap: {},
     code: '',
+    showUs:false
   },
 
   /**
@@ -53,10 +54,13 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success(res) {
-                console.log(res);
-                wx.setStorageSync("api_token", res.data.api_token)
-                wx.setStorageSync("mobile", res.data.mobile)
-                wx.setStorageSync("user_id", res.data.user_id)
+                app.data.api_token=res.data.api_token
+                app.data.mobile = res.data.mobile
+                app.data.user_id = res.data.user_id
+                app.data.showUs = true
+                that.setData({
+                  showUs:true
+                })
               }
             })
           }
@@ -73,10 +77,34 @@ Page({
 
   }, 
   archives: function () {
-    // console.log('12321313');
-    wx.navigateTo({
-      url: 'archives/archives'
-    })
+    var mobile = app.data.mobile
+    if (app.data.show) {
+    if (mobile == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请您先绑定手机号！',
+        showCancel: true,
+        success: function (res) {
+          console.log(res)
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login?pageUrl=' + "archives/archives"
+            })
+          }
+        }
+      });
+      
+    } else {
+        var timer = setTimeout(function () {
+          wx.navigateTo({
+            url: 'archives/archives'
+          })
+        }, 300);
+        
+     
+      
+    }
+    }
 
   },
   help: function () {
@@ -93,10 +121,37 @@ Page({
 
   }, 
   friends: function () {
-    // console.log('12321313');
-    wx.navigateTo({
-      url: 'friends/friends'
-    })
+    var mobile = app.data.mobile
+    if (app.data.show) {
+    if (mobile == "") {
+      wx.showModal({
+        title: '提示',
+        content: '请您先绑定手机号！',
+        showCancel: true,
+        success: function (res) {
+          console.log(res)
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/login?pageUrl=' + "friends/friends"
+            })
+          }
+        }
+      });
+      
+    } else {
+      
+      var timer = setTimeout(function () {
+        wx.navigateTo({
+          url: 'friends/friends'
+        })
+
+      }, 300);
+        
+
+
+     
+    }
+    }
 
   },
   /**

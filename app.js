@@ -11,11 +11,11 @@ App({
     var isFir = wx.getStorageSync("isFirst")
     if(!isFir){
       wx.redirectTo({
-        url:"pages/start/start"
+        url:"/pages/start/start"
       })
     }else{
       wx.switchTab({
-        url: 'pages/index/index'
+        url: '/pages/index/index'
       })
     }
     // 登录
@@ -58,10 +58,11 @@ App({
                     },
                     success(res) {
                       console.log(res);
-                      
-                      wx.setStorageSync("api_token", res.data.api_token)
-                      wx.setStorageSync("mobile", res.data.mobile)
-                      wx.setStorageSync("user_id", res.data.user_id)
+                      that.data.api_token=res.data.api_token
+                      that.data.mobile = res.data.mobile
+                      that.data.user_id = res.data.user_id
+                      that.data.show = true
+                      console.log("aaa")
                     }
                   })
                   
@@ -84,52 +85,60 @@ App({
     })
     
   },
+  
   getPatientId(){
-    var that = this
-    let infoOpt = {
-      url: '/selfDiagnosis/getPatientList',
-      type: 'GET',
-      data: {
-      }
-    }
-    let infoCb = {}
-    infoCb.success = function (res) {
-      var patientList = res.patientList
-      for (let i in patientList) {
-        if (patientList[i].is_default == '1') {
-            that.data.patient_id = patientList[i].patient_id
-          console.log(patientList[i].patient_id)
-            return
+  
+      var that = this
+      let infoOpt = {
+        url: '/selfDiagnosis/getPatientList',
+        type: 'GET',
+        data: {
         }
       }
-      console.log(patient_id)
-      
-      that.data.patient_id = patient_id
-      
-    }
-    infoCb.beforeSend = () => { }
-    infoCb.complete = () => {
+      let infoCb = {}
+      infoCb.success = function (res) {
+        var patientList = res.patientList
+        for (let i in patientList) {
+          if (patientList[i].is_default == '1') {
+            that.data.patient_id = patientList[i].patient_id
+            console.log(patientList[i].patient_id)
+            return
+          }
+        }
+        console.log(patient_id)
 
-    }
-    sendAjax(infoOpt, infoCb, () => {
-    });
+        that.data.patient_id = patient_id
+
+      }
+      infoCb.beforeSend = () => { }
+      infoCb.complete = () => {
+
+      }
+      sendAjax(infoOpt, infoCb, () => {
+      });
+    
+
+
+    
 
   },
-  
   globalData: {
     userInfo: null,
     platUserInfoMap: {},
     userInfo: '',
-    authorization: '',
     nickName: '',
     headimgurl: '',
     authorization: '',
     isbound: '',
+    
 
   },
   data:{
     patient_id:"",
-    matchedMedicineList:[]
+    matchedMedicineList:[],
+    api_token: '',
+    mobile: '',
+    user_id: '',
   }
 
 })
