@@ -82,7 +82,9 @@ Page({
           }
 
         }
-        patientList.unshift(headList)
+        if (headList.length != 0) {
+          patientList.unshift(headList)
+        }
         // console.log(patientList)
         var pages = getCurrentPages();
         var currPage = pages[pages.length - 1];   //当前页面

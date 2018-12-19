@@ -3,10 +3,10 @@ page{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 750rpx;
 }
 .zizhen_left{
   width:188rpx;
-  float: left;
   margin-bottom: 120rpx;
   
 }

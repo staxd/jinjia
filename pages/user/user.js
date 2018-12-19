@@ -79,7 +79,7 @@ Page({
   archives: function () {
     var mobile = app.data.mobile
     if (app.data.show) {
-    if (mobile == "") {
+    if (mobile == undefined) {
       wx.showModal({
         title: '提示',
         content: '请您先绑定手机号！',
@@ -99,7 +99,7 @@ Page({
           wx.navigateTo({
             url: 'archives/archives'
           })
-        }, 300);
+        }, 400);
         
      
       
@@ -123,7 +123,7 @@ Page({
   friends: function () {
     var mobile = app.data.mobile
     if (app.data.show) {
-    if (mobile == "") {
+    if (mobile == undefined) {
       wx.showModal({
         title: '提示',
         content: '请您先绑定手机号！',
@@ -145,7 +145,7 @@ Page({
           url: 'friends/friends'
         })
 
-      }, 300);
+      }, 400);
         
 
 

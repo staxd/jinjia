@@ -44,7 +44,9 @@ Page({
         }
 
       }
-      patientList.unshift(headList)
+      if (headList.length != 0) {
+        patientList.unshift(headList)
+      }
       // console.log(patientList)
       that.setData({
         patientList
@@ -105,7 +107,9 @@ Page({
         }
 
       }
-      patientList.unshift(headList)
+      if (headList.length != 0) {
+        patientList.unshift(headList)
+      }
       // console.log(app.data.patient_id)
       that.setData({
         patientList

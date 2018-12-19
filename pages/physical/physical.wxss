@@ -1,6 +1,6 @@
 /* pages/physical/physical.wxss */
 page {
-  width: 100%;
+  width: 750rpx;
   height: 100%;
   background: #f5f5f5;
   
@@ -21,7 +21,7 @@ page {
 }
 .physical-box-content-up{
   margin-left: 30rpx;
-  width: 750rpx;
+  width: 720rpx;
   height: 88rpx;
   border-bottom: 4rpx solid #f5f5f5;
   font-size: 30rpx;

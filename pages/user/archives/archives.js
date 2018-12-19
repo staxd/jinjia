@@ -41,7 +41,9 @@ Page({
         }
 
       }
-      patientList.unshift(headList)
+      if (headList.length != 0) {
+        patientList.unshift(headList)
+      }
       // console.log(patientList)
       that.setData({
         patientList

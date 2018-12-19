@@ -117,7 +117,9 @@ Page({
           }
 
         }
-        patientList.unshift(headList)
+        if (headList.length!=0){
+          patientList.unshift(headList)
+        }
         // console.log(patientList)
         var pages = getCurrentPages();
         var currPage = pages[pages.length - 1];   //当前页面
@@ -152,51 +154,69 @@ Page({
     var patientList = that.data.patientList
     var patient_id = ""
     patient_id = patientList.patient_id
-    let infoOpt = {
-      url: '/selfDiagnosis/deletePatient',
-      type: 'POST',
-      data: {
-        patient_id
-      }
-    }
-    let infoCb = {}
-    infoCb.success = function (res) {
-      console.log(res)
-
+    if (patientList.is_default == "1"){
+      wx.showModal({
+        title: '温馨提示',
+        content: '不允许删除默认患者哦！',
+        showCancel: false
+      });
+    }else{
       let infoOpt = {
-        url: '/selfDiagnosis/getPatientList',
-        type: 'GET',
+        url: '/selfDiagnosis/deletePatient',
+        type: 'POST',
         data: {
+          patient_id
         }
       }
       let infoCb = {}
       infoCb.success = function (res) {
-        // console.log(res.patientList)
-        var paList = res.patientList
-        var patientList = []
-        var headList = []
-        for (let i in paList) {
-          if (paList[i].is_default == '1') {
-            console.log(paList[i])
-            headList = paList[i]
-          } else {
-            patientList.push(paList[i])
+        console.log(res)
+
+        let infoOpt = {
+          url: '/selfDiagnosis/getPatientList',
+          type: 'GET',
+          data: {
           }
+        }
+        let infoCb = {}
+        infoCb.success = function (res) {
+          // console.log(res.patientList)
+          var paList = res.patientList
+          var patientList = []
+          var headList = []
+          for (let i in paList) {
+            if (paList[i].is_default == '1') {
+              console.log(paList[i])
+              headList = paList[i]
+            } else {
+              patientList.push(paList[i])
+            }
+
+          }
+          if (headList.length != 0) {
+            patientList.unshift(headList)
+          }
+          // console.log(patientList)
+          var pages = getCurrentPages();
+          var currPage = pages[pages.length - 1];   //当前页面
+          var prevPage = pages[pages.length - 2];  //上一个页面
+
+          //直接调用上一个页面对象的setData()方法，把数据存到上一个页面中去
+          prevPage.setData({
+            patientList
+          });
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+        infoCb.beforeSend = () => { }
+        infoCb.complete = () => {
 
         }
-        patientList.unshift(headList)
-        // console.log(patientList)
-        var pages = getCurrentPages();
-        var currPage = pages[pages.length - 1];   //当前页面
-        var prevPage = pages[pages.length - 2];  //上一个页面
-
-        //直接调用上一个页面对象的setData()方法，把数据存到上一个页面中去
-        prevPage.setData({
-          patientList
+        sendAjax(infoOpt, infoCb, () => {
         });
-        wx.navigateBack({
-          delta: 1
-        })
+
+
       }
       infoCb.beforeSend = () => { }
       infoCb.complete = () => {
@@ -204,15 +224,8 @@ Page({
       }
       sendAjax(infoOpt, infoCb, () => {
       });
-
-
     }
-    infoCb.beforeSend = () => { }
-    infoCb.complete = () => {
-
-    }
-    sendAjax(infoOpt, infoCb, () => {
-    });
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
