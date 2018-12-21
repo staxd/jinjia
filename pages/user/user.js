@@ -3,7 +3,6 @@ var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */

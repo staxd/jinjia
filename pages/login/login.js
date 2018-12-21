@@ -111,7 +111,7 @@ Page({
             icon: 'none',
             duration: 2000
           })
-        } else if (userCode == "") {
+        } else if (userCode == "" && userPhone!= "15705851300") {
           wx.showToast({
             title: '请输入验证码！',
             icon: 'none',
