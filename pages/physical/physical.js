@@ -87,21 +87,14 @@ Page({
     let infoCb = {}
     infoCb.success = function (res) {
         console.log(res)
-        that.setData({
+      wx.requestPayment(
+        {   
+          'appId': "wx86f0a2d39b2e279e",
           nonceStr: res.nonceStr,
           package: res.package,
           paySign: res.paySign,
           signType: res.signType,
-          timeStamp: res.timeStamp
-        })
-      wx.requestPayment(
-        {   
-          'appId': "wx86f0a2d39b2e279e",
-          'timeStamp': "" +that.data.timeStamp,
-          'nonceStr': that.data.nonceStr,
-          'package': that.data.package,
-          'signType': 'MD5',
-          'paySign': that.data.paySign,
+          timeStamp:""+ res.timeStamp,
           'success': function (res) { 
             console.log(res)
           },
@@ -117,7 +110,7 @@ Page({
     });
   },
   onLoad: function (options) {
-    this.getZhifustate();
+    
     
     app.getPatientId();
     this.getOptionList();
@@ -266,7 +259,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getZhifustate();
   },
 
   /**
