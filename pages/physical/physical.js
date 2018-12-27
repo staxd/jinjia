@@ -10,7 +10,48 @@ Page({
     currentTab: 1,
     mbList: [],
     optionId:"",
-    patientId:""
+    patientId:"",
+    nonceStr: "",
+    package: "",
+    paySign: "",
+    signType: "",
+    timeStamp:"",
+  },
+  getZhifustate(){
+    var that = this
+    wx.request({
+      url: url.host + '/constitution/matchConstitutions',
+      method: "POST",
+      data:{
+        options: '169',
+        patient_id: '169'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'api_token': getApp().data.api_token
+
+      },
+      success(res) {
+          if (res.data.code == 406) {
+            console.log('aaaa')
+            that.PostSelfDiagnosis()
+
+          }
+
+        
+
+      },
+      fail(){
+        wx.showModal({
+          title: '提示',
+          content: '服务器连接失败',
+          showCancel: false
+        });
+      },
+      complete() {
+        // ccallback()
+      }
+    })
   },
   clickSelect: function (e) {
     // console.log(e)
@@ -35,8 +76,49 @@ Page({
       mbList
     })
   },
+  PostSelfDiagnosis(){
+    var that = this
+    let infoOpt = {
+      url: '/order/selfDiagnosis',
+      type: 'POST',
+      data: {
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+        console.log(res)
+        that.setData({
+          nonceStr: res.nonceStr,
+          package: res.package,
+          paySign: res.paySign,
+          signType: res.signType,
+          timeStamp: res.timeStamp
+        })
+      wx.requestPayment(
+        {   
+          'appId': "wx86f0a2d39b2e279e",
+          'timeStamp': "" +that.data.timeStamp,
+          'nonceStr': that.data.nonceStr,
+          'package': that.data.package,
+          'signType': 'MD5',
+          'paySign': that.data.paySign,
+          'success': function (res) { 
+            console.log(res)
+          },
+          'fail': function (res) { },
+          'complete': function (res) {console.log(res) }
+        })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
 
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
   onLoad: function (options) {
+    this.getZhifustate();
+    
     app.getPatientId();
     this.getOptionList();
     this.getPatientId();
@@ -69,6 +151,7 @@ Page({
       url: '/constitution/getOptionList',
       type: 'GET',
       data: {
+
       }
     }
     let infoCb = {}

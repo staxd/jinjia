@@ -60,7 +60,15 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
         scallback(res.data)
         
       }else {
+        if (res.data.code==406) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.message,
+            showCancel: true,
             
+          });
+        }
+
         if (res.data.message == "请登录" || res.data.message == "未绑定手机号"){
           
         }else{
