@@ -23,12 +23,17 @@ function initChart(canvas, width, height) {
     yAxis: {
       show: false
     },
+    textStyle: {                    // 图例的公用文本样式。
+      fontSize: 15,
+      color: '#fff'
+    },
     radar: {
       // shape: 'circle',
       indicator: [{
         name: '食品',
         max: 0.055555555555556,
-        color: '#4a4a4a'
+        color: '#4a4a4a',
+        
       },
       {
         name: '玩具',
@@ -78,14 +83,21 @@ function initChart(canvas, width, height) {
           color: '#4a4a4a'
 
         }
+        
       ]
     },
     series: [{
       name: '预算',
       type: 'radar',
+      
       data: [{
         value: [],
-        name: '预算'
+        name: '预算',
+        areaStyle: {                // 单项区域填充样式
+          normal: {
+            color: '#7ED321'       // 填充的颜色。[ default: "#000" ]
+          }
+        }
       }
       ]
     }]

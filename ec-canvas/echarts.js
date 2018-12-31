@@ -2931,7 +2931,7 @@
 
   function Ca(t, e) {
     var n = e || e.getModel("textStyle");
-    return E([t.fontStyle || n && n.getShallow("fontStyle") || "", t.fontWeight || n && n.getShallow("fontWeight") || "", (t.fontSize || n && n.getShallow("fontSize") || 12) + "px", t.fontFamily || n && n.getShallow("fontFamily") || "sans-serif"].join(" "))
+    return E([t.fontStyle || n && n.getShallow("fontStyle") || "", t.fontWeight || n && n.getShallow("fontWeight") || "", (t.fontSize || n && n.getShallow("fontSize") || 20) + "px", t.fontFamily || n && n.getShallow("fontFamily") || "sans-serif"].join(" "))
   }
 
   function Da(t, e, n, i, r, a) {
@@ -7244,7 +7244,7 @@
     vf = 0,
     mf = 5e3,
     yf = /\{([a-zA-Z0-9_]+)\|([^}]*)\}/g,
-    _f = "12px sans-serif",
+    _f = "20px sans-serif",
     xf = {};
   xf.measureText = function(t, e) {
     var n = l();
@@ -10460,7 +10460,7 @@
         splitLine: {
           lineStyle: {
             type: "dashed",
-            color: "#aaa"
+            color: "#fff"
           }
         },
         splitArea: {
@@ -12501,7 +12501,7 @@
         onZero: !0,
         onZeroAxisIndex: null,
         lineStyle: {
-          color: "#333",
+          color: "#fff",
           width: 1,
           type: "solid"
         },
@@ -12556,7 +12556,7 @@
     }
   }, wy), by.valueAxis = r({
     boundaryGap: [0, 0],
-    splitNumber: 5
+    splitNumber: 0
   }, wy), by.timeAxis = s({
     scale: !0,
     min: "dataMin",
@@ -12618,7 +12618,7 @@
           show: !0
         },
         boundaryGap: [0, 0],
-        splitNumber: 5,
+        splitNumber: 0,
         nameGap: 15,
         scale: !1,
         shape: "polygon",

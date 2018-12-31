@@ -41,7 +41,7 @@ export default class WxCanvas {
     };
 
     zrender.util.$override('measureText', function (text, font) {
-      ctx.font = font || '12px sans-serif';
+      ctx.font = font || '20px sans-serif';
       return ctx.measureText(text);
     });
   }

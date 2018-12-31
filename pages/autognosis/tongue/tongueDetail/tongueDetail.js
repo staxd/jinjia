@@ -16,6 +16,12 @@ function initChart(canvas, width, height) {
     color: ["#7ED321"],
     tooltip: {},
     silent: true,
+    
+    textStyle: {                    // 图例的公用文本样式。
+      fontSize: 13,
+      color: '#fff'
+    },
+    
     xAxis: {
       show: false
     },
@@ -59,7 +65,12 @@ function initChart(canvas, width, height) {
       type: 'radar',
       data: [{
         value: [],
-        name: '预算'
+        name: '预算',
+        areaStyle: {                // 单项区域填充样式
+          normal: {
+            color: '#7ED321'       // 填充的颜色。[ default: "#000" ]
+          }
+        }
       }
       ]
     }]

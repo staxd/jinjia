@@ -169,13 +169,84 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  getZhifustate() {
+    var that = this
+    wx.request({
+      url: url.host + '/selfDiagnosis/matchMedicines',
+      method: "POST",
+      data: {
+        symptoms: '169',
+        patient_id: '169'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'api_token': getApp().data.api_token
+
+      },
+      success(res) {
+        if (res.data.code == 406) {
+          console.log('aaaa')
+          that.PostSelfDiagnosis()
+
+        }
+
+
+
+      },
+      fail() {
+        wx.showModal({
+          title: '提示',
+          content: '服务器连接失败',
+          showCancel: false
+        });
+      },
+      complete() {
+        // ccallback()
+      }
+    })
+  },
+  PostSelfDiagnosis() {
+    var that = this
+    let infoOpt = {
+      url: '/order/selfDiagnosis',
+      type: 'POST',
+      data: {
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res)
+      wx.requestPayment(
+        {
+          'appId': "wx86f0a2d39b2e279e",
+          nonceStr: res.nonceStr,
+          package: res.package,
+          paySign: res.paySign,
+          signType: res.signType,
+          timeStamp: "" + res.timeStamp,
+          'success': function (res) {
+            console.log(res)
+          },
+          'fail': function (res) { },
+          'complete': function (res) { console.log(res) }
+        })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
   onLoad: function (options) {
+    this.getZhifustate()
     this.getSLi()
     var infoId = options.infoId
     this.setData({
       infoId
     
     })
+    
   },
 
   /**

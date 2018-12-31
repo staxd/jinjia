@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
 let app = getApp()
-
+var url = require('../../config.js')
+const sendAjax = require('../../utils/sendAjax.js')
 Page({
   data: {
    
@@ -64,8 +65,31 @@ Page({
     }
      
   },
+  getindex(){
+    var that = this
+    let infoOpt = {
+      url: '/home',
+      type: 'GET',
+      data: {
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res.bannerList)
+      that.setData({
+        imgs:res.bannerList
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
   onLoad: function () {
     app.onLaunch()
+    this.getindex()
   },
   getUserInfo: function(e) {
   }
