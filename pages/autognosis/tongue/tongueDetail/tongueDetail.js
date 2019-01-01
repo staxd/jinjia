@@ -18,7 +18,7 @@ function initChart(canvas, width, height) {
     silent: true,
     
     textStyle: {                    // 图例的公用文本样式。
-      fontSize: 13,
+      fontSize: 16,
       color: '#fff'
     },
     
@@ -68,7 +68,7 @@ function initChart(canvas, width, height) {
         name: '预算',
         areaStyle: {                // 单项区域填充样式
           normal: {
-            color: '#7ED321'       // 填充的颜色。[ default: "#000" ]
+            color: '#dcf2da'       // 填充的颜色。[ default: "#000" ]
           }
         }
       }

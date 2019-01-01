@@ -1,0 +1,47 @@
+<view class="quan">
+  <view data-id="{{index}}" bindtap='quanSelect' class="quan_box {{item.select?'cor':''}}" wx:for="{{status}}" wx:key="*this">{{item.name}}<view class="quan_title {{item.select?'bg':''}}"></view></view>
+</view>
+<view wx:for="{{status}}">
+  <block wx:if="{{item.select == true&&item.index == 0}}">
+
+    <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+      <view class='quan_Detail_left wei'>
+      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      </view>
+      <view class='quan_Detail_right'>
+        <view class='quan_Detail_right_title'>代金券<view>立即使用</view></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+      </view>
+    </view>
+
+  </block>
+  <block wx:elif="{{item.select == true&&item.index == 1}}">
+ 
+ <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+      <view class='quan_Detail_left yi'>
+      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      </view>
+      <view class='quan_Detail_right'>
+        <view class='quan_Detail_right_title'>代金券<image src='/images/yishiyong.png'></image></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+      </view>
+    </view>
+
+
+  </block>
+  <block wx:elif="{{item.select == true&&item.index == 2}}">
+
+ <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+      <view class='quan_Detail_left yi'>
+      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      </view>
+      <view class='quan_Detail_right'>
+        <view class='quan_Detail_right_title'>代金券<image src='/images/yiguoqi.png'></image></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+      </view>
+    </view>
+
+  </block>
+
+
+</view>

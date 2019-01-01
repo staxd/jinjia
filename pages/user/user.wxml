@@ -6,13 +6,19 @@
   </view>
 </view>
 <view wx:else>请升级微信版本</view>
+<view class='user-body'>
+        <view class='user-body-box ul' bindtap='daijinquan'>
+        <image src='/images/daijinquan.png'></image>
+      <view class='user-body-box-text'>代金券</view>
+      <view class='user-body-box-textRight'></view>
+    </view>
   <view class='user-body'>
     <view class='user-body-box ul' bindtap='archives'>
         <image src='/images/dangan.png' class='dangan'></image>
       <view class='user-body-box-text'>档案</view>
       <view class='user-body-box-textRight'></view>
     </view>
-    <view class='user-body-box ' bindtap='friends'>
+    <view class='user-body-box ul' bindtap='friends'>
         <image src='/images/qinyou.png'></image>
       <view class='user-body-box-text'>亲友</view>
       <view class='user-body-box-textRight'></view>
@@ -23,15 +29,11 @@
       <view class='user-body-box-textRight'></view>
     </view> -->
     </view>
-    <view class='user-body'>
-        <view class='user-body-box ul' bindtap='help'>
-        <image src='/images/bangzhu.png'></image>
-      <view class='user-body-box-text'>帮助</view>
-      <view class='user-body-box-textRight'></view>
-    </view>
-        <view class='user-body-box' bindtap='aboutUs'>
-        <image src='/images/shezhi.png' ></image>
-      <view class='user-body-box-text'>关于我们</view>
+    
+        <view class='user-body-box' bindtap='share'>
+        <image src='/images/share.png' ></image>
+        <view class='user-body-box-text'>分享</view>
+      <button class='user-body-box-text'  data-name="shareBtn" open-type="share" hover-class="none">分享</button>
       <view class='user-body-box-textRight'></view>
     </view>
   </view>

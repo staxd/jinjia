@@ -28,9 +28,12 @@ Page({
 
       } else {
         if(app.data.show){
-          wx.navigateTo({
-            url: '/pages/physical/physical'
-          })
+          var timer = setTimeout(function () {
+            wx.navigateTo({
+              url: '/pages/physical/physical'
+            })
+          }, 400);
+          
         }
         
       }
@@ -57,9 +60,12 @@ Page({
       
     } else {
       if(app.data.show){
-        wx.navigateTo({
-          url: '/pages/autognosis/autognosis',
-        })
+        var timer = setTimeout(function () {
+          wx.navigateTo({
+            url: '/pages/autognosis/autognosis',
+          })
+        }, 400);
+        
       }
      
     }
