@@ -62,6 +62,7 @@ App({
                       that.data.mobile = res.data.mobile
                       that.data.user_id = res.data.user_id
                       that.data.show = true
+                      wx.setStorageSync("icode", res.data.icode)
                       console.log("aaa")
                     }
                   })

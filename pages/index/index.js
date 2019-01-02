@@ -93,9 +93,11 @@ Page({
     sendAjax(infoOpt, infoCb, () => {
     });
   },
-  onLoad: function () {
+  onLoad: function (res) {
+    wx.setStorageSync("inviteicode", res.inviteicode)
     app.onLaunch()
     this.getindex()
+    
   },
   getUserInfo: function(e) {
   }

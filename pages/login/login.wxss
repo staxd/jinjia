@@ -30,7 +30,7 @@
   width: 136rpx;
   height: 204rpx;
 }
-.register_phone,.register_yanzm{
+.register_phone,.register_yanzm,.register_invite{
   width: 670rpx;
   height: 100rpx;
   left: 0;
@@ -52,7 +52,12 @@
   margin-right: 35rpx;
   
 }
-.register_phone input,.register_yanzm input{
+.register_invite image{
+  width: 47rpx;
+  height: 47rpx;
+  margin-right: 35rpx;
+}
+.register_phone input,.register_yanzm input ,.register_invite input{
   font-size: 28rpx;
   color: #9B9B9B;
 }

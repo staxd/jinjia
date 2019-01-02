@@ -125,7 +125,8 @@ Page({
             data: {
               code: code,
               mobile: userPhone,
-              text_code: userCode
+              text_code: userCode,
+              icode: that.data.inviteicode
             },
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -178,9 +179,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(wx.getStorageSync("inviteicode"))
     var pageUrl = options.pageUrl
     this.setData({
-      pageUrl
+      pageUrl,
+      inviteicode: wx.getStorageSync("inviteicode")
     })
   },
 
@@ -195,7 +198,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

@@ -53,6 +53,8 @@ Page({
                   app.data.api_token = res.data.api_token
                   app.data.mobile = res.data.mobile
                   app.data.user_id = res.data.user_id
+                  wx.setStorageSync("icode", res.data.icode)
+
                 }
               })
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
