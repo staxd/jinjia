@@ -3,43 +3,59 @@
 </view>
 <view wx:for="{{status}}">
   <block wx:if="{{item.select == true&&item.index == 0}}">
-
-    <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+    <block wx:if="{{userCouponList0.length!=0}}">
+    <view class='quan_Detail' wx:for="{{userCouponList0}}" wx:key="*this">
       <view class='quan_Detail_left wei'>
-      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      <view><text>￥</text>{{item.discount_amount}}</view><text>使用门槛</text>
       </view>
       <view class='quan_Detail_right'>
-        <view class='quan_Detail_right_title'>代金券<view>立即使用</view></view>
-        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+        <view class='quan_Detail_right_title'>代金券<view bindtap="gozizhen">立即使用</view></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.created_time}}至{{item.expire_time}}</view></view>
       </view>
     </view>
-
+  </block>
+  <block wx:else>
+      <view class='noMore-text'>暂无内容</view>
+  </block>
   </block>
   <block wx:elif="{{item.select == true&&item.index == 1}}">
+
+    <block wx:if="{{userCouponList1.length!=0}}">
  
- <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+ <view class='quan_Detail' wx:for="{{userCouponList1}}" wx:key="*this">
       <view class='quan_Detail_left yi'>
-      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      <view><text>￥</text>{{item.discount_amount}}</view><text>使用门槛</text>
       </view>
       <view class='quan_Detail_right'>
         <view class='quan_Detail_right_title'>代金券<image src='/images/yishiyong.png'></image></view>
-        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.created_time}}-{{item.expire_time}}</view></view>
       </view>
     </view>
+  </block>
+  <block wx:else>
+      <view class='noMore-text'>暂无内容</view>
+  </block>
 
 
   </block>
   <block wx:elif="{{item.select == true&&item.index == 2}}">
+    <block wx:if="{{userCouponList2.length!=0}}">
 
- <view class='quan_Detail' wx:for="{{quanList}}" wx:key="*this">
+ <view class='quan_Detail' wx:for="{{userCouponList2}}" wx:key="*this">
       <view class='quan_Detail_left yi'>
-      <view><text>￥</text>{{item.prize}}</view><text>使用门槛</text>
+      <view><text>￥</text>{{item.discount_amount}}</view><text>使用门槛</text>
       </view>
       <view class='quan_Detail_right'>
         <view class='quan_Detail_right_title'>代金券<image src='/images/yiguoqi.png'></image></view>
-        <view class='quan_Detail_right_content'>有效期:<view>{{item.time}}</view></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.created_time}}-{{item.expire_time}}</view></view>
       </view>
     </view>
+  </block>
+  <block wx:else>
+      <view class='noMore-text'>暂无内容</view>
+  </block>
+
+
 
   </block>
 

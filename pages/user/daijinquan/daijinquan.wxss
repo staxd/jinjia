@@ -107,3 +107,8 @@ color: #4A4A4A;
   color: #4A4A4A;
   margin-left: 20rpx;
 }
+.noMore-text{
+  text-align: center;
+  line-height: 500rpx;
+  font-size: 30rpx;
+}

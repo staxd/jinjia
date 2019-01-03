@@ -132,32 +132,43 @@ Page({
       var symptomId = infoId + "," + symptomId
       wx.setStorageSync('getInfoId', symptomId)
       console.log(symptomId)
-
-      let infoOpt = {
-        url: '/selfDiagnosis/matchMedicines',
-        type: 'POST',
+      var that = this
+      wx.request({
+        url: url.host + '/selfDiagnosis/matchMedicines',
+        method: "POST",
         data: {
           patient_id: app.data.patient_id,
           symptoms: symptomId
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'api_token': getApp().data.api_token
+
+        },
+        success(res) {
+          if (res.data.code == 406) {
+            console.log('aaaa')
+            that.PostSelfDiagnosis()
+
+          }else if(res.data.code == 200){
+            console.log(res.data.matchedMedicineList)
+            app.data.matchedMedicineList = res.data.matchedMedicineList
+            wx.navigateTo({
+              url: 'tongueDetail/tongueDetail'
+            })
+          }
+        },
+        fail() {
+          wx.showModal({
+            title: '提示',
+            content: '服务器连接失败',
+            showCancel: false
+          });
+        },
+        complete() {
+          // ccallback()
         }
-      }
-      let infoCb = {}
-      infoCb.success = function (res) {
-        console.log(res.matchedMedicineList)
-        app.data.matchedMedicineList = res.matchedMedicineList
-        wx.navigateTo({
-          url: 'tongueDetail/tongueDetail'
-        })
-
-      }
-      infoCb.beforeSend = () => { }
-      infoCb.complete = () => {
-
-      }
-      sendAjax(infoOpt, infoCb, () => {
-      });
-
-
+      })
 
       
     
@@ -169,42 +180,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  getZhifustate() {
-    var that = this
-    wx.request({
-      url: url.host + '/selfDiagnosis/matchMedicines',
-      method: "POST",
-      data: {
-        symptoms: '169',
-        patient_id: '169'
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'api_token': getApp().data.api_token
-
-      },
-      success(res) {
-        if (res.data.code == 406) {
-          console.log('aaaa')
-          that.PostSelfDiagnosis()
-
-        }
-
-
-
-      },
-      fail() {
-        wx.showModal({
-          title: '提示',
-          content: '服务器连接失败',
-          showCancel: false
-        });
-      },
-      complete() {
-        // ccallback()
-      }
-    })
-  },
+  
   PostSelfDiagnosis() {
     var that = this
     let infoOpt = {
@@ -216,20 +192,29 @@ Page({
     let infoCb = {}
     infoCb.success = function (res) {
       console.log(res)
-      wx.requestPayment(
-        {
-          'appId': "wx86f0a2d39b2e279e",
-          nonceStr: res.nonceStr,
-          package: res.package,
-          paySign: res.paySign,
-          signType: res.signType,
-          timeStamp: "" + res.timeStamp,
-          'success': function (res) {
-            console.log(res)
-          },
-          'fail': function (res) { },
-          'complete': function (res) { console.log(res) }
-        })
+      if(res.is_pay==0){
+        wx.requestPayment(
+          {
+            'appId': "wx86f0a2d39b2e279e",
+            nonceStr: res.nonceStr,
+            package: res.package,
+            paySign: res.paySign,
+            signType: res.signType,
+            timeStamp: "" + res.timeStamp,
+            'success': function (res) {
+              console.log(res)
+            },
+            'fail': function (res) { },
+            'complete': function (res) { console.log(res) }
+          })
+      }else{
+        wx.showToast({
+      title: '代金券使用成功！',
+      icon: 'success',
+      duration: 1000
+    })
+      }
+      
     }
     infoCb.beforeSend = () => { }
     infoCb.complete = () => {
@@ -239,7 +224,6 @@ Page({
     });
   },
   onLoad: function (options) {
-    this.getZhifustate()
     this.getSLi()
     var infoId = options.infoId
     this.setData({
@@ -260,7 +244,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

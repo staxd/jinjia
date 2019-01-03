@@ -1,4 +1,5 @@
-// pages/user/daijinquan/daijinquan.js
+var url = require('../../../config.js')
+const sendAjax = require('../../../utils/sendAjax.js')
 Page({
 
   /**
@@ -17,17 +18,6 @@ Page({
         name: "已失效",
         select:false,
         index:2
-      }],
-    quanList:[{
-      prize:2,
-      time:"2018.12.20-2018.12.22"
-    },
-      {
-        prize: 2,
-        time: "2018.12.20-2018.12.23"
-      }, {
-        prize: 2,
-        time: "2018.12.20-2018.12.27"
       }]
   },
   quanSelect(e){
@@ -43,6 +33,86 @@ Page({
     }
     this.setData({
       status
+    })
+  },
+  getCouponList0(){
+    var that = this
+    let infoOpt = {
+      url: '/order/userCouponList',
+      type: 'POST',
+      data: {
+        type:0,
+        curpage:1,
+        pagesize:1000
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res)
+      that.setData({
+        userCouponList0: res.userCouponList
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
+  getCouponList1() {
+    var that = this
+    let infoOpt = {
+      url: '/order/userCouponList',
+      type: 'POST',
+      data: {
+        type: 1,
+        curpage: 1,
+        pagesize: 1000
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res)
+      that.setData({
+        userCouponList1: res.userCouponList
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
+  getCouponList2() {
+    var that = this
+    let infoOpt = {
+      url: '/order/userCouponList',
+      type: 'POST',
+      data: {
+        type: 2,
+        curpage: 1,
+        pagesize: 1000
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      console.log(res)
+      that.setData({
+        userCouponList2: res.userCouponList
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
+  },
+  gozizhen(){
+    wx.navigateTo({
+      url: '/pages/autognosis/autognosis',
     })
   },
   /**
@@ -64,7 +134,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCouponList0()
+    this.getCouponList1()
+    this.getCouponList2()
   },
 
   /**
