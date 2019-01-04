@@ -73,6 +73,8 @@ Page({
       })
       //授权成功后，跳转进入小程序首页
       wx.setStorageSync("isFirst", true)
+      wx.getStorageSync("inviteicode")
+      console.log("bbbbbbbbbbbbbbbbbbbbbbbb")
 
       wx.switchTab({
         url: '/pages/index/index'

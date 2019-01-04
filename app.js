@@ -9,15 +9,19 @@ App({
     wx.setStorageSync('logs', logs)
     wx.setStorageSync("isLogin", 0)
     var isFir = wx.getStorageSync("isFirst")
-    if(!isFir){
-      wx.redirectTo({
-        url:"/pages/start/start"
-      })
-    }else{
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
-    }
+    var timer = setTimeout(function(){
+      if (!isFir) {
+        wx.redirectTo({
+          url: "/pages/start/start"
+        })
+      } else {
+        wx.switchTab({
+          url: '/pages/index/index'
+        })
+      }
+
+    },1)
+    
     // 登录
     wx.login({
       success: resp => {

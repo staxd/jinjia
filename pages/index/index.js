@@ -94,7 +94,12 @@ Page({
     });
   },
   onLoad: function (res) {
-    wx.setStorageSync("inviteicode", res.inviteicode)
+    console.log(res)
+    
+    if (res.inviteicode){
+      wx.setStorageSync("inviteicode", res.inviteicode)
+    }
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     app.onLaunch()
     this.getindex()
     
