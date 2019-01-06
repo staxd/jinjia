@@ -108,13 +108,6 @@ page{
 z-index: 1;
 
 }
-ec-canvas {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  color: #36353A;
-z-index: 1;
-}
 
 .message{
   width: 750rpx;
@@ -131,38 +124,46 @@ z-index: 1;
   background: #fff;
 }
 .btn1,.btn2,.btn3,.btn4,.btn5{
-  width: 100rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 130rpx;
   /* background: red; */
   z-index: 98;
   position: absolute;
 }
 .btn1{
-left:325rpx;
+left:225rpx;
 top:130rpx;
-
+width: 300rpx;
 }
 .btn2{
-left:50rpx;
+left:10rpx;
 top:300rpx;
-
+width: 300rpx;
 }
 .btn3{
-left:50rpx;
-top:580rpx;
-width: 200rpx;
+left:10rpx;
+top:510rpx;
+width: 300rpx;
 
 }
 .btn4{
 left:460rpx;
-top:580rpx;
+top:510rpx;
 
-width: 200rpx;
+width: 300rpx;
 
 
 }
 .btn5{
-left:600rpx;
+right:4rpx;
 top:300rpx;
-width: 130rpx;
+width: 230rpx;
+}
+
+.tongue_canvas{
+  margin-top: 60rpx;
+left: 50%;
+transform: translateX(-50%);
+height: 575rpx;
+width: 750rpx;
 }

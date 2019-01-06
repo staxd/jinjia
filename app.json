@@ -14,6 +14,7 @@
     "pages/user/friends/friendsAlter/friendsAlter",
     "pages/user/friends/friendsadd/friendsadd",
     "pages/user/archives/archives",
+    "pages/user/help/help",
     "pages/user/archives/archivesDetail/archivesDetail",
     "pages/classical/classical",
     "pages/classical/symptom/symptom",

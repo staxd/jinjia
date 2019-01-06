@@ -9,7 +9,23 @@ Page({
    */
   data: {
     symptomList:[],
-    infoId:""
+    infoId:"",
+    fenxiang: false
+  },
+  tohelp(){
+    wx.navigateTo({
+      url: '/pages/user/help/help',
+    })
+  },
+  fenxiangClose() {
+    this.setData({
+      fenxiang: false
+    })
+  },
+  subBtn() {
+    this.setData({
+      fenxiang: true
+    })
   },
   getSLi(){
     var that = this
@@ -87,7 +103,7 @@ Page({
     })
     // console.log(symptomList)
   },
-  subBtn(){
+  tosubBtn(){
     console.log(this.data.symptomList)
     var symptomList = this.data.symptomList
     var tongueList={}
@@ -153,6 +169,7 @@ Page({
           }else if(res.data.code == 200){
             console.log(res.data.matchedMedicineList)
             app.data.matchedMedicineList = res.data.matchedMedicineList
+            // wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
             wx.navigateTo({
               url: 'tongueDetail/tongueDetail'
             })
@@ -277,7 +294,40 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function (options) {
+    var that = this;
+    // 设置菜单中的转发按钮触发转发事件时的转发内容
+    var inviteicode = wx.getStorageSync("icode")
+    console.log(inviteicode)
+    var shareObj = {
+      title: "金荚中医",        // 默认是小程序的名称(可以写slogan等)
+      path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: '/images/indexPic.png',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      success: function (res) {
+        // 转发成功之后的回调
+        if (res.errMsg == 'shareAppMessage:ok') {
+        }
+      },
+      fail: function () {
+        // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel') {
+          // 用户取消转发
+        } else if (res.errMsg == 'shareAppMessage:fail') {
+          // 转发失败，其中 detail message 为详细失败信息
+        }
+      },
+      complete: function () {
+        // 转发结束之后的回调（转发成不成功都会执行）
+      }
+    };
+    // 来自页面内的按钮的转发
+    if (options.from == 'button') {
+      var eData = options.target.dataset;
+      console.log(eData.name);     // shareBtn
+      // 此处可以修改 shareObj 中的内容
+      shareObj.path = '/pages/index/index?inviteicode=' + inviteicode;
+    }
+    // 返回shareObj
+    return shareObj;
+  },
 })

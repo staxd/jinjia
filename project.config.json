@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 22,
+			"current": 26,
 			"list": [
 				{
 					"id": -1,
@@ -170,7 +170,31 @@
 				{
 					"id": -1,
 					"name": "login",
-					"pathName": "pages/login/login"
+					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "a",
+					"pathName": "pages/physical/physical",
+					"query": ""
+				},
+				{
+					"id": 24,
+					"name": "a",
+					"pathName": "pages/user/help/help",
+					"query": ""
+				},
+				{
+					"id": 25,
+					"name": "a",
+					"pathName": "pages/autognosis/tongue/tongueDetail/tongueDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "a",
+					"pathName": "pages/radar/index"
 				}
 			]
 		}

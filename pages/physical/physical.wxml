@@ -17,7 +17,17 @@
 
 </view>
 </view>
+<view class='fenxiang' wx:if='{{fenxiang}}'>
+<view class='fenxiang-box'>
+<image src="/images/fenxiang.png"></image>
+  <view class='fenxiang_close' bindtap="fenxiangClose"></view>
+  <view class='fenxiang_sub' bindtap="tosubBtn"></view>
+ <view class='fenxiang_gz' bindtap='tohelp'>代金券规则 <view>?</view></view>
 
+  <button class='fenxiang_btn' data-name="shareBtn" open-type="share" hover-class="none">分享</button>
+</view>
+
+</view>
 <view class='sub'>
   <view class='sub_btn' bindtap="subBtn">下一步</view>
 </view>

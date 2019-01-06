@@ -30,10 +30,18 @@
 
 </view>
 
+<view class='fenxiang' wx:if='{{fenxiang}}'>
+<view class='fenxiang-box'>
+<image src="/images/fenxiang.png"></image>
+ <!-- <view class="fenxiang_zf">需支付<text>￥123</text></view>
+ <view class="fenxiang_djq">代金券抵扣 0元</view> -->
+ <view class='fenxiang_gz' bindtap='tohelp'>代金券规则 <view>?</view></view>
+  <view class='fenxiang_close' bindtap="fenxiangClose"></view>
+  <view class='fenxiang_sub' bindtap="tosubBtn"></view>
+  <button class='fenxiang_btn' data-name="shareBtn" open-type="share" hover-class="none">分享</button>
+</view>
 
-
-
-
+</view>
 <view class='sub'>
   <view class='sub_btn' bindtap="subBtn">确认</view>
 </view>

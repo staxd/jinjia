@@ -16,15 +16,14 @@
 </view>
  <view class='tongue'>
   <view class='tongue_title'>处方</view>
-  <view bindtap='btn1' class='btn1'></view>
-<view bindtap='btn2' class='btn2'></view>
-<view bindtap='btn3' class='btn3'></view>
-<view bindtap='btn4' class='btn4'></view>
-<view bindtap='btn5' class='btn5'></view>
+  <view bindtap='btn1' class='btn1'>{{btn1}}</view>
+<view bindtap='btn2' class='btn2'>{{btn2}}</view>
+<view bindtap='btn3' class='btn3'>{{btn3}}</view>
+<view bindtap='btn4' class='btn4'>{{btn4}}</view>
+<view bindtap='btn5' class='btn5'>{{btn5}}</view>
   <view class='tongue_content'>
       <view class="container">
-  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph"  ec="{{ec}}"></ec-canvas>
-  
+    <canvas canvas-id="radarCanvas" class="tongue_canvas" bindtouchstart="touchHandler"></canvas>
    
 </view>
   </view>

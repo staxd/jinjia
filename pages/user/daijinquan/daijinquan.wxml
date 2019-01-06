@@ -10,7 +10,7 @@
       </view>
       <view class='quan_Detail_right'>
         <view class='quan_Detail_right_title'>代金券<view bindtap="gozizhen">立即使用</view></view>
-        <view class='quan_Detail_right_content'>有效期:<view>{{item.created_time}}至{{item.expire_time}}</view></view>
+        <view class='quan_Detail_right_content'>有效期:<view>{{item.created_time}}-{{item.expire_time}}</view></view>
       </view>
     </view>
   </block>

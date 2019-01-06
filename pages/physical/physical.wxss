@@ -59,6 +59,7 @@ float: left;
   background: #fff;
   position: fixed;
   bottom: 0;
+  z-index: 100;
 }
 .sub_btn{
   width: 640rpx;
@@ -83,4 +84,75 @@ float: left;
 .aa{
   width: 100%;
   
+}
+
+
+
+
+
+
+.fenxiang{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.3);
+  z-index:101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fenxiang-box{
+  position: relative
+}
+.fenxiang image{
+  width: 570rpx;
+  height: 600rpx;
+  margin-bottom: 100rpx;
+
+}
+.fenxiang_close{
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  right: 0;
+  top:0;
+}
+.fenxiang_btn{
+   width: 400rpx;
+  height: 80rpx;
+  position: absolute;
+  left: 90rpx;
+  top:460rpx;
+}
+.fenxiang_sub{
+   width: 400rpx;
+  height: 80rpx;
+  position: absolute;
+  left: 90rpx;
+  top:350rpx;
+}
+button {
+  opacity: 0;
+}
+.fenxiang_gz{
+  font-size: 22rpx;
+  position: absolute;
+  left: 30rpx;
+  bottom: 120rpx;
+  display: flex;
+  flex-direction: row;
+  color: #aaa;
+}
+.fenxiang_gz view{
+  border: 1rpx solid #aaa;
+  margin-top: 2rpx;
+  font-size: 20rpx;
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30rpx;
+  margin-left: 3rpx;
 }

@@ -144,6 +144,11 @@ App({
     api_token: '',
     mobile: '',
     user_id: '',
+    btn1:"",
+    btn2: "",
+    btn3: "",
+    btn4: "",
+    btn5: ""
   }
 
 })
