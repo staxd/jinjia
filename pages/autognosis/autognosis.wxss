@@ -35,7 +35,7 @@ page{
 
 }
 .zizhen_right{
-  width: 100%;
+  width: 560rpx;
   background: #fff;
   float: left;
   margin-bottom: 120rpx;
@@ -49,7 +49,8 @@ page{
   overflow: hidden;
 }
 .kind-list-item-hd {
-  width: 750rpx;
+  position: relative;
+  width: 530rpx;
   height: 88rpx;
   color: #4A4A4A;
   font-size: 34rpx;
@@ -59,9 +60,19 @@ page{
   margin-left: 30rpx;
   border-bottom: 2rpx solid #e7e7e7;
 }
+image.kind_img{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 80rpx;
+  top:24rpx;
+
+}
 .navigator-arrow-show {
   position: absolute;
   right: 40rpx;
+  top:24rpx;
+
 }
 .navigator-arrow-show:after {
   content: " ";
@@ -77,6 +88,7 @@ page{
 .navigator-arrow {
   position: absolute;
   right: 40rpx;
+    top:14rpx;
 }
 
 .navigator-arrow:after {

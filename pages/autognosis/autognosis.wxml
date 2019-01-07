@@ -21,7 +21,8 @@
   <view class="kind-list-item">
     <view data-openList="{{index}}" class="kind-list-item-hd" bindtap="kindToggle">
       <view data-openList="{{index}}">{{item.group_name}}</view>
-     
+      <block wx:for="{{item.group_list}}"><view wx:if="{{item.is_significant =='1'}}"><image class='kind_img' src='/images/xing.png'></image></view></block>
+        
       <view data-openList="{{index}}"  class=" {{item.open ? 'navigator-arrow-show' : 'navigator-arrow'}}"></view>
     </view>
 

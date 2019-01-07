@@ -99,7 +99,7 @@ Page({
     if (res.inviteicode){
       wx.setStorageSync("inviteicode", res.inviteicode)
     }
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     app.onLaunch()
     this.getindex()
     

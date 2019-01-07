@@ -107,8 +107,40 @@ Page({
 
   },
   daijinquan: function () {
+    var mobile = app.data.mobile
+    if (app.data.show) {
+      if (mobile == undefined) {
+        wx.showModal({
+          title: '提示',
+          content: '请您先绑定手机号！',
+          showCancel: true,
+          success: function (res) {
+            console.log(res)
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login?pageUrl=' + "archives/archives"
+              })
+            }
+          }
+        });
+
+      } else {
+        var timer = setTimeout(function () {
+          wx.navigateTo({
+            url: 'daijinquan/daijinquan'
+          })
+        }, 400);
+
+
+
+      }
+    }
+   
+
+  },
+  guize: function () {
     wx.navigateTo({
-      url: 'daijinquan/daijinquan'
+      url: 'help/help'
     })
 
   },

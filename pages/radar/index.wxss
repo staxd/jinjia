@@ -56,54 +56,54 @@ z-index: 1;
 
 .btn1,.btn2,.btn3,.btn4,.btn5,.btn6,.btn7,.btn8,.btn9{
   width: 150rpx;
-  height: 60rpx;
+  height: 90rpx;
   /* background: red; */
   z-index: 99;
   position: absolute;
 }
 .btn1{
 left:313rpx;
-top:276rpx;
+top:250rpx;
 
 }
 .btn2{
-left:127rpx;
-top:350rpx;
+left:95rpx;
+top:300rpx;
 
 }
 .btn3{
-left:50rpx;
-top:490rpx;
+left:30rpx;
+top:440rpx;
 
 }
 .btn4{
-left:65rpx;
-top:660rpx;
+left:55rpx;
+top:610rpx;
 
 }
 .btn5{
-left:200rpx;
-top:760rpx;
+left:170rpx;
+top:710rpx;
 
 }
 .btn9{
-right:127rpx;
-top:350rpx;
+right:95rpx;
+top:300rpx;
 
 }
 .btn8{
-right:50rpx;
-top:490rpx;
+right:30rpx;
+top:440rpx;
 
 }
 .btn7{
-right:65rpx;
-top:660rpx;
+right:55rpx;
+top:610rpx;
 
 }
 .btn6{
-right:200rpx;
-top:760rpx;
+right:170rpx;
+top:710rpx;
 
 }
 

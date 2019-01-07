@@ -74,25 +74,40 @@ Page({
         }
       }
     }else{
-      var num = 0 
       for (let i in symptomList[key]) {
+        
+        
         if (i == id) {
-          symptomList[key][id].select = !symptomList[key][id].select
-        }
-        if (symptomList[key][i].select == true){
-          num++
-          if(num > 2){
-            console.log(id)
-              symptomList[key][id].select = !symptomList[key][id].select
-            // console.log("aaaS")
-            wx.showToast({
-              title: '最多选择两个',
-              icon: 'none',
-              duration: 2000
-            })
+          if (symptomList[key][id].select){
+            symptomList[key][id].select = false
+          }else{
+            symptomList[key][id].select = true
+            var group = symptomList[key][id].subGroup
+            for (let j in symptomList[key]){
+              if (symptomList[key][j].subGroup == group&&j!=i){
+                symptomList[key][j].select = false 
+              }
+            }
           }
         }
-
+        var num=0
+        for (let z in symptomList[key]){
+          if (symptomList[key][z].select) {
+            // console.log("11")
+            num++
+            if (num > 2) {
+              console.log(id)
+              symptomList[key][id].select = !symptomList[key][id].select
+              // console.log("aaaS")
+              wx.showToast({
+                title: '最多选择两个',
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          }
+        }
+        
       }
 
       
