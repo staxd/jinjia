@@ -18,7 +18,59 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.getPatientId()
+    if (options.status) {
+      wx.login({
+        success: resp => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          // console.log(resp.code);
+          wx.setStorageSync("code", resp.code)
+
+          var that = this;
+          // 获取用户信息
+          wx.getSetting({
+            success: res => {
+              //  console.log(res);
+              // 已经授权不会弹框
+              wx.getUserInfo({
+                success: userResult => {
+                  wx.setStorageSync("isFirst", userResult.userInfo)
+                  var platUserInfoMap = {};
+                  platUserInfoMap["userInfo"] = userResult.userInfo;
+                  platUserInfoMap["rawData"] = userResult.rawData;
+                  platUserInfoMap["signature"] = userResult.signature;
+                  platUserInfoMap["encryptedData"] = userResult.encryptedData;
+                  platUserInfoMap["iv"] = userResult.iv;
+
+                  wx.request({
+                    url: url.loginUrl,
+                    method: 'POST',
+                    data: {
+                      code: resp.code,
+                      userInfo: JSON.stringify(platUserInfoMap)
+                    },
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success(res) {
+                      console.log(res);
+                      app.data.api_token = res.data.api_token
+                      app.data.mobile = res.data.mobile
+                      app.data.user_id = res.data.user_id
+                      wx.setStorageSync("icode", res.data.icode)
+                    }
+                  })
+                  if (that.userInfoReadyCallback) {
+                    that.userInfoReadyCallback(userResult)
+                  }
+                }
+              })
+            }
+          })
+
+        }
+      })
+    }
+    
     this.getBodyPartList()
       
   },
@@ -33,6 +85,7 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      app.getPatientId()
       console.log(res)
       var bodyId = res[0].body_part_id
       var contentList = []

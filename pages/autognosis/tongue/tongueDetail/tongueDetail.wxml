@@ -16,14 +16,18 @@
 </view>
  <view class='tongue'>
   <view class='tongue_title'>处方</view>
-<cover-view class='btn1' bindtap='btn1'></cover-view>
-<cover-view class='btn2' bindtap='btn2'></cover-view>
-<cover-view class='btn3' bindtap='btn3'></cover-view>
-<cover-view class='btn4' bindtap='btn4'></cover-view>
-<cover-view class='btn5' bindtap='btn5'></cover-view>
   <view class='tongue_content'>
       <view class="container">
-    <canvas canvas-id="radarCanvas" class="tongue_canvas" bindtouchstart="touchHandler"></canvas>
+    <canvas canvas-id="radarCanvas" class="tongue_canvas" bindtouchstart="touchHandler">
+    <cover-view class='btn1' bindtap='btn1'></cover-view>
+    <cover-view class='btn2' bindtap='btn2'></cover-view>
+    <cover-view class='btn3' bindtap='btn3'></cover-view>
+    <cover-view class='btn4' bindtap='btn4'></cover-view>
+    <cover-view class='btn5' bindtap='btn5'></cover-view>
+        
+    
+    
+    </canvas>
    
 </view>
   </view>

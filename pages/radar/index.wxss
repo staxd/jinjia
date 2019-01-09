@@ -19,16 +19,11 @@ cover-image{
   height: 200rpx;
 }
 
-page{
-  width: 100%;
-  height: 100%;
-}
 ec-canvas {
-  width: 100%;
-  height: 100%;
   background: #fff;
   color: #36353A;
 z-index: 1;
+position: relative;
 }
 .container{
   position: absolute;
@@ -51,6 +46,7 @@ z-index: 1;
   font-size: 30rpx;
   text-align: center;
   line-height: 88rpx;
+  position: fixed;
 }
 
 
@@ -59,7 +55,7 @@ z-index: 1;
   height: 90rpx;
   /* background: red; */
   z-index: 99;
-  position: absolute;
+  position: fixed;
 }
 .btn1{
 left:313rpx;

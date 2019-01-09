@@ -8,7 +8,7 @@ page{
 }
 .fiendList_fiends{
   position: relative;
-  width: 750rpx;
+  width: 720rpx;
   height: 100rpx;
   background: #fff;
   border-bottom: 2rpx solid #e1e0e1;
@@ -78,7 +78,4 @@ background-color:rgba(193,92,62,1);
 }
 radio {
   transform:scale(0.7);
-}
-.radio-group{
-
 }

@@ -61,7 +61,7 @@ page{
   margin-left: 30rpx;
 }
 .smTitle{
-  width: 750rpx;
+  width: 720rpx;
   height: 88rpx;
   background: #fff;
   color:#36353A;
@@ -71,7 +71,7 @@ page{
   margin-top: 20rpx;
 }
 .smTitle_box{
-  width: 750rpx;
+  width: 720rpx;
   height: 60rpx;
   font-size: 26rpx;
   line-height: 60rpx;
@@ -132,23 +132,23 @@ z-index: 1;
 }
 .btn1{
 left:225rpx;
-top:130rpx;
+top:-30rpx;
 width: 300rpx;
 }
 .btn2{
 left:10rpx;
-top:300rpx;
+top:120rpx;
 width: 300rpx;
 }
 .btn3{
 left:10rpx;
-top:510rpx;
+top:310rpx;
 width: 300rpx;
 
 }
 .btn4{
 left:460rpx;
-top:510rpx;
+top:310rpx;
 
 width: 300rpx;
 
@@ -156,12 +156,13 @@ width: 300rpx;
 }
 .btn5{
 right:4rpx;
-top:300rpx;
+top:120rpx;
 width: 230rpx;
 }
 
 .tongue_canvas{
-  margin-top: 60rpx;
+  position: absolute;
+  top:100rpx;
 left: 50%;
 transform: translateX(-50%);
 height: 575rpx;

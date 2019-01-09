@@ -48,34 +48,60 @@ Page({
   },
   
   onLoad: function (options) {
+    if (options.status) {
+      wx.login({
+        success: resp => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          // console.log(resp.code);
+          wx.setStorageSync("code", resp.code)
+
+          var that = this;
+          // 获取用户信息
+          wx.getSetting({
+            success: res => {
+              wx.getUserInfo({
+                success: userResult => {
+                  wx.setStorageSync("isFirst", userResult.userInfo)
+                  var platUserInfoMap = {};
+                  platUserInfoMap["userInfo"] = userResult.userInfo;
+                  platUserInfoMap["rawData"] = userResult.rawData;
+                  platUserInfoMap["signature"] = userResult.signature;
+                  platUserInfoMap["encryptedData"] = userResult.encryptedData;
+                  platUserInfoMap["iv"] = userResult.iv;
+
+                  wx.request({
+                    url: url.loginUrl,
+                    method: 'POST',
+                    data: {
+                      code: resp.code,
+                      userInfo: JSON.stringify(platUserInfoMap)
+                    },
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success(res) {
+                      console.log(res);
+                      app.data.api_token = res.data.api_token
+                      app.data.mobile = res.data.mobile
+                      app.data.user_id = res.data.user_id
+                      wx.setStorageSync("icode", res.data.icode)
+                      console.log("aaa")
+                    }
+                  })
+                  if (that.userInfoReadyCallback) {
+                    that.userInfoReadyCallback(userResult)
+                  }
+                }
+              })
+            }
+          })
+
+            }
+          })
+    }
     
-    
-    app.getPatientId();
     this.getOptionList();
-    this.getPatientId();
   },
-  getPatientId:function(){
-    var that = this
-    let infoOpt = {
-      url: '/selfDiagnosis/getPatientList',
-      type: 'GET',
-      data: {
-      }
-    }
-    let infoCb = {}
-    infoCb.success = function (res) {
-      that.setData({
-        patientId:res.patientList[0].patient_id
-      })
-    }
-    infoCb.beforeSend = () => { }
-    infoCb.complete = () => {
-
-    }
-    sendAjax(infoOpt, infoCb, () => {
-    });
-  },
-
   getOptionList: function () {
     var that = this
     let infoOpt = {
@@ -87,6 +113,7 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      app.getPatientId()
       // console.log(res.optionList)
       var data = res.optionList;
       var mbList = that.data.mbList
@@ -164,7 +191,7 @@ Page({
         type: 'POST',
         data: {
           options: option,
-          patient_id: that.data.patientId
+          patient_id: app.data.patient_id
         }
       }
       let infoCb = {}

@@ -146,7 +146,7 @@ Page({
                     if (res.confirm) {
                       var pageUrl = that.data.pageUrl
                       wx.redirectTo({
-                        url: pageUrl
+                        url: pageUrl + "?status='绑定成功'"
                       })
                     }
                   }
