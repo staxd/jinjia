@@ -19,7 +19,7 @@ var app = getApp();
      */
     onLoad: function (options) {
       wx.setNavigationBarTitle({
-        title: options.title+'的档案'
+        title: options.title
       })
       var arList = JSON.parse(options.archiveList)
       var archiveLength = options.archiveLength

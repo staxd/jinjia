@@ -28,6 +28,14 @@ console.log(options)
       this.setData({
         web_src: url.host + '/pulse/detail?pulse_id=' + options.id
       })
+      var pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
+      var currPage = pages[pages.length - 1];   //当前页面
+      var prevPage = pages[pages.length - 2];  //-2上一个页面，-3是上上个页面以此类推。
+
+      //直接调用上一个页面对象的setData()方法，把数据存到上一个页面中去
+      prevPage.setData({
+        longTap:false
+      });
     } else if (options.group == "3"){
       this.setData({
         web_src: url.host + '/medicine/detail?medicine_id=' + options.id

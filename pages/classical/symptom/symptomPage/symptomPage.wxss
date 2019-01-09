@@ -4,7 +4,7 @@
   min-height: 100rpx;
   border-bottom: 2rpx solid #f5f5f5;
   margin-left: 30rpx;
-  color: #4A4A4A;
+  color: #9B9B9B;
   font-size: 32rpx;
   line-height: 100rpx;
 }
@@ -26,7 +26,7 @@
   width: 750rpx;
   height: 88rpx;
   background: #f5f5f5;
-  color: #9B9B9B;
+  color: #4a4a4a;
   font-size: 30rpx;
   line-height: 88rpx;
   padding-left: 30rpx;

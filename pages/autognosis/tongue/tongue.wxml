@@ -23,7 +23,7 @@
       <view class='maixiang'>
   <view class='maixiang_title'>{{key}}</view>
   <view class='maixiang_content'>
-      <view bindtap='clickSelect' wx:for="{{item}}" wx:for-item="maixiangList" wx:key="symptom_id" data-id="{{maixiangList.symptom_id}}" data-key="{{maixiangList.group}}" data-id="{{index}}"  class='maixiang_content_box_btn {{maixiangList.select?"select":""}}'>{{maixiangList.name}}</view>
+      <view  bindlongtap="longTap" bindtap='clickSelect' wx:for="{{item}}" wx:for-item="maixiangList" wx:key="symptom_id" data-relatedid="{{maixiangList.related_id}}" data-key="{{maixiangList.group}}" data-name="{{maixiangList.name}}" data-id="{{index}}"  class='maixiang_content_box_btn {{maixiangList.select?"select":""}}'>{{maixiangList.name}}</view>
   </view>
 </view>
     </block>
@@ -33,9 +33,7 @@
 <view class='fenxiang' wx:if='{{fenxiang}}'>
 <view class='fenxiang-box'>
 <image src="/images/fenxiang.png"></image>
- <!-- <view class="fenxiang_zf">需支付<text>￥123</text></view>
- <view class="fenxiang_djq">代金券抵扣 0元</view> -->
- <!-- <view class='fenxiang_gz' bindtap='tohelp'>代金券规则 <view>?</view></view> -->
+ <view class='fenxiang_gz' bindtap='tohelp'>金币规则 <view>?</view></view>
   <view class='fenxiang_close' bindtap="fenxiangClose"></view>
   <view class='fenxiang_sub' bindtap="tosubBtn"></view>
   <button class='fenxiang_btn' data-name="shareBtn" open-type="share" hover-class="none">分享</button>

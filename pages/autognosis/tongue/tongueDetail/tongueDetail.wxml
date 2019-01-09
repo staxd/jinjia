@@ -16,11 +16,11 @@
 </view>
  <view class='tongue'>
   <view class='tongue_title'>处方</view>
-  <view bindtap='btn1' class='btn1'>{{btn1}}</view>
-<view bindtap='btn2' class='btn2'>{{btn2}}</view>
-<view bindtap='btn3' class='btn3'>{{btn3}}</view>
-<view bindtap='btn4' class='btn4'>{{btn4}}</view>
-<view bindtap='btn5' class='btn5'>{{btn5}}</view>
+<cover-view class='btn1' bindtap='btn1'></cover-view>
+<cover-view class='btn2' bindtap='btn2'></cover-view>
+<cover-view class='btn3' bindtap='btn3'></cover-view>
+<cover-view class='btn4' bindtap='btn4'></cover-view>
+<cover-view class='btn5' bindtap='btn5'></cover-view>
   <view class='tongue_content'>
       <view class="container">
     <canvas canvas-id="radarCanvas" class="tongue_canvas" bindtouchstart="touchHandler"></canvas>
@@ -33,4 +33,4 @@
 <cover-view class='sub' wx:if='{{!hide}}'>
   <cover-view class='sub_btn' bindtap="subBtn">完成</cover-view>
 </cover-view>
-<cover-view wx:if='{{okBtn}}'><cover-image src='../../../../images/zizhenOk.png'></cover-image></cover-view>
+<cover-view class='box' wx:if='{{okBtn}}'><cover-image src='../../../../images/zizhenOk.png'></cover-image></cover-view>

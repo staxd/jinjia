@@ -46,9 +46,10 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.openlist;
     var list = this.data.list;
+    var category_title = list[index].category_title
     var category_id = parseInt(list[index].category_id)
     wx.navigateTo({
-      url: 'diseasePage/diseasePage?id=' + category_id
+      url: 'diseasePage/diseasePage?id=' + category_id + "&title=" + category_title
     });
 
 

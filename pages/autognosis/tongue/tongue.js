@@ -10,7 +10,19 @@ Page({
   data: {
     symptomList:[],
     infoId:"",
-    fenxiang: false
+    fenxiang: false,
+    longTap:false
+  },
+  longTap: function (e) {
+    var that = this
+    var relatedid = e.currentTarget.dataset.relatedid
+    var name = e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: 'tongueDetail/tongueToDetail/tongueToDetail?id=' + relatedid + "&title=" + name + "&group=2"
+    });
+    this.setData({
+      longTap:true
+    })
   },
   tohelp(){
     wx.navigateTo({
@@ -58,65 +70,69 @@ Page({
   },
   clickSelect(e){
     var that = this
-    var id = e.currentTarget.dataset.id
-    var key = e.currentTarget.dataset.key
-    var symptomList = that.data.symptomList
-    var num = that.data.num
+    var longTap = that.data.longTap
+    if(!longTap){
+      var id = e.currentTarget.dataset.id
+      var key = e.currentTarget.dataset.key
+      var symptomList = that.data.symptomList
+      var num = that.data.num
 
 
 
-    if(key !="脉象"){
-      for (let i in symptomList[key]){
-        if(i == id){
-          symptomList[key][i].select = !symptomList[key][i].select
-        }else{
-          symptomList[key][i].select = false
+      if (key != "脉象") {
+        for (let i in symptomList[key]) {
+          if (i == id) {
+            symptomList[key][i].select = !symptomList[key][i].select
+          } else {
+            symptomList[key][i].select = false
+          }
         }
-      }
-    }else{
-      for (let i in symptomList[key]) {
-        
-        
-        if (i == id) {
-          if (symptomList[key][id].select){
-            symptomList[key][id].select = false
-          }else{
-            symptomList[key][id].select = true
-            var group = symptomList[key][id].subGroup
-            for (let j in symptomList[key]){
-              if (symptomList[key][j].subGroup == group&&j!=i){
-                symptomList[key][j].select = false 
+      } else {
+        for (let i in symptomList[key]) {
+
+
+          if (i == id) {
+            if (symptomList[key][id].select) {
+              symptomList[key][id].select = false
+            } else {
+              symptomList[key][id].select = true
+              var group = symptomList[key][id].subGroup
+              for (let j in symptomList[key]) {
+                if (symptomList[key][j].subGroup == group && j != i) {
+                  symptomList[key][j].select = false
+                }
               }
             }
           }
-        }
-        var num=0
-        for (let z in symptomList[key]){
-          if (symptomList[key][z].select) {
-            // console.log("11")
-            num++
-            if (num > 2) {
-              console.log(id)
-              symptomList[key][id].select = !symptomList[key][id].select
-              // console.log("aaaS")
-              wx.showToast({
-                title: '最多选择两个',
-                icon: 'none',
-                duration: 2000
-              })
+          var num = 0
+          for (let z in symptomList[key]) {
+            if (symptomList[key][z].select) {
+              // console.log("11")
+              num++
+              if (num > 2) {
+                console.log(id)
+                symptomList[key][id].select = !symptomList[key][id].select
+                // console.log("aaaS")
+                wx.showToast({
+                  title: '最多选择两个',
+                  icon: 'none',
+                  duration: 2000
+                })
+              }
             }
           }
+
         }
-        
+
+
+
       }
-
-      
-
-    }
-    that.setData({
-      symptomList
-    })
+      that.setData({
+        symptomList
+      })
     // console.log(symptomList)
+    }
+    
   },
   tosubBtn(){
     console.log(this.data.symptomList)
