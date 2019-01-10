@@ -165,6 +165,7 @@ Page({
 
     }
     console.log(tongueList)
+    var that = this
     wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
       var infoId = this.data.infoId
       infoId = infoId.substring(1, infoId.length)
@@ -178,8 +179,10 @@ Page({
     }else{
       var symptomId = infoId + "," + symptomId
       wx.setStorageSync('getInfoId', symptomId)
-      console.log(symptomId)
-      var that = this
+      that.setData({
+        symptomId
+      })
+      
       wx.request({
         url: url.host + '/selfDiagnosis/matchMedicines',
         method: "POST",
@@ -199,11 +202,13 @@ Page({
 
           }else if(res.data.code == 200){
             console.log(res.data.matchedMedicineList)
-            app.data.matchedMedicineList = res.data.matchedMedicineList
-            // wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
-            wx.navigateTo({
-              url: 'tongueDetail/tongueDetail'
-            })
+            wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
+
+            var timer = setTimeout(function () {
+              wx.navigateTo({
+                url: 'tongueDetail/tongueDetail'
+              })
+            },500)
           }
         },
         fail() {
@@ -250,7 +255,41 @@ Page({
             signType: res.signType,
             timeStamp: "" + res.timeStamp,
             'success': function (res) {
-              console.log(res)
+              wx.request({
+                url: url.host + '/selfDiagnosis/matchMedicines',
+                method: "POST",
+                data: {
+                  patient_id: app.data.patient_id,
+                  symptoms: that.data.symptomId
+                },
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded',
+                  'api_token': getApp().data.api_token
+
+                },
+                success(res) {
+                  if(res.data.code == 200) {
+                    console.log(res.data.matchedMedicineList)
+                    wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
+                    // wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
+                    var timer = setTimeout(function(){
+                      wx.navigateTo({
+                      url: 'tongueDetail/tongueDetail'
+                    })
+                    },500)
+                  }
+                },
+                fail() {
+                  wx.showModal({
+                    title: '提示',
+                    content: '服务器连接失败',
+                    showCancel: false
+                  });
+                },
+                complete() {
+                  // ccallback()
+                }
+              })
             },
             'fail': function (res) { },
             'complete': function (res) { console.log(res) }

@@ -76,7 +76,8 @@ var app = getApp();
         console.log(res)
         wx.setStorageSync('symptomInfo', res.symptomList.body)
         wx.setStorageSync('tongueList', res.symptomList)
-        app.data.matchedMedicineList = archiveList[index].results
+        wx.setStorageSync('matchedMedicineList', archiveList[index].results)
+        console.log(archiveList[index].results)
         wx.navigateTo({
           url: '../../../autognosis/tongue/tongueDetail/tongueDetail?hide=' + true
         })

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 26,
+			"current": 27,
 			"list": [
 				{
 					"id": -1,
@@ -194,7 +194,13 @@
 				{
 					"id": -1,
 					"name": "a",
-					"pathName": "pages/radar/index"
+					"pathName": "pages/radar/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "11",
+					"pathName": "pages/user/daijinquan/daijinquan"
 				}
 			]
 		}

@@ -138,12 +138,6 @@ Page({
    
 
   },
-  guize: function () {
-    wx.navigateTo({
-      url: 'help/help'
-    })
-
-  },
   share: function () {},
   friends: function () {
     var mobile = app.data.mobile

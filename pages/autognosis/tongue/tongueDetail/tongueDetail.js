@@ -18,8 +18,7 @@ Page({
     console.log(radarChart.getCurrentDataIndex(e));
   },
   onReady: function (e) {
-    // var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
-      var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
   console.log(matchMedicinesName)
     var rateList = [0,0,0,0,0]
   var indicator = ["","","","",""]
@@ -105,8 +104,9 @@ Page({
       url: 'tongueToDetail/tongueToDetail?id=' + e.currentTarget.dataset.id + "&title=" + e.currentTarget.dataset.name + "&group=2"
     });
   },
-  btn1(e){
-    var matchMedicinesName = app.data.matchedMedicineList
+  btn1(e) {
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
     // console.log(matchMedicinesName)
     if (matchMedicinesName[0]){
       wx.navigateTo({
@@ -116,7 +116,8 @@ Page({
     
   },
   btn2(e) {
-    var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
     // console.log(matchMedicinesName)
     if (matchMedicinesName[4]) {
       wx.navigateTo({
@@ -126,7 +127,8 @@ Page({
 
   },
   btn3(e) {
-    var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
     // console.log(matchMedicinesName)
     if (matchMedicinesName[3]) {
       wx.navigateTo({
@@ -136,7 +138,8 @@ Page({
 
   },
   btn4(e) {
-    var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
     // console.log(matchMedicinesName)
     if (matchMedicinesName[2]) {
       wx.navigateTo({
@@ -146,7 +149,8 @@ Page({
 
   },
   btn5(e) {
-    var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
     // console.log(matchMedicinesName)
     if (matchMedicinesName[1]) {
       wx.navigateTo({
@@ -157,7 +161,7 @@ Page({
   },
   subBtn(){
     var getInfoId = wx.getStorageSync('getInfoId')
-    var matchMedicinesName = app.data.matchedMedicineList
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
     // console.log(matchMedicinesName)
     var that = this
     let infoOpt = {

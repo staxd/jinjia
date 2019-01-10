@@ -6,11 +6,6 @@
 </view>
 <view wx:else>请升级微信版本</view>
 <view class='user-body'>
-  <view class='user-body-box ul' bindtap='guize'>
-    <image src='/images/daijinquan.png'></image>
-    <view class='user-body-box-text'>金币规则</view>
-    <view class='user-body-box-textRight'></view>
-  </view>
 <view class='user-body-box ul' bindtap='daijinquan'>
     <image src='/images/daijinquan.png'></image>
     <view class='user-body-box-text'>金币</view>
