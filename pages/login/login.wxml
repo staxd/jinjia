@@ -1,6 +1,6 @@
 <view class='register_img'><image src='/images/jinjiazhongyi.png'></image></view>
 <view class='register_phone'><image src='/images/phone.png'></image><input bindinput='userPhone' type='text' placeholder="输入手机号"></input></view>
 <view class='register_yanzm'><image src='/images/yanzm.png'></image><input  type='number' bindinput='userCode' placeholder="输入验证码"></input><view bindtap='{{isClick}}' class='register_yanzm_gain'>{{time}}</view></view>
-<view class='register_invite'><image src='/images/invite.png'></image><input bindinput='userPhone' type='text' placeholder="填写邀请码" value='{{inviteicode}}'></input></view>
+<!-- <view class='register_invite'><image src='/images/invite.png'></image><input bindinput='userPhone' type='text' placeholder="填写邀请码" value='{{inviteicode}}'></input></view> -->
 <view bindtap='toLogin' class='reqister_login'>绑定</view>
 <view class='reqister_hint'>温馨提示：未注册手机号，登录后会自动创建金荚中医账号，且表示同意<text>《金荚中医用户协议》</text></view>

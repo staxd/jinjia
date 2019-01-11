@@ -1,13 +1,13 @@
 <view class='alterBox'>
-<view class='alterBox_name'>患者姓名 <input type='text' bindinput='userName' value="{{patientList.name}}"></input></view>
-<view class='alterBox_sex'>患者性别
+<view class='alterBox_name'>亲友姓名 <input type='text' bindinput='userName' value="{{patientList.name}}"></input></view>
+<view class='alterBox_sex'>亲友性别
    <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{items}}" wx:key='{{index}}'>
           <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
    </radio-group>
 </view>
-<view class='alterBox_age ul'>患者年龄 <input  type='number' bindinput='number' value="{{patientList.age}}"></input></view>
+<view class='alterBox_age ul'>亲友年龄 <input  type='number' bindinput='number' value="{{patientList.age}}"></input></view>
 </view>
 <view class='alterDisease'>病史
 <textarea type='text' bindinput="userProposal"  value="{{patientList.medical_history}}"></textarea></view>
