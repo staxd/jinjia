@@ -16,7 +16,8 @@ Page({
     paySign: "",
     signType: "",
     timeStamp:"",
-    fenxiang: false
+    fenxiang: false,
+    canClick: true
   },
   tohelp() {
     wx.navigateTo({
@@ -49,55 +50,7 @@ Page({
   
   onLoad: function (options) {
     if (options.status) {
-      wx.login({
-        success: resp => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          // console.log(resp.code);
-          wx.setStorageSync("code", resp.code)
-
-          var that = this;
-          // 获取用户信息
-          wx.getSetting({
-            success: res => {
-              wx.getUserInfo({
-                success: userResult => {
-                  wx.setStorageSync("isFirst", userResult.userInfo)
-                  var platUserInfoMap = {};
-                  platUserInfoMap["userInfo"] = userResult.userInfo;
-                  platUserInfoMap["rawData"] = userResult.rawData;
-                  platUserInfoMap["signature"] = userResult.signature;
-                  platUserInfoMap["encryptedData"] = userResult.encryptedData;
-                  platUserInfoMap["iv"] = userResult.iv;
-
-                  wx.request({
-                    url: url.loginUrl,
-                    method: 'POST',
-                    data: {
-                      code: resp.code,
-                      userInfo: JSON.stringify(platUserInfoMap)
-                    },
-                    header: {
-                      'content-type': 'application/x-www-form-urlencoded'
-                    },
-                    success(res) {
-                      console.log(res);
-                      app.data.api_token = res.data.api_token
-                      app.data.mobile = res.data.mobile
-                      app.data.user_id = res.data.user_id
-                      wx.setStorageSync("icode", res.data.icode)
-                      console.log("aaa")
-                    }
-                  })
-                  if (that.userInfoReadyCallback) {
-                    that.userInfoReadyCallback(userResult)
-                  }
-                }
-              })
-            }
-          })
-
-            }
-          })
+    app.login()
     }
     
     this.getOptionList();
@@ -153,11 +106,43 @@ Page({
     })
   },
   subBtn(){
-    this.setData({
-      fenxiang: true
-    })
+    var that = this
+    var mbList = that.data.mbList
+    var option = that.data.optionId
+
+    for (var i in mbList) {
+      for (var j = 0; j < mbList[i].length; j++) {
+
+
+        if (mbList[i][j].isshow) {
+          // console.log(mbList[i][j])
+          option = option + "," + mbList[i][j].option_id
+        }
+      }
+    }
+
+    // console.log(option.length)
+    option = option.substring(1, option.length)
+    // console.log(option)
+    wx.setStorageSync("option", option)
+    console.log(option)
+    if (option == "") {
+      wx.showToast({
+        title: '请选择至少一项',
+        icon: 'none',
+        duration: 1000
+      })
+    }else{
+      that.setData({
+        fenxiang: true
+      })
+    }
+    
   },
   tosubBtn:function(){
+    this.setData({
+      canClick: false
+    })
     var that=this
     var mbList = that.data.mbList
     var option = that.data.optionId
@@ -178,14 +163,6 @@ Page({
     // console.log(option)
     wx.setStorageSync("option", option)
     console.log(option)
-    if (option == ""){
-      wx.showToast({
-        title: '请选择至少一项',
-        icon:'none',
-        duration:1000
-      })
-    }else{
-      var that = this
       let infoOpt = {
         url: '/constitution/matchConstitutions',
         type: 'POST',
@@ -215,6 +192,9 @@ Page({
         wx.navigateTo({
           url: '../radar/index'
         })
+        that.setData({
+          canClick: true
+        })
       }
       infoCb.beforeSend = () => { }
       infoCb.complete = () => {
@@ -222,7 +202,7 @@ Page({
       }
       sendAjax(infoOpt, infoCb, () => {
       });
-    }
+    
     
 
   },

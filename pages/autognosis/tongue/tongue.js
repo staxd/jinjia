@@ -11,7 +11,8 @@ Page({
     symptomList:[],
     infoId:"",
     fenxiang: false,
-    longTap:false
+    longTap:false,
+    canClick:true
   },
   longTap: function (e) {
     var that = this
@@ -35,9 +36,49 @@ Page({
     })
   },
   subBtn() {
-    this.setData({
-      fenxiang: true
-    })
+    var symptomList = this.data.symptomList
+    var tongueList = {}
+    var tonguePic = []
+    var pulseCondition = []
+    var symptomId = ""
+    for (let i in symptomList) {
+
+      for (let j in symptomList[i]) {
+        if (symptomList[i][j].select) {
+          symptomId = symptomId + "," + symptomList[i][j].symptom_id
+
+          if (symptomList[i][j].group == "脉象") {
+            pulseCondition.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id })
+            tongueList["pulse"] = pulseCondition
+
+
+          } else {
+            tonguePic.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id })
+            tongueList["tongue"] = tonguePic
+          }
+
+        }
+
+      }
+
+    }
+    var that = this
+    wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
+    var infoId = this.data.infoId
+    infoId = infoId.substring(1, infoId.length)
+    symptomId = symptomId.substring(1, symptomId.length)
+    if (symptomId == "") {
+      wx.showToast({
+        title: '请选择至少一项',
+        icon: 'none',
+        duration: 1000
+      })
+    }else{
+      this.setData({
+        fenxiang: true
+      })
+    }
+    
   },
   getSLi(){
     var that = this
@@ -55,7 +96,6 @@ Page({
           symptomList[i][j]['select'] = false
         }
       }
-      // console.log(symptomList)
 
       that.setData({
         symptomList
@@ -110,7 +150,6 @@ Page({
               // console.log("11")
               num++
               if (num > 2) {
-                console.log(id)
                 symptomList[key][id].select = !symptomList[key][id].select
                 // console.log("aaaS")
                 wx.showToast({
@@ -135,7 +174,9 @@ Page({
     
   },
   tosubBtn(){
-    console.log(this.data.symptomList)
+    this.setData({
+      canClick:false
+    })
     var symptomList = this.data.symptomList
     var tongueList={}
     var tonguePic = []
@@ -149,7 +190,6 @@ Page({
           // console.log(symptomId)
           
           if (symptomList[i][j].group == "脉象"){
-            console.log(symptomList[i][j] )
             pulseCondition.push({ 'name': symptomList[i][j].name, 'related_id': symptomList[i][j].related_id })
               tongueList["pulse"] = pulseCondition
             
@@ -164,19 +204,11 @@ Page({
       }
 
     }
-    console.log(tongueList)
     var that = this
     wx.setStorageSync('tongueList', tongueList)//舌脉列表获取
       var infoId = this.data.infoId
       infoId = infoId.substring(1, infoId.length)
       symptomId = symptomId.substring(1, symptomId.length)
-    if (symptomId == ""){
-      wx.showToast({
-        title: '请选择至少一项',
-        icon: 'none',
-        duration: 1000
-      })
-    }else{
       var symptomId = infoId + "," + symptomId
       wx.setStorageSync('getInfoId', symptomId)
       that.setData({
@@ -197,16 +229,17 @@ Page({
         },
         success(res) {
           if (res.data.code == 406) {
-            console.log('aaaa')
             that.PostSelfDiagnosis()
 
           }else if(res.data.code == 200){
-            console.log(res.data.matchedMedicineList)
             wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
 
             var timer = setTimeout(function () {
               wx.navigateTo({
                 url: 'tongueDetail/tongueDetail'
+              })
+              that.setData({
+                canClick: true
               })
             },500)
           }
@@ -225,7 +258,7 @@ Page({
 
       
     
-    }
+    
       
     
     
@@ -244,7 +277,6 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
-      console.log(res)
       if(res.is_pay==0){
         wx.requestPayment(
           {
@@ -269,13 +301,15 @@ Page({
                 },
                 success(res) {
                   if(res.data.code == 200) {
-                    console.log(res.data.matchedMedicineList)
                     wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
                     // wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
                     var timer = setTimeout(function(){
                       wx.navigateTo({
                       url: 'tongueDetail/tongueDetail'
                     })
+                      that.setData({
+                        canClick: true
+                      })
                     },500)
                   }
                 },
@@ -292,14 +326,57 @@ Page({
               })
             },
             'fail': function (res) { },
-            'complete': function (res) { console.log(res) }
+            'complete': function (res) {
+              that.setData({
+                canClick: true
+              })
+               }
           })
       }else{
         wx.showToast({
       title: '代金券使用成功！',
       icon: 'success',
-      duration: 1000
-    })
+      duration: 1200
+        })
+        var timer = setTimeout(function () {
+        wx.request({
+          url: url.host + '/selfDiagnosis/matchMedicines',
+          method: "POST",
+          data: {
+            patient_id: app.data.patient_id,
+            symptoms: that.data.symptomId
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'api_token': getApp().data.api_token
+
+          },
+          success(res) {
+            if (res.data.code == 200) {
+              wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
+              // wx.setStorageSync('matchedMedicineList', res.data.matchedMedicineList)
+              var timer = setTimeout(function () {
+                wx.navigateTo({
+                  url: 'tongueDetail/tongueDetail'
+                })
+                that.setData({
+                  canClick: true
+                })
+              }, 500)
+            }
+          },
+          fail() {
+            wx.showModal({
+              title: '提示',
+              content: '服务器连接失败',
+              showCancel: false
+            });
+          },
+          complete() {
+            // ccallback()
+          }
+        })
+        },500)
       }
       
     }
@@ -368,7 +445,6 @@ Page({
     var that = this;
     // 设置菜单中的转发按钮触发转发事件时的转发内容
     var inviteicode = wx.getStorageSync("icode")
-    console.log(inviteicode)
     var shareObj = {
       title: "金荚中医",        // 默认是小程序的名称(可以写slogan等)
       path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
@@ -393,7 +469,6 @@ Page({
     // 来自页面内的按钮的转发
     if (options.from == 'button') {
       var eData = options.target.dataset;
-      console.log(eData.name);     // shareBtn
       // 此处可以修改 shareObj 中的内容
       shareObj.path = '/pages/index/index?inviteicode=' + inviteicode;
     }

@@ -6,13 +6,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-   
+   gold:0
   },
   guize: function () {
     wx.navigateTo({
       url: '/pages/user/help/help'
     })
 
+  },
+  getGoldInfo: function () {
+    var that = this
+    let infoOpt = {
+      url: '/order/getGoldInfo',
+      type: 'GET',
+      data: {
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      that.setData({
+        gold:res.gold
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -33,6 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getGoldInfo()
   },
 
   /**

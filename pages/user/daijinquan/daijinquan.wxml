@@ -1,5 +1,5 @@
 <view class="quan">
 <image src='/images/yuer.jpg'></image>
-<view class='quan_num'>20</view>
+<view class='quan_num'>{{gold}}</view>
 </view>
 <view class='quan_gz' bindtap='guize'><text>金币规则</text><image src='/images/guize.jpg'></image></view>

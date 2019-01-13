@@ -98,7 +98,7 @@ Page({
           wx.navigateTo({
             url: 'archives/archives'
           })
-        }, 400);
+        }, 500);
         
      
       
@@ -129,7 +129,7 @@ Page({
           wx.navigateTo({
             url: 'daijinquan/daijinquan'
           })
-        }, 400);
+        }, 500);
 
 
 
@@ -164,7 +164,7 @@ Page({
           url: 'friends/friends'
         })
 
-      }, 400);
+      }, 500);
         
 
 

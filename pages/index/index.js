@@ -5,10 +5,18 @@ var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
 Page({
   data: {
-   
+   cantotizhi:true,
+   cantozizhen:true
   },
   tizhiBtn: function () {
-    
+    var that = this
+    if (app.data.show) {
+    that.setData({
+      cantotizhi:false
+    })
+    }else{
+      return
+    }
     var mobile = app.data.mobile
     console.log(mobile)
       if (mobile == undefined) {
@@ -22,19 +30,27 @@ Page({
               wx.navigateTo({
                 url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
               })
+              that.setData({
+                cantotizhi:true
+              })
             }
           }
         });
 
       } else {
+        var timer = setTimeout(function () {
         if(app.data.show){
-          var timer = setTimeout(function () {
+          
             wx.navigateTo({
               url: '/pages/physical/physical'
             })
-          }, 400);
+            that.setData({
+                cantotizhi:true
+              })
+          
           
         }
+        }, 400);
         
       }
     
@@ -42,6 +58,14 @@ Page({
 
   },
    zizhenBtn: function () {
+     var that = this
+     if (app.data.show) {
+     that.setData({
+       cantozizhen: false
+     })
+     }else{
+       return
+     }
      var mobile = app.data.mobile
      if (mobile == undefined) {
        wx.showModal({
@@ -54,19 +78,24 @@ Page({
              wx.navigateTo({
                url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
              })
+             that.setData({
+               cantozizhen:true
+             })
            }
          }
        });
       
     } else {
+       var timer = setTimeout(function () {
       if(app.data.show){
-        var timer = setTimeout(function () {
           wx.navigateTo({
             url: '/pages/autognosis/autognosis',
           })
-        }, 400);
-        
+          that.setData({
+            cantozizhen: true
+          })
       }
+       }, 400);
      
     }
      
@@ -99,10 +128,14 @@ Page({
     if (res.inviteicode){
       wx.setStorageSync("inviteicode", res.inviteicode)
     }
-    // console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    app.onLaunch()
     this.getindex()
     
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
   getUserInfo: function(e) {
   }

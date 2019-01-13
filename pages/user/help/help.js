@@ -13,7 +13,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     let infoOpt = {
-      url: '/page/index/aboutus',
+      url: '/page/index/goldrule',
       type: 'GET',
       data: {
       },

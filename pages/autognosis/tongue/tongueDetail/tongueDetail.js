@@ -24,7 +24,7 @@ Page({
   var indicator = ["","","","",""]
     var maxValue = matchMedicinesName[0].rate
     if (maxValue){
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < matchMedicinesName.length; i++) {
         rateList[i] = matchMedicinesName[i].rate
         indicator[i] = matchMedicinesName[i].medicine_name
       }
