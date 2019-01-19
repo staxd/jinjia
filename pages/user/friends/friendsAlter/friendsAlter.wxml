@@ -11,5 +11,9 @@
 </view>
 <view class='alterDisease'>病史
 <textarea type='text' bindinput="userProposal"  value="{{patientList.medical_history}}"></textarea></view>
+<view class="btnBox">
 <button bindtap='alterBtn' type="warn" hover-class='none'>保存</button>
-<view bindtap='alterDelect' class="alterDelect">删除患者</view>
+<button bindtap='alterDelect' type="warn" hover-class='none'>删除</button>
+</view>
+
+<!-- <view bindtap='alterDelect' class="alterDelect">删除患者</view> -->

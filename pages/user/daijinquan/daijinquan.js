@@ -24,8 +24,10 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      var a = 1.222.toFixed(1)
+      var gold = parseFloat(res.gold).toFixed(1)
       that.setData({
-        gold:res.gold
+        gold
       })
     }
     infoCb.beforeSend = () => { }
@@ -39,7 +41,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
  
 

@@ -10,9 +10,6 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    platUserInfoMap: {},
-    code: '',
-    showUs:false
   },
 
   /**
@@ -21,53 +18,6 @@ Page({
   onLoad: function () {
     
   },
-  login: function () {
-    // console.log(111)
-    var that = this
-    wx.login({
-      success: function (resp) {
-        var code = resp.code;
-        that.setData({
-          code
-        })
-        wx.getUserInfo({
-          success: function (userResult) {
-            that.setData({
-              userInfo: userResult.userInfo
-            })
-            var platUserInfoMap = that.data.platUserInfoMap;
-            platUserInfoMap["userInfo"] = userResult.userInfo;
-            platUserInfoMap["rawData"] = userResult.rawData;
-            platUserInfoMap["signature"] = userResult.signature;
-            platUserInfoMap["encryptedData"] = userResult.encryptedData;
-            platUserInfoMap["iv"] = userResult.iv;
-            // console.log(that.data.code);
-            wx.request({
-              url: url.loginUrl,
-              method: 'POST',
-              data: {
-                code: resp.code,
-                userInfo: JSON.stringify(platUserInfoMap)
-              },
-              header: {
-                'content-type': 'application/x-www-form-urlencoded'
-              },
-              success(res) {
-                app.data.api_token=res.data.api_token
-                app.data.mobile = res.data.mobile
-                app.data.user_id = res.data.user_id
-                app.data.showUs = true
-                that.setData({
-                  showUs:true
-                })
-              }
-            })
-          }
-        })
-      }
-    })
-  },
-  
   invite: function() {
     // console.log('12321313');
     wx.navigateTo({
@@ -94,11 +44,9 @@ Page({
       });
       
     } else {
-        var timer = setTimeout(function () {
           wx.navigateTo({
             url: 'archives/archives'
           })
-        }, 500);
         
      
       
@@ -125,11 +73,9 @@ Page({
         });
 
       } else {
-        var timer = setTimeout(function () {
           wx.navigateTo({
             url: 'daijinquan/daijinquan'
           })
-        }, 500);
 
 
 
@@ -158,13 +104,10 @@ Page({
       });
       
     } else {
-      
-      var timer = setTimeout(function () {
         wx.navigateTo({
           url: 'friends/friends'
         })
 
-      }, 500);
         
 
 
@@ -184,8 +127,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.login();
-
+    app.login();
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+    wx.removeStorageSync("patientInfolist")
+    wx.removeStorageSync("constitutionId")
+    wx.removeStorageSync("firstList")
+    wx.removeStorageSync("nameList")
+    wx.removeStorageSync("rateJson")
+    wx.removeStorageSync("rateList")
+    wx.removeStorageSync("getInfoId")
+    wx.removeStorageSync("matchedMedicineList")
+    wx.removeStorageSync("tongueList")
+    wx.removeStorageSync("symptomInfo")
+    wx.removeStorageSync("patientInfolist")
+    wx.removeStorageSync("option")
+    wx.removeStorageSync("infoList")
   },
   onShareAppMessage: function (options) {
     　　var that = this;
@@ -193,7 +151,7 @@ Page({
     var inviteicode = wx.getStorageSync("icode")
     console.log(inviteicode)
     　　var shareObj = {
-      　　　　title: "金荚中医",        // 默认是小程序的名称(可以写slogan等)
+      　　　　title: "",        // 默认是小程序的名称(可以写slogan等)
         path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
         imageUrl: '/images/indexPic.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       　　　　success: function (res) {

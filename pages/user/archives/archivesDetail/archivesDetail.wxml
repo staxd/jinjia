@@ -1,27 +1,24 @@
-<block wx:if="{{archiveLength!=0}}">
-<view wx:if='{{arList.length!=0}}' class='leftLine'></view>
-<view class="box">
-
-  <view wx:if='{{arList.length!=0}}' class='box_year'>{{year}}</view>
-
-  <view class='box_border' style='{{item.isshow?"display:none":""}}' data-index ='{{index}}' wx:for='{{archiveList}}' wx:key='item.archive_id'>
-    <view wx:if="{{item.type=='constitution'}}" >
-        <view class='box_border_month'>{{item.created_time}}</view>
-        <view class='box_border_title' data-index='{{index}}' data-symptoms = "{{item.symptoms}}" bindtap='todetailBtn'>体质</view>
-        <view class='box_border_content'>{{item.name}}</view>
+<block wx:if="{{infoList.length!=0}}">
+<view wx:if='{{infoList}}' class='leftLine'></view>
+<view class="box" wx:for="{{infoList}}" wx:key="*this" data-index="{{index}}" style="{{infoList[index].length==0?'display:none':''}}">
+  <view class='box_year' data-index="{{index}}" bindtap='showNmlgb'>{{2019-index}}</view>
+  <view class='box_border' wx:for='{{item}}' wx:if="{{list.isshow==false&&list.showNmlgb}}" wx:for-item="list" wx:key='list.archive_id'>
+    <view wx:if="{{list.type=='constitution'}}" >
+        <view class='box_border_month'>{{list.created_time}}</view>
+        <view class='box_border_title' data-index='{{list.archive_id}}' data-symptoms = "{{list.symptoms}}" bindtap='todetailBtn'>体质</view>
+        <view class='box_border_content'>{{list.name}}</view>
         <image src='../../../../images/tizhiBorder.png'></image>
-        <view data-id ="{{item.archive_id}}" data-isshow ="{{item.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
+        <view data-id ="{{list.archive_id}}" data-isshow ="{{list.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
     </view>
 
-    <view wx:if="{{item.type=='self_diagnosis'}}" >
-        <view class='box_border_month'>{{item.created_time}}</view>
-        <view class='box_border_zizhen' data-index='{{index}}' data-symptoms = "{{item.symptoms}}" bindtap='zizhendetailBtn'>自诊</view>
-        <view class='box_border_content'>{{item.name}}</view>
+    <view wx:if="{{list.type=='self_diagnosis'}}" >
+        <view class='box_border_month'>{{list.created_time}}</view>
+        <view class='box_border_zizhen' data-index='{{list.archive_id}}' data-symptoms = "{{list.symptoms}}" bindtap='zizhendetailBtn'>自诊</view>
+        <view class='box_border_content'>{{list.name}}</view>
         <image src='../../../../images/zizhenBorder.png'></image>
-        <view data-id ="{{item.archive_id}}" data-isshow ="{{item.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
+        <view data-id ="{{list.archive_id}}" data-isshow ="{{list.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
     </view>
   </view>
-
 </view>
 </block>
 <block wx:else><view class='noMore-text'>暂无内容</view></block>

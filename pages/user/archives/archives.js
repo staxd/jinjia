@@ -1,5 +1,7 @@
 var url = require('../../../config.js')
 const sendAjax = require('../../../utils/sendAjax.js')
+const util = require('../../../utils/util.js')
+
 var app = getApp();
 Page({
 
@@ -9,7 +11,7 @@ Page({
   data: {
     patient_id:'',
     patientList:[],
-    name:''
+    name:'',
   },
 
   /**
@@ -48,6 +50,7 @@ Page({
       that.setData({
         patientList
       })
+      that.getInfo()
     }
     infoCb.beforeSend = () => { }
     infoCb.complete = () => {
@@ -56,37 +59,111 @@ Page({
     sendAjax(infoOpt, infoCb, () => {
     });
   },
-  listDetail:function(e){
+  getInfo(){
     var that = this
     var patientList = that.data.patientList
-    var id = e.currentTarget.dataset.id
-    var name = e.currentTarget.dataset.name
-    // console.log(e)
-    
-    let infoOpt = {
+    var patientInfolist = []
+    for(let j in patientList){
+      patientInfolist[j]={}
+      console.log(patientList[j].patient_id)
+      let infoOpt = {
       url: '/archive',
       type: 'POST',
       data: {
-        patient_id:id
+        patient_id: patientList[j].patient_id,
+        firstYear:"2000"
       }
     }
-    let infoCb = {}
+      let infoCb = {}
     infoCb.success = function (res) {
-      // console.log(res)
-      if (res.archiveList.length==0){
-        console.log("aaa")
-        var archiveLength = 0
+      console.log(res)
+      var time = util.formatTime(new Date());
+      var year = parseInt(time.substring(0, 4))
+      for (let i = year; i >= parseInt(res.firstYear); i--) {
+        console.log(i)
+        let infoOpt = {
+          url: '/archive',
+          type: 'POST',
+          data: {
+            patient_id: patientList[j].patient_id,
+            year: ""+i
+          }
+        }
+        let infoCb = {}
+        infoCb.success = function (res) {
+          console.log(res)
+          patientInfolist[j][""+i]=[]
+          patientInfolist[j]["" + i] = res.archiveList
+          that.setData({
+            patientInfolist
+          })
+          wx.setStorageSync('patientInfolist', patientInfolist)
+        }
+        infoCb.beforeSend = () => { }
+        infoCb.complete = () => {
+
+        }
+        sendAjax(infoOpt, infoCb, () => {
+        });
       }
-      wx.navigateTo({
-        url: 'archivesDetail/archivesDetail?title=' + name + '&archiveList=' + JSON.stringify(res.archiveList) + '&archiveLength=' + archiveLength
-      })
+      
+
+
+
+
+
+
+
+
+
+
+
     }
-    infoCb.beforeSend = () => { }
+      infoCb.beforeSend = () => { }
     infoCb.complete = () => {
 
     }
-    sendAjax(infoOpt, infoCb, () => {
-    });
+    sendAjax(infoOpt, infoCb, () => {})
+
+    }
+    
+  },
+  listDetail:function(e){
+    var that = this
+    var patientInfolist = wx.getStorageSync('patientInfolist')
+    var id = e.currentTarget.dataset.id
+    var name = e.currentTarget.dataset.name
+    var time = util.formatTime(new Date());
+    var year = parseInt(time.substring(0, 4))
+    
+    console.log(patientInfolist)
+    if (patientInfolist){
+      for (let i in patientInfolist) {
+        for (let j in patientInfolist[i]) {
+          for (let z in patientInfolist[i][j]) {
+            if (patientInfolist[i][j][z]['isshow'] == true) {
+              patientInfolist[i][j][z]['isshow'] = true
+            } else {
+              patientInfolist[i][j][z]['isshow'] = false
+
+            }
+            if (j == year) {
+              patientInfolist[i][j][z]['showNmlgb'] = true
+            } else {
+              patientInfolist[i][j][z]['showNmlgb'] = false
+            }
+
+
+          }
+        }
+      }
+      wx.navigateTo({
+        url: 'archivesDetail/archivesDetail?title=' + name + '&patientInfolist=' + JSON.stringify(patientInfolist[id])
+      })
+    }
+      
+
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

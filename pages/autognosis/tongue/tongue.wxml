@@ -40,6 +40,7 @@
 </view>
 
 </view>
+<view style='width:750rpx;height:150rpx'></view>
 <view class='sub'>
   <view class='sub_btn' bindtap="subBtn">确认</view>
 </view>

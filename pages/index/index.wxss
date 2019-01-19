@@ -69,3 +69,18 @@ swiper image{
   background: #ce7d65;
   margin: 0 20rpx 0 30rpx;
 }
+.swiper .wx-swiper-dot{
+    display: inline-flex;
+    justify-content:space-between;
+
+}
+.swiper .wx-swiper-dot::before{
+    content: '';
+    flex-grow: 1; 
+    background: rgba(255,255,255,.8);
+    border-radius: 50%;
+}
+.swiper .wx-swiper-dot-active::before{
+    background:#c05f43;
+    border-radius: 50%;    
+}

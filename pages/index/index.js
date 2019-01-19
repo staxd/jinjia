@@ -135,6 +135,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.removeStorageSync("patientInfolist")
+    wx.removeStorageSync("constitutionId")
+    wx.removeStorageSync("firstList")
+    wx.removeStorageSync("nameList")
+    wx.removeStorageSync("rateJson")
+    wx.removeStorageSync("rateList")
+    wx.removeStorageSync("getInfoId")
+    wx.removeStorageSync("matchedMedicineList")
+    wx.removeStorageSync("tongueList")
+    wx.removeStorageSync("symptomInfo")
+    wx.removeStorageSync("patientInfolist")
+    wx.removeStorageSync("option")
+    wx.removeStorageSync("infoList")
+
+  },
+  onPullDownRefresh: function () {
+    wx.setBackgroundTextStyle({
+      textStyle: 'dark', // 下拉背景字体、loading 图的样式，仅支持 'dark', 'light'
+    })
+    wx.showNavigationBarLoading();
+    app.login()
+    // 隐藏导航栏加载框
+    wx.hideNavigationBarLoading();
+    // 停止下拉动作
+    wx.stopPullDownRefresh();
+
 
   },
   getUserInfo: function(e) {

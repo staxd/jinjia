@@ -67,17 +67,21 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
             showCancel: true,
             
           });
-        }
-
-        if (res.data.message == "请登录" || res.data.message == "未绑定手机号"){
-          
+        }else if (res.data.code == 403) {
+          console.log("同步请求？靠")
+          sendAjax(options, callback)
         }else{
           wx.showModal({
             title: '提示',
             content: res.data.message || '处理失败',
             showCancel: false,
           });
+
         }
+
+        
+         
+        
          
         }
       

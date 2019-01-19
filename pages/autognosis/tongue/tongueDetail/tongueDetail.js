@@ -25,8 +25,26 @@ Page({
     var maxValue = matchMedicinesName[0].rate
     if (maxValue){
       for (let i = 0; i < matchMedicinesName.length; i++) {
-        rateList[i] = matchMedicinesName[i].rate
-        indicator[i] = matchMedicinesName[i].medicine_name
+        if (i == 0) {
+          rateList[0] = matchMedicinesName[i].rate
+          indicator[0] = matchMedicinesName[i].medicine_name
+        }
+        if(i==1){
+          rateList[4] = matchMedicinesName[i].rate
+          indicator[4] = matchMedicinesName[i].medicine_name
+        }
+        if (i == 2) {
+          rateList[3] = matchMedicinesName[i].rate
+          indicator[3] = matchMedicinesName[i].medicine_name
+        }
+        if (i == 3) {
+          rateList[2] = matchMedicinesName[i].rate
+          indicator[2] = matchMedicinesName[i].medicine_name
+        }
+        if (i == 4) {
+          rateList[1] = matchMedicinesName[i].rate
+          indicator[1] = matchMedicinesName[i].medicine_name
+        }
       }
       var windowWidth = 100;
       try {
@@ -49,6 +67,9 @@ Page({
         extra: {
           radar: {
             max: maxValue
+          },
+          pie:{
+            offsetAngle:-90
           }
         }
       });
@@ -119,25 +140,14 @@ Page({
     var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
 
     // console.log(matchMedicinesName)
-    if (matchMedicinesName[4]) {
+    if (matchMedicinesName[1]) {
       wx.navigateTo({
-        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[4].medicine_id + "&title=" + matchMedicinesName[4].medicine_name + "&group=3"
+        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[1].medicine_id + "&title=" + matchMedicinesName[1].medicine_name + "&group=3"
       });
     }
 
   },
   btn3(e) {
-    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
-
-    // console.log(matchMedicinesName)
-    if (matchMedicinesName[3]) {
-      wx.navigateTo({
-        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[3].medicine_id + "&title=" + matchMedicinesName[3].medicine_name + "&group=3"
-      });
-    }
-
-  },
-  btn4(e) {
     var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
 
     // console.log(matchMedicinesName)
@@ -148,13 +158,24 @@ Page({
     }
 
   },
+  btn4(e) {
+    var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
+
+    // console.log(matchMedicinesName)
+    if (matchMedicinesName[3]) {
+      wx.navigateTo({
+        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[3].medicine_id + "&title=" + matchMedicinesName[3].medicine_name + "&group=3"
+      });
+    }
+
+  },
   btn5(e) {
     var matchMedicinesName = wx.getStorageSync('matchedMedicineList')
 
     // console.log(matchMedicinesName)
-    if (matchMedicinesName[1]) {
+    if (matchMedicinesName[4]) {
       wx.navigateTo({
-        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[1].medicine_id + "&title=" + matchMedicinesName[1].medicine_name + "&group=3"
+        url: 'tongueToDetail/tongueToDetail?id=' + matchMedicinesName[4].medicine_id + "&title=" + matchMedicinesName[4].medicine_name + "&group=3"
       });
     }
 

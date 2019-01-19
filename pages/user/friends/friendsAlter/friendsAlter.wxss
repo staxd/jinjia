@@ -52,9 +52,16 @@ textarea {
 height:100rpx;
 
 }
+.btnBox{
+  width: 750rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 button {
   margin-top: 58rpx;
-width: 640rpx;
+width: 330rpx;
 height: 80rpx;
 position:relative;
 display:block;
@@ -77,7 +84,7 @@ button[type=warn] {
 color:#FFFFFF;
 background-color:rgba(193,92,62,1);
 }
-.alterDelect{
+/* .alterDelect{
   width: 120rpx;
   height: 45rpx;
   color: #C15C3E;
@@ -85,4 +92,4 @@ background-color:rgba(193,92,62,1);
   left: 0;
   right: 0;
   margin: 85rpx auto 0;
-}
+} */

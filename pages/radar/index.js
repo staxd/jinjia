@@ -31,55 +31,55 @@ function initChart(canvas, width, height) {
       // shape: 'circle',
       indicator: [{
         name: '食品',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a',
         
       },
       {
         name: '玩具',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a'
 
       },
       {
         name: '服饰',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a'
 
       },
       {
         name: '绘本',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a'
 
       },
       {
         name: '医疗',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a'
 
       },
       {
         name: '门票',
-        max: 0.055555555555556,
+        max: 1,
         color: '#4a4a4a'
 
         },
         {
           name: '门票',
-          max: 0.055555555555556,
+          max: 1,
           color: '#4a4a4a'
 
         },
         {
           name: '门票',
-          max: 0.055555555555556,
+          max: 1,
           color: '#4a4a4a'
 
         },
         {
           name: '门票',
-          max: 0.055555555555556,
+          max: 1,
           color: '#4a4a4a'
 
         }
@@ -91,7 +91,7 @@ function initChart(canvas, width, height) {
       type: 'radar',
       
       data: [{
-        value: [],
+        value: [10000],
         name: '预算',
         areaStyle: {                // 单项区域填充样式
           normal: {
@@ -102,19 +102,28 @@ function initChart(canvas, width, height) {
       ]
     }]
   };
-  // console.log(option.radar.indicator)
   var indicator = option.radar.indicator
   for(var o in indicator){
     var firstList = wx.getStorageSync("firstList")
     var nameList = wx.getStorageSync("nameList")
-    indicator[o].max = firstList
+    if(firstList!=0){
+      indicator[o].max = firstList
+    }
     indicator[o].name = nameList[o]
-    // console.log(indicator[o].max)
+    
   }
-  var rateList = wx.getStorageSync("rateList")
-  // console.log(rateList)
-  option.series[0].data[0].value = rateList
   
+  var rateList = wx.getStorageSync("rateList")
+  var key = 0
+  for(let j in rateList){
+    if(rateList[j]==0){
+      key++
+    }
+  }
+  console.log(rateList)
+  if(key!=rateList.length){
+    option.series[0].data[0].value = rateList
+  }
   chart.setOption(option);
   return chart;
 }
