@@ -14,7 +14,6 @@
    
     </view>
 
-
 </view>
 </view>
 <view class='fenxiang' wx:if='{{fenxiang}}'>
@@ -28,6 +27,8 @@
 </view>
 
 </view>
+    <view class='phy_bottom'></view>
+
 <view class='sub'>
   <view class='sub_btn' bindtap="subBtn">下一步</view>
 </view>

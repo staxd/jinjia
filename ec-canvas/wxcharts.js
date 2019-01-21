@@ -19,7 +19,7 @@ var config = {
   padding: 12,
   columePadding: 3,
   fontSize: 15,
-  dataPointShape: ['diamond', 'circle', 'triangle', 'rect'],
+  dataPointShape: [],
   colors: ['#dcf2da', '#f7a35c', '#000', '#000', '#000', '#000'],
   pieChartLinePadding: 25,
   pieChartTextPadding: 15,

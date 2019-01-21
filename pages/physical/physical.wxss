@@ -14,7 +14,6 @@ page {
 .physical-box-content{
   display: flex;
   flex-direction: column;
-  margin-bottom: 120rpx;
 }
 .physical-box-content-up{
   margin-left: 30rpx;
@@ -151,4 +150,8 @@ button {
   text-align: center;
   line-height: 30rpx;
   margin-left: 3rpx;
+}
+.phy_bottom{
+  width: 750rpx;
+  height: 140rpx;
 }

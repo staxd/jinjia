@@ -1,5 +1,6 @@
 const url = require('../config.js')
 
+var key = 0
 function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
   
   // 登录信息过期处理类型
@@ -43,7 +44,7 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
   //   icon: 'loading',
   //   duration: 10000
   // })
-  
+
   wx.request({
     url: url.host + _sets.url,
     method: _sets.type,
@@ -68,7 +69,10 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
             
           });
         }else if (res.data.code == 403) {
-          console.log("同步请求？靠")
+          key++
+          if(key == 20){
+            return
+          }
           sendAjax(options, callback)
         }else{
           wx.showModal({
