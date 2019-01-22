@@ -97,7 +97,7 @@ Page({
       console.log(res)
       for (let i in paList) {
         if (paList[i].patient_id == patient_id) {
-          app.data.patient_id = patient_id
+          wx.setStorageSync("patient_id",patient_id) 
           console.log(paList[i])
           paList[i]['is_default'] = "1"
           headList = paList[i]
@@ -110,7 +110,6 @@ Page({
       if (headList.length != 0) {
         patientList.unshift(headList)
       }
-      // console.log(app.data.patient_id)
       that.setData({
         patientList
       })

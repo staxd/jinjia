@@ -16,6 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    app.getPatientId()
     
   },
   invite: function() {
@@ -26,22 +27,20 @@ Page({
 
   }, 
   archives: function () {
-    var mobile = app.data.mobile
     if (app.data.show) {
-    if (mobile == undefined) {
-      wx.showModal({
-        title: '提示',
-        content: '请您先绑定手机号！',
-        showCancel: true,
-        success: function (res) {
-          console.log(res)
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/login/login?pageUrl=' + "archives/archives"
-            })
-          }
-        }
-      });
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '请您先绑定手机号！',
+      //   showCancel: true,
+      //   success: function (res) {
+      //     console.log(res)
+      //     if (res.confirm) {
+      //       wx.navigateTo({
+      //         url: '/pages/login/login?pageUrl=' + "archives/archives"
+      //       })
+      //     }
+      //   }
+      // });
       
     } else {
           wx.navigateTo({
@@ -51,28 +50,26 @@ Page({
      
       
     }
-    }
+    
 
   },
   daijinquan: function () {
-    var mobile = app.data.mobile
-    if (app.data.show) {
-      if (mobile == undefined) {
-        wx.showModal({
-          title: '提示',
-          content: '请您先绑定手机号！',
-          showCancel: true,
-          success: function (res) {
-            console.log(res)
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/login/login?pageUrl=' + "archives/archives"
-              })
-            }
-          }
-        });
+      if (app.data.show) {
+        // wx.showModal({
+        //   title: '提示',
+        //   content: '请您先绑定手机号！',
+        //   showCancel: true,
+        //   success: function (res) {
+        //     console.log(res)
+        //     if (res.confirm) {
+        //       wx.navigateTo({
+        //         url: '/pages/login/login?pageUrl=' + "archives/archives"
+        //       })
+        //     }
+        //   }
+        // });
 
-      } else {
+      }else {
           wx.navigateTo({
             url: 'daijinquan/daijinquan'
           })
@@ -80,28 +77,26 @@ Page({
 
 
       }
-    }
+    
    
 
   },
   share: function () {},
   friends: function () {
-    var mobile = app.data.mobile
     if (app.data.show) {
-    if (mobile == undefined) {
-      wx.showModal({
-        title: '提示',
-        content: '请您先绑定手机号！',
-        showCancel: true,
-        success: function (res) {
-          console.log(res)
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '/pages/login/login?pageUrl=' + "friends/friends"
-            })
-          }
-        }
-      });
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '请您先绑定手机号！',
+      //   showCancel: true,
+      //   success: function (res) {
+      //     console.log(res)
+      //     if (res.confirm) {
+      //       wx.navigateTo({
+      //         url: '/pages/login/login?pageUrl=' + "friends/friends"
+      //       })
+      //     }
+      //   }
+      // });
       
     } else {
         wx.navigateTo({
@@ -113,7 +108,7 @@ Page({
 
      
     }
-    }
+    
 
   },
   /**
@@ -153,7 +148,7 @@ Page({
     　　var shareObj = {
       　　　　title: "",        // 默认是小程序的名称(可以写slogan等)
         path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
-        imageUrl: '/images/indexPic.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+        imageUrl: 'https://jinjiazy.com/public/jf.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       　　　　success: function (res) {
         　　　　　　// 转发成功之后的回调
         　　　　　　if (res.errMsg == 'shareAppMessage:ok') {

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-   gold:0
+   gold:0.0
   },
   guize: function () {
     wx.navigateTo({

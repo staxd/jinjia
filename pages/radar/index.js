@@ -235,7 +235,7 @@ Page({
       url: '/constitution/addArchive',
       type: 'POST',
       data: {
-        patient_id: app.data.patient_id,
+        patient_id: wx.getStorageSync("patient_id"),
         symptoms: option,
         matchedConstitutionList: rateJson
       }

@@ -51,7 +51,7 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
     data: _sets.data,
     header: {
       'content-type': 'application/x-www-form-urlencoded',
-      'api_token': getApp().data.api_token
+      'api_token': wx.getStorageSync("api_token")
 
     },
     success(res) {
@@ -70,10 +70,11 @@ function sendAjax(options, callback, outTimeAuthCbOrNeedAuth) {
           });
         }else if (res.data.code == 403) {
           key++
-          if(key == 20){
+          if(key > 20){
             return
+          }else{
+            sendAjax(options, callback)
           }
-          sendAjax(options, callback)
         }else{
           wx.showModal({
             title: '提示',

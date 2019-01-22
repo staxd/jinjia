@@ -10,36 +10,28 @@ Page({
   },
   tizhiBtn: function () {
     var that = this
-    if (app.data.show) {
     that.setData({
       cantotizhi:false
     })
-    }else{
-      return
-    }
-    var mobile = app.data.mobile
-    console.log(mobile)
-      if (mobile == undefined) {
-        wx.showModal({
-          title: '提示',
-          content: '请您先绑定手机号！',
-          showCancel: true,
-          success: function (res) {
-            console.log(res)
-            if (res.confirm) {
-              wx.navigateTo({
-                url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
-              })
-              that.setData({
-                cantotizhi:true
-              })
-            }
-          }
-        });
+    if (app.data.show) {
+        // wx.showModal({
+        //   title: '提示',
+        //   content: '请您先绑定手机号！',
+        //   showCancel: true,
+        //   success: function (res) {
+        //     console.log(res)
+        //     if (res.confirm) {
+        //       wx.navigateTo({
+        //         url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
+        //       })
+        //       that.setData({
+        //         cantotizhi:true
+        //       })
+        //     }
+        //   }
+        // });
 
       } else {
-        var timer = setTimeout(function () {
-        if(app.data.show){
           
             wx.navigateTo({
               url: '/pages/physical/physical'
@@ -49,8 +41,7 @@ Page({
               })
           
           
-        }
-        }, 400);
+        
         
       }
     
@@ -59,43 +50,35 @@ Page({
   },
    zizhenBtn: function () {
      var that = this
-     if (app.data.show) {
      that.setData({
        cantozizhen: false
      })
-     }else{
-       return
-     }
-     var mobile = app.data.mobile
-     if (mobile == undefined) {
-       wx.showModal({
-         title: '提示',
-         content: '请您先绑定手机号！',
-         showCancel: true,
-         success: function (res) {
-           console.log(res)
-           if (res.confirm) {
-             wx.navigateTo({
-               url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
-             })
-             that.setData({
-               cantozizhen:true
-             })
-           }
-         }
-       });
+     if (app.data.show) {
+      //  wx.showModal({
+      //    title: '提示',
+      //    content: '请您先绑定手机号！',
+      //    showCancel: true,
+      //    success: function (res) {
+      //      console.log(res)
+      //      if (res.confirm) {
+      //        wx.navigateTo({
+      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
+      //        })
+      //        that.setData({
+      //          cantozizhen:true
+      //        })
+      //      }
+      //    }
+      //  });
       
     } else {
-       var timer = setTimeout(function () {
-      if(app.data.show){
           wx.navigateTo({
             url: '/pages/autognosis/autognosis',
           })
           that.setData({
             cantozizhen: true
           })
-      }
-       }, 400);
+      
      
     }
      
@@ -123,6 +106,7 @@ Page({
     });
   },
   onLoad: function (res) {
+    
     console.log(res)
     
     if (res.inviteicode){
@@ -136,6 +120,7 @@ Page({
    */
   onShow: function () {
     app.login()
+    app.getPatientId()
     wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("constitutionId")
     wx.removeStorageSync("firstList")

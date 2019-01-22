@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pageUrl:"",
     userPhone:"",
     userCode:"",
     currentTime: 61,//限制60s
@@ -134,9 +133,9 @@ Page({
             success(res) {
               if(res.data.code == 200){
                 console.log(res)
-                app.data.api_token = res.data.api_token
-                app.data.mobile = res.data.mobile
-                app.data.user_id = res.data.user_id
+                app.login()
+                app.getPatientId()
+
                 wx.showModal({
                   title: '提示',
                   content: '绑定成功！',
@@ -144,9 +143,8 @@ Page({
                   success: function (res) {
                     console.log(res)
                     if (res.confirm) {
-                      var pageUrl = that.data.pageUrl
                       wx.redirectTo({
-                        url: pageUrl + "?status='绑定成功'"
+                        url: '/pages/index/index'
                       })
                     }
                   }
@@ -180,9 +178,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(wx.getStorageSync("inviteicode"))
-    var pageUrl = options.pageUrl
     this.setData({
-      pageUrl,
       inviteicode: wx.getStorageSync("inviteicode")
     })
   },

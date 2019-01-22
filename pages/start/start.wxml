@@ -1,7 +1,7 @@
 <view class='start_box'>
 <view wx:if="{{canIUse}}" >
     <view class='header'>
-        <image src='https://wx.qlogo.cn/mmhead/Q3auHgzwzM5CvFXN9s1YvPJwr4vibr2ibXhsZsbic0MWEBAqGUg4RRicIA/0'></image>
+        <image src='../../images/logo.png'></image>
         <view>金荚中医</view>
     </view>
     <view class='content'>

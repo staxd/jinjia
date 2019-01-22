@@ -49,9 +49,6 @@ Page({
   },
   
   onLoad: function (options) {
-    if (options.status) {
-    app.login()
-    }
     
     this.getOptionList();
   },
@@ -168,7 +165,7 @@ Page({
         type: 'POST',
         data: {
           options: option,
-          patient_id: app.data.patient_id
+          patient_id: wx.getStorageSync("patient_id")
         }
       }
       let infoCb = {}
@@ -255,7 +252,7 @@ Page({
     var shareObj = {
       title: "",        // 默认是小程序的名称(可以写slogan等)
       path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
-      imageUrl: '/images/indexPic.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      imageUrl: 'https://jinjiazy.com/public/jf.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function (res) {
         // 转发成功之后的回调
         if (res.errMsg == 'shareAppMessage:ok') {

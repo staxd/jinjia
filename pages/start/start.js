@@ -1,5 +1,4 @@
-var url = require('../../config.js')
-const sendAjax = require('../../utils/sendAjax.js')
+
 var app = getApp()
 
 Page({
@@ -14,73 +13,19 @@ Page({
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
-      //用户按了允许授权按钮
-      wx.login({
-        success: resp => {
-          // 发送 resp.code 到后台换取 openId, sessionKey, unionId
-          // console.log(resp.code);
-          var that = this;
-          wx.setStorageSync("code", resp.code)
-
-          that.setData({
-            code: resp.code
+        app.login()
+         wx.showToast({
+          title: '',
+          icon: 'loading',
+          duration: 1000
+        })
+        var timer= setTimeout(function(){
+          wx.switchTab({
+            url: '/pages/index/index'
           })
-          wx.getUserInfo({
-                  success: userResult => {
-                    that.setData({
-                      userInfo: userResult.userInfo
-                    })
-                    var platUserInfoMap = that.data.platUserInfoMap;
-                    platUserInfoMap["userInfo"] = userResult.userInfo;
-                    platUserInfoMap["rawData"] = userResult.rawData;
-                    platUserInfoMap["signature"] = userResult.signature;
-                    platUserInfoMap["encryptedData"] = userResult.encryptedData;
-                    platUserInfoMap["iv"] = userResult.iv;
-                    // console.log(platUserInfoMap);
-                    //request请求
-              wx.request({
-                url: url.loginUrl,
-                method: 'POST',
-                data: {
-                  code: that.data.code,
-                  userInfo: JSON.stringify(platUserInfoMap)
-                },
-                header: {
-                  'content-type': 'application/x-www-form-urlencoded'
-                },
-                success(res) {
-                  console.log(res);
-                  app.data.api_token = res.data.api_token
-                  app.data.mobile = res.data.mobile
-                  app.data.user_id = res.data.user_id
-                  wx.setStorageSync("icode", res.data.icode)
-
-                }
-              })
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              // console.log(that.userInfoReadyCallback);
-              if (that.userInfoReadyCallback) {
-                // console.log(222);
-                that.userInfoReadyCallback(userResult)
-              }
-            }
-          })
-
-              
-            
-        }
-      })
-      //授权成功后，跳转进入小程序首页
-      wx.setStorageSync("isFirst", true)
-      wx.getStorageSync("inviteicode")
-      console.log("bbbbbbbbbbbbbbbbbbbbbbbb")
-
-      wx.switchTab({
-        url: '/pages/index/index'
-      })
+        },1000)
+     
     } else {
-      //用户按了拒绝按钮
       wx.showModal({
         title: '警告',
         content: '您点击了拒绝授权，将无法进入小程序，请授权之后再进入!!!',

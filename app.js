@@ -3,25 +3,8 @@ var url = require('config.js')
 const sendAjax = require('/utils/sendAjax.js')
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-    wx.setStorageSync("isLogin", 0)
-    var isFir = wx.getStorageSync("isFirst")
-    var timer = setTimeout(function(){
-      if (!isFir) {
-        wx.redirectTo({
-          url: "/pages/start/start"
-        })
-      } else {
-        wx.switchTab({
-          url: '/pages/index/index'
-        })
-      }
-
-    },100) 
-    this.login()
+    var that = this
+      that.login()
   },
   login(){
     var that = this;
@@ -37,12 +20,12 @@ App({
         wx.getSetting({
           success: res => {
             //  console.log(res);
+            if (res.authSetting['scope.userInfo']) {
             // 已经授权不会弹框
             wx.getUserInfo({
               success: userResult => {
                 // console.log(userResult);
                 // 可以将 res 发送给后台解码出 unionId
-                wx.setStorageSync("isFirst", userResult.userInfo)
                 that.globalData.userInfo = userResult.userInfo
                 // console.log(userResult);
                 var platUserInfoMap = that.globalData.platUserInfoMap;
@@ -64,28 +47,41 @@ App({
                     'content-type': 'application/x-www-form-urlencoded'
                   },
                   success(res) {
-                    console.log(res);
-                    that.data.api_token = res.data.api_token
-                    that.data.mobile = res.data.mobile
-                    that.data.user_id = res.data.user_id
-                    that.data.show = true
-                    wx.setStorageSync("icode", res.data.icode)
-                    console.log("aaa")
+                    console.log(res.data.code)
+                    if (res.data.code==403){
+                      wx.showModal({
+                        title: '温馨提示',
+                        content: '检测到您未绑定手机号，请先绑定手机号！',
+                        showCancel: false,
+                        success: function (res) {
+                          console.log(res)
+                          if (res.confirm) {
+                            wx.navigateTo({
+                              url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
+                            })
+                          }
+                        }
+                      })
+                    } else if (res.data.code == 200){
+                      wx.setStorageSync("api_token", res.data.api_token)
+                      wx.setStorageSync("mobile", res.data.mobile)
+                      wx.setStorageSync("user_id", res.data.user_id)
+                      wx.setStorageSync("icode", res.data.icode)
+                      that.data.show=false
+                    }
+                    
                   }
                 })
-
-                //   that.getPatientId()
-
-                // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-                // 所以此处加入 callback 以防止这种情况
-                // console.log(that.userInfoReadyCallback);
                 if (that.userInfoReadyCallback) {
-                  // console.log(222);
                   that.userInfoReadyCallback(userResult)
                 }
               }
             })
-
+            }else{
+              wx.redirectTo({
+                url: "/pages/start/start"
+              })
+            }
 
           }
         })
@@ -103,18 +99,31 @@ App({
       }
       let infoCb = {}
       infoCb.success = function (res) {
+        console.log(res)
         var patientList = res.patientList
+        var patientId = ""
         for (let i in patientList) {
           if (patientList[i].is_default == '1') {
-            that.data.patient_id = patientList[i].patient_id
-            console.log(patientList[i].patient_id)
-            return
+            patientId = patientList[i].patient_id
           }
         }
-        console.log(patient_id)
-
-        that.data.patient_id = patient_id
-
+        if (patientId==""){
+          wx.showModal({
+            title: '温馨提示',
+            content: '请先设置默认亲友哦！',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/user/friends/friends'
+                }) 
+              }
+            }
+          });
+        }else{
+          wx.setStorageSync("patient_id", patientId)
+          
+        }
       }
       infoCb.beforeSend = () => { }
       infoCb.complete = () => {
@@ -141,10 +150,8 @@ App({
   },
   data:{
     patient_id:"",
+    show:true,
     matchedMedicineList:[],
-    api_token: '',
-    mobile: '',
-    user_id: '',
     btn1:"",
     btn2: "",
     btn3: "",

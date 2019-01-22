@@ -18,10 +18,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    if (options.status) {
-      app.login()
-    }
     
     this.getBodyPartList()
       
@@ -53,7 +49,7 @@ Page({
             type: 'POST',
             data: {
               body_part_id: res[i].body_part_id,
-              patient_id: app.data.patient_id
+              patient_id: wx.getStorageSync("patient_id")
             }
           }
           let infoCb = {}

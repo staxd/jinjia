@@ -157,7 +157,7 @@ Page({
     if (patientList.is_default == "1"){
       wx.showModal({
         title: '温馨提示',
-        content: '不允许删除默认患者哦！',
+        content: '不允许删除默认亲友哦！',
         showCancel: false
       });
     }else{
