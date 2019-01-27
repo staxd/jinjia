@@ -112,3 +112,14 @@ top:710rpx;
   font-size: 28rpx;
   color: #C15C3E;
 }
+.messg{
+  width:750rpx;
+height:130rpx;
+text-align:center;
+line-height:130rpx;
+font-size:26rpx;
+color:#9B9B9B;
+position:absolute;
+bottom:120rpx;
+background: #f5f5f5;
+}
