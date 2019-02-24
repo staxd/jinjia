@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 30,
 			"list": [
 				{
 					"id": -1,
@@ -200,7 +200,25 @@
 				{
 					"id": -1,
 					"name": "11",
-					"pathName": "pages/user/daijinquan/daijinquan"
+					"pathName": "pages/user/daijinquan/daijinquan",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "zhongyao",
+					"pathName": "pages/medicine/medicine",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "yian",
+					"pathName": "pages/medicalrecord/medicalrecord",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "a",
+					"pathName": "pages/index/encyclopedia/encyclopedia"
 				}
 			]
 		}

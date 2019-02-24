@@ -16,7 +16,6 @@
 <block wx:for='{{contentList}}' wx:key="body_part_id">
 <block wx:if="{{item.select}}">
 <block wx:for="{{item.symptomList}}" wx:key="{{index}}">
-
 <block wx:if="{{item.group_name}}">
   <view class="kind-list-item">
     <view data-openList="{{index}}" class="kind-list-item-hd" bindtap="kindToggle">

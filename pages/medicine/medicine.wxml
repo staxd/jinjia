@@ -1,0 +1,53 @@
+<view class='medicine_search'>
+  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜索药材" ></input></view>
+</view>
+
+<view class='medicine_nav'>
+  <block wx:for="{{titleList}}" wx:key="*this">
+ <view class='medicine_nav{{index}} {{item.select? "ul":""}}' data-index="{{index}}" bindtap='click'>{{item.name}} <view class='{{item.select?"up_border":"down_border"}}'></view></view>
+ </block>
+ </view>
+
+<view class='search_result' bindtap='close' style="display:{{showBox?'':'none'}}">
+<block wx:if="{{propertyText!=''}}">性：{{propertyText}} </block>
+<block wx:if="{{flavorText!=''}}">味：{{flavorText}} </block>
+<block wx:if="{{effectText!=''}}">功效：{{effectText}}</block>
+<view class='search_close'><image src='/images/close.png'></image></view>
+</view>
+
+
+<block wx:if="{{list.length!=0}}">
+ <block wx:for-items="{{list}}" wx:key="*this">
+<view data-openList="{{index}}" class='medicine_list' bindtap='toMedicine'>
+  {{item.name}}
+  <view class='medicine_list_right'></view>
+</view>
+</block>
+</block>
+<block wx:else>
+<view class='noMore'>暂无内容</view>
+</block>
+
+<view class="container">
+ <view class="usermotto" animation="{{ani}}" catchtouchmove='true'>
+ <view class='medicine_content'>
+      <block wx:if="{{navId==0}}">
+        <block wx:for="{{mbList[navId]}}" wx:for-index="key" wx:key="*this">
+      <view class='medicine-box-content-up'>{{key}}</view>
+      <view class='medicine-box-content-down' >
+      
+        <view bindtap="clickSelect" class="medicine-box-content-down-button {{chilren.isshow?'active':''}}" wx:for="{{item}}" wx:for-item="chilren"wx:key="*this" data-id="{{index}}" data-type="{{chilren.type}}"  >{{chilren.name}}</view>
+        </view>
+        </block>
+      </block>
+      <block wx:if="{{navId==1}}">
+     <view class='medicine-box-content-down'>
+      <view  wx:for="{{mbList[navId]}}" wx:key="*this" bindtap="clickSelect" class="medicine-box-content-down-button {{item.isshow?'active':''}}" data-id="{{item.effect_id}}" >{{item.effect_title}}</view>
+      </view>
+      </block>
+      <view class='sub'>
+        <view class='sub_btn' bindtap="subBtn">确定</view>
+      </view>
+ </view>
+ </view>
+</view>

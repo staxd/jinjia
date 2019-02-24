@@ -1,0 +1,14 @@
+<view class='medicine_search'>
+  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜索医案" ></input></view>
+</view>
+<block wx:if="{{list.length!=0}}">
+ <block wx:for-items="{{list}}" wx:key="*this">
+<view data-openList="{{index}}" class='medicine_list' bindtap='toMedicine'>
+  {{item.name}}
+  <view class='medicine_list_right'>{{item.doctor}}</view>
+</view>
+</block>
+</block>
+<block wx:else>
+<view class='noMore'>暂无内容</view>
+</block>

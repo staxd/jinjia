@@ -132,10 +132,6 @@ Page({
             },
             success(res) {
               if(res.data.code == 200){
-                console.log(res)
-                app.login()
-                app.getPatientId()
-
                 wx.showModal({
                   title: '提示',
                   content: '绑定成功！',
@@ -155,6 +151,14 @@ Page({
                   title: '提示',
                   content: res.data.message || '处理失败',
                   showCancel: false,
+                  success: function (res) {
+                    console.log(res)
+                    if (res.confirm) {
+                      wx.redirectTo({
+                        url: '/pages/index/index'
+                      })
+                    }
+                  }
                 });
               }
               

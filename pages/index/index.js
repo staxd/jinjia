@@ -6,7 +6,8 @@ const sendAjax = require('../../utils/sendAjax.js')
 Page({
   data: {
    cantotizhi:true,
-   cantozizhen:true
+   cantozizhen:true,
+    jingfang: []
   },
   tizhiBtn: function () {
     var that = this
@@ -86,6 +87,65 @@ Page({
      
     }
      
+  }, zhongyaoBtn: function () {
+    var that = this
+    that.setData({
+      cantozizhen: false
+    })
+    if (app.data.show) {
+      //  wx.showModal({
+      //    title: '提示',
+      //    content: '请您先绑定手机号！',
+      //    showCancel: true,
+      //    success: function (res) {
+      //      console.log(res)
+      //      if (res.confirm) {
+      //        wx.navigateTo({
+      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
+      //        })
+      //        that.setData({
+      //          cantozizhen:true
+      //        })
+      //      }
+      //    }
+      //  });
+      that.setData({
+        cantozizhen: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/medicine/medicine',
+      })
+      that.setData({
+        cantozizhen: true
+      })
+
+
+    }
+
+  },
+  getEncyclopediaList(){
+    var that = this
+    let infoOpt = {
+      url: '/encyclopedia',
+      type: 'POST',
+      data: {
+        curpage:1,
+        pagesize:999
+      }
+    }
+    let infoCb = {}
+    infoCb.success = function (res) {
+      that.setData({
+        jingfang: res.encyclopediaList
+      })
+    }
+    infoCb.beforeSend = () => { }
+    infoCb.complete = () => {
+
+    }
+    sendAjax(infoOpt, infoCb, () => {
+    });
   },
   getindex(){
     var that = this
@@ -109,6 +169,14 @@ Page({
     sendAjax(infoOpt, infoCb, () => {
     });
   },
+  toEncyclopedia(e){
+    var name = e.currentTarget.dataset.name
+    var id = e.currentTarget.dataset.id
+    
+    wx.navigateTo({
+      url: '/pages/index/encyclopedia/encyclopedia?id=' + id + "&title=" + name
+    })
+  },
   onLoad: function (res) {
     
     console.log(res)
@@ -117,6 +185,7 @@ Page({
       wx.setStorageSync("inviteicode", res.inviteicode)
     }
     this.getindex()
+    this.getEncyclopediaList()
     
   },
   /**
@@ -150,7 +219,7 @@ Page({
     var shareObj = {
       title: "",        // 默认是小程序的名称(可以写slogan等)
       path: '/pages/index/index?inviteicode=' + inviteicode,        // 默认是当前页面，必须是以‘/’开头的完整路径
-      imageUrl: 'https://jinjiazy.com/public/jf.jpg? + Math.random() / 9999',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      imageUrl: 'https://jinjiazy.com/public/jf.jpg',     //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function (res) {
         // 转发成功之后的回调
         if (res.errMsg == 'shareAppMessage:ok') {

@@ -57,7 +57,7 @@ App({
                           console.log(res)
                           if (res.confirm) {
                             wx.navigateTo({
-                              url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
+                              url: '/pages/login/login'
                             })
                           }
                         }

@@ -1,0 +1,5 @@
+<view class='encyclopedia_top'></view>
+<view class='encyclopedia' >
+        <import src="../../../wxParse/wxParse.wxml"/>
+   <template is="wxParse"  class="" data="{{wxParseData:article.nodes}}"/>
+    </view>

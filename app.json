@@ -2,6 +2,7 @@
   "pages":[
     
     "pages/index/index",
+    "pages/index/encyclopedia/encyclopedia",
     "pages/physical/physical",
     "pages/autognosis/autognosis",
     "pages/autognosis/tongue/tongue",
@@ -29,7 +30,12 @@
     "pages/classical/classicalDetail/classicalDetail",
     "pages/start/start",
     "pages/radar/index",
-    "pages/radar/index/radarDetail/radarDetail"
+    "pages/radar/index/radarDetail/radarDetail",
+    "pages/medicalrecord/medicalrecord",
+    "pages/medicalrecord/medicalrecordDetail/medicalrecordDetail",
+    "pages/medicine/medicine",
+    "pages/medicine/medicineDetail/medicineDetail"
+    
         
     
     
@@ -49,11 +55,18 @@
         "iconPath": "images/index.png",
         "pagePath": "pages/index/index",
         "text": "首页"
-      },{
+      },
+      {
         "selectedIconPath": "images/classicalSelect.png",
         "iconPath": "images/classical.png",
         "pagePath": "pages/classical/classical",
         "text": "经方"
+      },
+      {
+        "selectedIconPath": "images/yianSelect.png",
+        "iconPath": "images/yian.png",
+        "pagePath": "pages/medicalrecord/medicalrecord",
+        "text": "医案"
       },
       {
         "selectedIconPath": "images/userSelect.png",
