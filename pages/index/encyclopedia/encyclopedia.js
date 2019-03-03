@@ -22,7 +22,7 @@ Page({
     let infoCb = {}
     infoCb.success = function (res) {
       var article = res.content
-      var arr = WxParse.wxParse('article', 'html', article, that, 30)
+      var arr = WxParse.wxParse('article', 'html', article, that, 5)
       that.setData({
         message: res.content
       })

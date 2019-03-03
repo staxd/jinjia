@@ -11,7 +11,8 @@ Page({
     list:[],
     curpage:1,
     medicine_id:"",
-    pagecount:1
+    pagecount:1,
+    noMore:""
     
   },
 
@@ -35,6 +36,7 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      
       wx.hideToast();
       console.log(res)
       if (that.data.curpage <= res.pagecount) {
@@ -81,7 +83,11 @@ Page({
       }
       let infoCb = {}
       infoCb.success = function (res) {
-
+        if (res.medicineList.length == 0) {
+          that.setData({
+            noMore: "暂无内容"
+          })
+        }
         // console.log(res)
         that.setData({
           list: res.medicineList

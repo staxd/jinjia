@@ -10,6 +10,7 @@ Page({
     curpage:1,
     pagesize:1,
     list:[],
+    noMore:"",
     keywords:""
   },
   bindKeyInput: function (e) {
@@ -49,6 +50,12 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      if (res.medicineRecordList.length==0){
+        that.setData({
+          noMore:"暂无内容"
+        })
+        return
+      }
       wx.hideToast();
       console.log(res)
       if (that.data.curpage <= res.pagecount) {

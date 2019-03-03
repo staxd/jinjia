@@ -15,6 +15,7 @@ Page({
     flavorText:"",
     effectText:"",
     list:[],
+    noMore:"",
     titleList: [{ name: "性味", select: false, id: 0 }, { name: "功效", select: false, id: 1 }],
     navId :0,
     material_id:"",
@@ -159,6 +160,11 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
+      if (res.materialList.length == 0) {
+        that.setData({
+          noMore: "暂无内容"
+        })
+      }
       wx.hideToast();
       console.log(res)
       if (that.data.curpage <= res.pagecount) {
@@ -205,7 +211,11 @@ Page({
       }
       let infoCb = {}
       infoCb.success = function (res) {
-
+        if (res.materialList.length == 0) {
+        that.setData({
+          noMore: "暂无内容"
+        })
+      }
         // console.log(res)
         that.setData({
           list: res.materialList
@@ -332,6 +342,7 @@ Page({
       effectText:"",
       showBox:false,
       mbList,
+      noMore:"",
       list:[]
     })
     this.getList()

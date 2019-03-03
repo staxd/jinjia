@@ -184,13 +184,16 @@ min-height: 88rpx;
 }
 .search_result{
   width: 720rpx;
-  min-height: 60rpx;
+  height: 60rpx;
   color: #CE7D65;
   border-bottom: 1rpx solid #e1e1e1;
-  font-size: 29rpx;
+  font-size: 26rpx;
   line-height: 60rpx;
   padding-left: 30rpx;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden
 }
 .noMore{
   width: 750rpx;
@@ -201,16 +204,20 @@ min-height: 88rpx;
 .search_close{
   position: absolute;
   top: 0rpx;
-  right:20rpx;
+  right:0rpx;
   width: 60rpx;
   height: 60rpx;
   background: #fff;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
 
 }
 .search_close image{
-  width: 80%;
-  height: 80%
+  width: 40rpx;
+  height: 40rpx;
+}
+.search_null{
+  width: 30rpx;
+  height: 10rpx;
 }

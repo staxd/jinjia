@@ -7,7 +7,7 @@
  <view class='classical_nav_bb' bindtap='sickness'>病性</view>
 </view>
 
-<block wx:if="{{list.length!=0}}">
+<block wx:if="{{list.length}}">
  <block wx:for-items="{{list}}" wx:key="{{item.medicine_id}}">
 <view data-openList="{{index}}" class='classical_list' bindtap='toClassical'>
   {{item.name}}
@@ -16,5 +16,5 @@
 </block>
 </block>
 <block wx:else>
-<view class='noMore'>暂无内容</view>
+<view class='noMore'>{{noMore}}</view>
 </block>
