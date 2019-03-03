@@ -10,8 +10,8 @@ Page({
     curpage:1,
     pagesize:1,
     list:[],
-    noMore:"",
-    keywords:""
+    keywords:"",
+    noMore:"暂无内容"
   },
   bindKeyInput: function (e) {
     var that = this
@@ -23,6 +23,9 @@ Page({
       })
     // console.log(e.detail.value)
     if (inputValue != "") {
+      that.setData({
+        noMore: "暂无内容"
+      })
       that.getList();
       
 
@@ -31,7 +34,8 @@ Page({
         list: [],
         curpage: 1,
         medicine_id: "",
-        pagecount: 1
+        pagecount: 1,
+        noMore:""
       })
       that.getList();
       
@@ -50,12 +54,6 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
-      if (res.medicineRecordList.length==0){
-        that.setData({
-          noMore:"暂无内容"
-        })
-        return
-      }
       wx.hideToast();
       console.log(res)
       if (that.data.curpage <= res.pagecount) {
