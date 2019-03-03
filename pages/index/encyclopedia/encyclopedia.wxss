@@ -16,10 +16,7 @@ page{
   height: 100%;
   font-size: 30rpx;
 }
-.WxEmojiView{
-  text-indent: 2em;
-    align-items: center;
-}
+
 .wxParse-p[style="text-align: center;"] .WxEmojiView{
   text-indent: 0;
     align-items: center;
