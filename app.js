@@ -47,7 +47,6 @@ App({
                     'content-type': 'application/x-www-form-urlencoded'
                   },
                   success(res) {
-                    console.log(res.data.code)
                     if (res.data.code==403){
                       wx.showModal({
                         title: '温馨提示',
