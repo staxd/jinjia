@@ -3,10 +3,10 @@
  */
 
 //测试
-// var host = "http://test.jinjiazy.com/applet"
+var host = "http://test.jinjiazy.com/applet"
 
 //正式
-var host = "https://jinjiazy.com/applet"
+// var host = "https://jinjiazy.com/applet"
 
 //本地
 var config = {

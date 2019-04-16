@@ -8,7 +8,10 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"nodeModules": true,
+		"autoAudits": true,
+		"uglifyFileName": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.3.0",
@@ -216,9 +219,18 @@
 					"query": ""
 				},
 				{
+					"id": 30,
+					"name": "a",
+					"pathName": "pages/cold/coldDetail/coldDetail",
+					"query": "",
+					"scene": null
+				},
+				{
 					"id": -1,
 					"name": "a",
-					"pathName": "pages/index/encyclopedia/encyclopedia"
+					"pathName": "pages/cold/cold",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

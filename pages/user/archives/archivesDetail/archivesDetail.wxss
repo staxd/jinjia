@@ -3,6 +3,9 @@ page{
   height: 100%;
   border-top: 4rpx solid #f5f5f5;
 }
+.red{
+  color:red!important;
+}
 .noMore-text{
   text-align: center;
   line-height: 500rpx;

@@ -34,7 +34,10 @@
     "pages/medicalrecord/medicalrecord",
     "pages/medicalrecord/medicalrecordDetail/medicalrecordDetail",
     "pages/medicine/medicine",
-    "pages/medicine/medicineDetail/medicineDetail"
+    "pages/medicine/medicineDetail/medicineDetail",
+    "pages/cold/cold",
+    "pages/cold/coldDetail/coldDetail"
+    
     
         
     
@@ -62,12 +65,7 @@
         "pagePath": "pages/classical/classical",
         "text": "经方"
       },
-      {
-        "selectedIconPath": "images/yianSelect.png",
-        "iconPath": "images/yian.png",
-        "pagePath": "pages/medicalrecord/medicalrecord",
-        "text": "医案"
-      },
+      
       {
         "selectedIconPath": "images/userSelect.png",
         "iconPath": "images/user.png",
@@ -75,5 +73,7 @@
         "text": "我的"
       }
     ]
+    
   }
+  
 }

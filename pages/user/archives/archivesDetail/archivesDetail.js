@@ -107,6 +107,14 @@ var app = getApp();
       });
       
     },
+    ganmaodetailBtn(e) {
+      var that = this
+      var id = e.currentTarget.dataset.symptoms
+
+        wx.navigateTo({
+          url: '/pages/cold/coldDetail/coldDetail?id=' + id +'&&show=false'
+        })
+    },
     todetailBtn:function(e){
       var that = this
       // console.log(e.currentTarget.dataset.index)

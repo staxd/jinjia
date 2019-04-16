@@ -7,6 +7,7 @@ Page({
   data: {
    cantotizhi:true,
    cantozizhen:true,
+   cantoganmao:true,
     jingfang: []
   },
   tizhiBtn: function () {
@@ -121,6 +122,40 @@ Page({
       })
 
 
+    }
+
+  }, ganmaoBtn: function () {
+    var that = this
+    that.setData({
+      cantoganmao: false
+    })
+    if (app.data.show) {
+      //  wx.showModal({
+      //    title: '提示',
+      //    content: '请您先绑定手机号！',
+      //    showCancel: true,
+      //    success: function (res) {
+      //      console.log(res)
+      //      if (res.confirm) {
+      //        wx.navigateTo({
+      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
+      //        })
+      //        that.setData({
+      //          cantozizhen:true
+      //        })
+      //      }
+      //    }
+      //  });
+      that.setData({
+        cantoganmao: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/cold/cold',
+      })
+      that.setData({
+        cantoganmao: true
+      })
     }
 
   },

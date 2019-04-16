@@ -7,15 +7,20 @@
 </swiper>
 
 
-
-<view class='index'>
-  <view class='index_tizhi' bindtap="{{cantotizhi==true?'tizhiBtn':''}}"><image src='/images/tizhi.png'></image><text>体质</text></view>
-  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zizhenBtn':''}}"><image src='/images/zizhen.png'></image><text>智诊</text></view>
-  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zhongyaoBtn':''}}"><image src='/images/zhongyao.png'></image><text>中药</text></view>
- <!-- <view class='index_tizhi' bindtap="{{cantotizhi==true?'tizhiBtn':''}}"><image src='/images/tizhiPic.png'></image></view>
-  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zizhenBtn':''}}"><image src='/images/zizhenPic.png'></image></view> -->
-</view>
 <view class='baike'>
+<view class='tiyan'>
+  <view class='tiyan_border'></view>智能诊断
+</view>
+</view>
+<view class='index'>
+  <!-- <view class='index_tizhi' bindtap="{{cantotizhi==true?'tizhiBtn':''}}"><image src='/images/tizhi.png'></image><text>体质</text></view>
+  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zizhenBtn':''}}"><image src='/images/zizhen.png'></image><text>智诊</text></view>
+  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zhongyaoBtn':''}}"><image src='/images/zhongyao.png'></image><text>中药</text></view> -->
+ <view class='index_tizhi' bindtap="{{cantotizhi==true?'tizhiBtn':''}}"><image src='/images/tizhiPic.png'></image></view>
+ <view class='index_ganmao' bindtap="{{cantoganmao==true?'ganmaoBtn':''}}"><image src='/images/ganmaoPic.png'></image></view>
+  <view class='index_zizhen' bindtap="{{cantozizhen==true?'zizhenBtn':''}}"><image src='/images/zabingPic.png'></image></view>
+</view>
+<!-- <view class='baike'>
 <view class='tiyan'>
   <view class='tiyan_border'></view>经方百科
 </view>
@@ -24,4 +29,4 @@
 <view class='baike_box' wx:for="{{jingfang}}"  wx:key="*this" bindtap='toEncyclopedia' data-name="{{item.name}}" data-id='{{item.encyclopedia_id}}'>
   <view class='baike_box_left'><view class='top'>{{item.name}}</view><view class='bottom'>{{item.summary}}</view></view>
   <view class='baike_box_right'><image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{item.pictures}}'></image></view>
-</view>
+</view> -->

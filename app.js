@@ -5,6 +5,12 @@ App({
   onLaunch: function () {
     var that = this
       that.login()
+    // {
+    //   "selectedIconPath": "images/yianSelect.png",
+    //     "iconPath": "images/yian.png",
+    //       "pagePath": "pages/medicalrecord/medicalrecord",
+    //         "text": "医案"
+    // },
   },
   login(){
     var that = this;

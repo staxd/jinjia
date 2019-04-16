@@ -18,6 +18,13 @@
         <image src='../../../../images/zizhenBorder.png'></image>
         <view data-id ="{{list.archive_id}}" data-isshow ="{{list.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
     </view>
+    <view wx:if="{{list.type=='cold'}}" >
+        <view class='box_border_month'>{{list.created_time}}</view>
+        <view class='box_border_zizhen red' data-symptoms='{{list.symptoms}}' bindtap='ganmaodetailBtn'>感冒</view>
+        <view class='box_border_content'>{{list.name}}</view>
+        <image src='../../../../images/ganmaoBorder.png'></image>
+        <view data-id ="{{list.archive_id}}" data-isshow ="{{list.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>
+    </view>
   </view>
 </view>
 </block>

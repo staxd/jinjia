@@ -1,0 +1,23 @@
+ <view class='tongue'>
+  <view class='tongue_title'>症状</view>
+  <view class='tongue_content'>
+      <view class='tongue_content_box_btn' bindtap='disDetail' data-id='{{matchedDiseaseInfo.disease_id}}'>{{matchedDiseaseInfo.name}}</view>
+  </view>
+</view>
+ <view class='tongue'>
+  <view class='tongue_title'>药方</view>
+  <view class='diseaseBox'>
+  <view>方名:{{matchedDiseaseInfo.medicine_info.name}}</view>
+  </view>
+</view>
+ <view class='tongue'>
+  <view class='tongue_title'>食方</view>
+  <view class='diseaseBox'>
+  <view>方名:{{matchedDiseaseInfo.diet_info.name}}</view>
+  </view>
+</view>
+<cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/tizhiOk.png'></cover-image></cover-view>
+
+<view class='sub' wx:if='{{show=="true"}}'>
+  <view class='sub_btn' bindtap="subBtn">完成</view>
+</view>

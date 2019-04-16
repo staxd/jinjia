@@ -1,0 +1,34 @@
+<!--pages/cold/cold.wxml-->
+<view class='cold'>
+<view class='cold-box'>
+
+      <view class='cold-box-content'>
+     <block wx:for="{{mbList}}" wx:for-index="key" wx:key="item.category_id">
+     <view class='cold-box-content-up'>{{item.name}}<text wx:if='{{item.is_required=="1"}}' class='red'>*</text></view>
+     <view class='cold-box-content-down' >
+     
+      <view bindtap="clickSelect" data-isshow="{{language.isshow}}" class="cold-box-content-down-button {{language.isshow?'active':''}}" wx:for="{{item.symptom_list}}" wx:for-item="language"wx:key="language.symptom_id" data-id="{{language.symptom_id}}"  >{{language.name}}</view>
+      </view>
+      </block>
+ 
+   
+    </view>
+
+</view>
+</view>
+<view class='fenxiang' wx:if='{{fenxiang}}'>
+<view class='fenxiang-box'>
+<image src="/images/fenxiang.png"></image>
+  <view class='fenxiang_close' bindtap="fenxiangClose"></view>
+  <view class='fenxiang_sub' bindtap="{{canClick==true?'tosubBtn':''}}"></view>
+ <view class='fenxiang_gz' bindtap='tohelp'>金币规则 <view>?</view></view>
+
+  <button class='fenxiang_btn' data-name="shareBtn" open-type="share" hover-class="none">分享</button>
+</view>
+
+</view>
+    <view class='phy_bottom'></view>
+
+<view class='sub'>
+  <view class='sub_btn' bindtap="subBtn">确认</view>
+</view>
