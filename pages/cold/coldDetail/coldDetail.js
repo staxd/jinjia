@@ -80,6 +80,22 @@ Page({
     sendAjax(infoOpt, infoCb, () => {
     });
   },
+  disDetail(e){
+    var type = e.currentTarget.dataset.type
+    var id = e.currentTarget.dataset.id
+    var title = e.currentTarget.dataset.title
+    if(type == '0'){
+      wx.navigateTo({
+        url: '/pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail?group=3&&title=' + title + '&&id=' + id,
+      })
+    }else if(type == '1'){
+      wx.navigateTo({
+        url: '/pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail?group=4&&title=' + title + '&&id=' + id,
+      })
+    }
+     
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

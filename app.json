@@ -1,6 +1,5 @@
 {
-  "pages":[
-    
+  "pages": [
     "pages/index/index",
     "pages/index/encyclopedia/encyclopedia",
     "pages/physical/physical",
@@ -8,7 +7,7 @@
     "pages/autognosis/tongue/tongue",
     "pages/autognosis/tongue/tongueDetail/tongueDetail",
     "pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail",
-    "pages/login/login",    
+    "pages/login/login",
     "pages/user/user",
     "pages/user/daijinquan/daijinquan",
     "pages/user/friends/friends",
@@ -37,18 +36,13 @@
     "pages/medicine/medicineDetail/medicineDetail",
     "pages/cold/cold",
     "pages/cold/coldDetail/coldDetail"
-    
-    
-        
-    
-    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  } ,
+    "navigationBarTextStyle": "black"
+  },
   "tabBar": {
     "color": "#9B9B9B",
     "selectedColor": "#C15C3E",
@@ -65,7 +59,6 @@
         "pagePath": "pages/classical/classical",
         "text": "经方"
       },
-      
       {
         "selectedIconPath": "images/userSelect.png",
         "iconPath": "images/user.png",
@@ -73,7 +66,6 @@
         "text": "我的"
       }
     ]
-    
-  }
-  
+  },
+  "sitemapLocation": "sitemap.json"
 }
