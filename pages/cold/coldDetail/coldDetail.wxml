@@ -1,19 +1,19 @@
  <view class='tongue'>
   <view class='tongue_title'>症状</view>
   <view class='tongue_content'>
-      <view class='tongue_content_box_btn' bindtap='aa' data-id='{{matchedDiseaseInfo.disease_id}}'>{{matchedDiseaseInfo.name}}</view>
+      <view bindtap='disDetail' class='tongue_content_box_btn' data-type='0' data-title='{{item.name}}' data-id="{{item.symptom_id}}" wx:for="{{list}}" wx:key='*this'>{{item.name}}</view>
   </view>
 </view>
  <view class='tongue'>
   <view class='tongue_title'>药方</view>
   <view class='diseaseBox'>
-  <view  bindtap='disDetail' data-type='0' data-title='{{matchedDiseaseInfo.medicine_info.name}}' data-id='{{matchedDiseaseInfo.medicine_info.medicine_id}}'>方名:{{matchedDiseaseInfo.medicine_info.name}}</view>
+  <view  bindtap='disDetail' data-type='1' data-title='{{matchedDiseaseInfo.medicine_info.name}}' data-id='{{matchedDiseaseInfo.medicine_info.medicine_id}}'>方名:{{matchedDiseaseInfo.medicine_info.name}}</view>
   </view>
 </view>
  <view class='tongue'>
   <view class='tongue_title'>食方</view>
   <view class='diseaseBox'>
-  <view bindtap='disDetail' data-type='1' data-title='{{matchedDiseaseInfo.diet_info.name}}' data-id='{{matchedDiseaseInfo.diet_info.diet_id}}'>方名:{{matchedDiseaseInfo.diet_info.name}}</view>
+  <view bindtap='disDetail' data-type='2' data-title='{{matchedDiseaseInfo.diet_info.name}}' data-id='{{matchedDiseaseInfo.diet_info.diet_id}}'>方名:{{matchedDiseaseInfo.diet_info.name}}</view>
   </view>
 </view>
 <cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/tizhiOk.png'></cover-image></cover-view>

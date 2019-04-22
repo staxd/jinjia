@@ -11,7 +11,8 @@ Page({
   data: {
     matchedDiseaseInfo:{},
     symptoms:"",
-    show:'true'
+    show:'true',
+    list:[]
   },
 
   /**
@@ -20,6 +21,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
+      list:JSON.parse(options.list),
       symptoms:options.id,
       show:options.show
     })
@@ -59,7 +61,7 @@ Page({
       data: {
         symptoms,
         patient_id: wx.getStorageSync('patient_id'),
-        matchedDiseaseInfo
+        matchedDiseaseInfo: JSON.stringify(matchedDiseaseInfo)
       }
     }
     let infoCb = {}
@@ -84,11 +86,15 @@ Page({
     var type = e.currentTarget.dataset.type
     var id = e.currentTarget.dataset.id
     var title = e.currentTarget.dataset.title
-    if(type == '0'){
+    if (type == '0') {
+      wx.navigateTo({
+        url: '/pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail?group=0&&title=' + title + '&&id=' + id,
+      })
+    }else if(type == '1'){
       wx.navigateTo({
         url: '/pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail?group=3&&title=' + title + '&&id=' + id,
       })
-    }else if(type == '1'){
+    }else if(type == '2'){
       wx.navigateTo({
         url: '/pages/autognosis/tongue/tongueDetail/tongueToDetail/tongueToDetail?group=4&&title=' + title + '&&id=' + id,
       })

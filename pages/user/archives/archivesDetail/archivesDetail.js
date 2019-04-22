@@ -110,9 +110,11 @@ var app = getApp();
     ganmaodetailBtn(e) {
       var that = this
       var id = e.currentTarget.dataset.symptoms
-
+      var mblist = e.currentTarget.dataset.symptomlist
+      var list = that.data.infoList
+      console.log(list, mblist,e)
         wx.navigateTo({
-          url: '/pages/cold/coldDetail/coldDetail?id=' + id +'&&show=false'
+          url: '/pages/cold/coldDetail/coldDetail?id=' + id + '&&show=false&&list=' + JSON.stringify(mblist)
         })
     },
     todetailBtn:function(e){

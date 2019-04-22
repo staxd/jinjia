@@ -130,9 +130,17 @@ Page({
     })
     var that = this
     var mbList = that.data.mbList
+    var list = []
     var symptomId = that.data.symptomId
+    for(let i in mbList){
+      for (let j in mbList[i].symptom_list){
+        if (mbList[i].symptom_list[j].isshow) {
+          list.push(mbList[i].symptom_list[j])
+        }
+      }
+    }
     wx.navigateTo({
-      url: '/pages/cold/coldDetail/coldDetail?id='+symptomId+'&&show=true',
+      url: '/pages/cold/coldDetail/coldDetail?id='+symptomId+'&&show=true&&list='+JSON.stringify(list),
     })
   },
   onReady: function () {

@@ -41,7 +41,9 @@ console.log(options)
         web_src: url.host + '/medicine/detail?medicine_id=' + options.id
       })
     }else if(options.group =='4'){
-      web_src: url.host + '/diet/detail?diet_id=' + 120
+      this.setData({
+        web_src: url.host + '/diet/detail?diet_id=' + options.id
+      })
     }
   },
 
