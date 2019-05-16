@@ -18,7 +18,6 @@ var app = getApp();
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      console.log(options)
 
       wx.setNavigationBarTitle({
         title: options.title
@@ -28,7 +27,6 @@ var app = getApp();
       for (let i in patientInfolist){
         infoList.unshift(patientInfolist[i])
       }
-      console.log(infoList)
       var key = 0
       for (let i in infoList) {
         if (infoList[i].length == 0) {

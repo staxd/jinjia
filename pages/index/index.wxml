@@ -6,7 +6,7 @@
   </block>
 </swiper>
 
-
+<view class='index_bottom_box' style='height:{{bottomHeight}}px;'>
 <view class='baike'>
 <view class='tiyan'>
   <view class='tiyan_border'></view>智能诊断
@@ -30,3 +30,4 @@
   <view class='baike_box_left'><view class='top'>{{item.name}}</view><view class='bottom'>{{item.summary}}</view></view>
   <view class='baike_box_right'><image src='http://jinjia.oss-cn-hangzhou.aliyuncs.com/{{item.pictures}}'></image></view>
 </view> -->
+</view>

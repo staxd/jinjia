@@ -30,13 +30,11 @@ Page({
     }
     let infoCb = {}
     infoCb.success = function (res) {
-      // console.log(res.patientList)
       var paList = res.patientList
       var patientList = []
       var headList = []
       for (let i in paList) {
         if (paList[i].is_default == '1') {
-          console.log(paList[i])
           headList = paList[i]
         } else {
           patientList.push(paList[i])
@@ -46,7 +44,6 @@ Page({
       if (headList.length != 0) {
         patientList.unshift(headList)
       }
-      // console.log(patientList)
       that.setData({
         patientList
       })
@@ -65,7 +62,6 @@ Page({
     var patientInfolist = []
     for(let j in patientList){
       patientInfolist[j]={}
-      console.log(patientList[j].patient_id)
       let infoOpt = {
       url: '/archive',
       type: 'POST',
@@ -76,11 +72,9 @@ Page({
     }
       let infoCb = {}
     infoCb.success = function (res) {
-      console.log(res)
       var time = util.formatTime(new Date());
       var year = parseInt(time.substring(0, 4))
       for (let i = year; i >= parseInt(res.firstYear); i--) {
-        console.log(i)
         let infoOpt = {
           url: '/archive',
           type: 'POST',
@@ -91,7 +85,6 @@ Page({
         }
         let infoCb = {}
         infoCb.success = function (res) {
-          console.log(res)
           patientInfolist[j][""+i]=[]
           patientInfolist[j]["" + i] = res.archiveList
           that.setData({
@@ -135,8 +128,6 @@ Page({
     var name = e.currentTarget.dataset.name
     var time = util.formatTime(new Date());
     var year = parseInt(time.substring(0, 4))
-    
-    console.log(patientInfolist)
     if (patientInfolist){
       for (let i in patientInfolist) {
         for (let j in patientInfolist[i]) {

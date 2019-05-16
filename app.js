@@ -59,7 +59,6 @@ App({
                         content: '检测到您未绑定手机号，请先绑定手机号！',
                         showCancel: false,
                         success: function (res) {
-                          console.log(res)
                           if (res.confirm) {
                             wx.navigateTo({
                               url: '/pages/login/login'
@@ -104,7 +103,6 @@ App({
       }
       let infoCb = {}
       infoCb.success = function (res) {
-        console.log(res)
         var patientList = res.patientList
         var patientId = ""
         for (let i in patientList) {

@@ -4,7 +4,7 @@ page{
   border-top: 4rpx solid #f5f5f5;
 }
 .red{
-  color:red!important;
+  color:#20a0ff!important;
 }
 .noMore-text{
   text-align: center;

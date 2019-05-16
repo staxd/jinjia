@@ -8,7 +8,8 @@ Page({
    cantotizhi:true,
    cantozizhen:true,
    cantoganmao:true,
-    jingfang: []
+    jingfang: [],
+    bottomHeight:0
   },
   tizhiBtn: function () {
     var that = this
@@ -227,6 +228,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log(wx.getSystemInfoSync())
+    var height = wx.getSystemInfoSync().windowHeight-180-8-8
+    this.setData({
+      bottomHeight:height
+    })
     app.login()
     app.getPatientId()
     wx.removeStorageSync("patientInfolist")
