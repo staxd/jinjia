@@ -16,7 +16,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     let infoOpt = {
-      url: '/page/index/aboutus',
+      url: '/page/index/disclaimer',
       type: 'GET',
       data: {
       }

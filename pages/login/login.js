@@ -137,12 +137,14 @@ Page({
                   content: '绑定成功！',
                   showCancel: false,
                   success: function (res) {
-                    
+                    wx.switchTab({
+                      url: '/pages/index/index'
+                    })
+                    getApp().login()
+                    getApp().data.show = false
                   }
                 });
-                wx.redirectTo({
-                  url: '/pages/index/index'
-                })
+                
               } else if (res.data.code == 400 ){
                 wx.showModal({
                   title: '提示',
@@ -151,7 +153,7 @@ Page({
                   success: function (res) {
                     console.log(res)
                     if (res.confirm) {
-                      wx.redirectTo({
+                      wx.switchTab({
                         url: '/pages/index/index'
                       })
                     }

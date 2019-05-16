@@ -4,7 +4,7 @@ const sendAjax = require('/utils/sendAjax.js')
 App({
   onLaunch: function () {
     var that = this
-      that.login()
+      // that.login()
     // {
     //   "selectedIconPath": "images/yianSelect.png",
     //     "iconPath": "images/yian.png",
@@ -57,7 +57,7 @@ App({
                       wx.showModal({
                         title: '温馨提示',
                         content: '检测到您未绑定手机号，请先绑定手机号！',
-                        showCancel: false,
+                        showCancel: true,
                         success: function (res) {
                           if (res.confirm) {
                             wx.navigateTo({
@@ -92,8 +92,8 @@ App({
       }
     })
   },
+
   getPatientId(){
-  
       var that = this
       let infoOpt = {
         url: '/selfDiagnosis/getPatientList',
@@ -134,12 +134,8 @@ App({
       }
       sendAjax(infoOpt, infoCb, () => {
       });
-    
-
-
-    
-
   },
+  
   globalData: {
     userInfo: null,
     platUserInfoMap: {},

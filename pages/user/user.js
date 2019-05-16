@@ -27,6 +27,8 @@ Page({
 
   }, 
   archives: function () {
+    app.login();
+
     if (app.data.show) {
       // wx.showModal({
       //   title: '提示',
@@ -54,6 +56,8 @@ Page({
 
   },
   daijinquan: function () {
+    app.login();
+    
       if (app.data.show) {
         // wx.showModal({
         //   title: '提示',
@@ -83,6 +87,8 @@ Page({
   },
   share: function () {},
   friends: function () {
+    app.login();
+
     if (app.data.show) {
       // wx.showModal({
       //   title: '提示',
@@ -127,7 +133,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.login();
+    if(!app.data.show){
+      app.login();
+
+    }
     this.setData({
       userInfo: app.globalData.userInfo
     })

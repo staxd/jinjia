@@ -13,6 +13,8 @@ Page({
   },
   tizhiBtn: function () {
     var that = this
+    app.login()
+    
     that.setData({
       cantotizhi:false
     })
@@ -55,6 +57,8 @@ Page({
   },
    zizhenBtn: function () {
      var that = this
+     app.login()
+
      that.setData({
        cantozizhen: false
      })
@@ -90,6 +94,8 @@ Page({
     }
      
   }, zhongyaoBtn: function () {
+     app.login()
+
     var that = this
     that.setData({
       cantozizhen: false
@@ -127,6 +133,8 @@ Page({
 
   }, ganmaoBtn: function () {
     var that = this
+     app.login()
+
     that.setData({
       cantoganmao: false
     })
@@ -233,8 +241,8 @@ Page({
     this.setData({
       bottomHeight:height
     })
-    app.login()
     app.getPatientId()
+
     wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("constitutionId")
     wx.removeStorageSync("firstList")
