@@ -12,36 +12,30 @@ App({
     //         "text": "医案"
     // },
   },
-  login(){
+  login(callback){
+    if(!callback){
+      callback = {}     
+    }
     var that = this;
+    const bcallback = callback.beforeSend || function (data) {};
+    const scallback = callback.success || function (data) {};
     // 登录
+    bcallback()
     wx.login({
       success: resp => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // console.log(resp.code);
         wx.setStorageSync("code", resp.code)
-
-        
-        // 获取用户信息
         wx.getSetting({
           success: res => {
-            //  console.log(res);
             if (res.authSetting['scope.userInfo']) {
-            // 已经授权不会弹框
             wx.getUserInfo({
               success: userResult => {
-                // console.log(userResult);
-                // 可以将 res 发送给后台解码出 unionId
                 that.globalData.userInfo = userResult.userInfo
-                // console.log(userResult);
                 var platUserInfoMap = that.globalData.platUserInfoMap;
                 platUserInfoMap["userInfo"] = userResult.userInfo;
                 platUserInfoMap["rawData"] = userResult.rawData;
                 platUserInfoMap["signature"] = userResult.signature;
                 platUserInfoMap["encryptedData"] = userResult.encryptedData;
                 platUserInfoMap["iv"] = userResult.iv;
-                // console.log(platUserInfoMap);
-
                 wx.request({
                   url: url.loginUrl,
                   method: 'POST',
@@ -71,9 +65,9 @@ App({
                       wx.setStorageSync("mobile", res.data.mobile)
                       wx.setStorageSync("user_id", res.data.user_id)
                       wx.setStorageSync("icode", res.data.icode)
-                      that.data.show=false
+                      that.data.show = false
+                      scallback(res.data)
                     }
-                    
                   }
                 })
                 if (that.userInfoReadyCallback) {
