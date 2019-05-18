@@ -7,17 +7,35 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cantodetail:true,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
-
+  toDetail(res) {
+    var that = this
+    var callback = {}
+    callback.beforeSend = function () {
+      that.setData({
+        cantodetail: false
+      })
+    }
+    callback.success = function () {
+      if (wx.getStorageSync('show')) {
+        wx.navigateTo({
+          url: res
+        })
+        that.setData({
+          cantodetail: true
+        })
+      }
+    }
+    app.login(callback)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    app.getPatientId()
-    
   },
   invite: function() {
     // console.log('12321313');
@@ -27,95 +45,14 @@ Page({
 
   }, 
   archives: function () {
-    app.login();
-
-    if (app.data.show) {
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '请您先绑定手机号！',
-      //   showCancel: true,
-      //   success: function (res) {
-      //     console.log(res)
-      //     if (res.confirm) {
-      //       wx.navigateTo({
-      //         url: '/pages/login/login?pageUrl=' + "archives/archives"
-      //       })
-      //     }
-      //   }
-      // });
-      
-    } else {
-          wx.navigateTo({
-            url: 'archives/archives'
-          })
-        
-     
-      
-    }
-    
-
+    this.toDetail('archives/archives')
   },
   daijinquan: function () {
-    app.login();
-    
-      if (app.data.show) {
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '请您先绑定手机号！',
-        //   showCancel: true,
-        //   success: function (res) {
-        //     console.log(res)
-        //     if (res.confirm) {
-        //       wx.navigateTo({
-        //         url: '/pages/login/login?pageUrl=' + "archives/archives"
-        //       })
-        //     }
-        //   }
-        // });
-
-      }else {
-          wx.navigateTo({
-            url: 'daijinquan/daijinquan'
-          })
-
-
-
-      }
-    
-   
-
+    this.toDetail('daijinquan/daijinquan')
   },
   share: function () {},
   friends: function () {
-    app.login();
-
-    if (app.data.show) {
-      // wx.showModal({
-      //   title: '提示',
-      //   content: '请您先绑定手机号！',
-      //   showCancel: true,
-      //   success: function (res) {
-      //     console.log(res)
-      //     if (res.confirm) {
-      //       wx.navigateTo({
-      //         url: '/pages/login/login?pageUrl=' + "friends/friends"
-      //       })
-      //     }
-      //   }
-      // });
-      
-    } else {
-        wx.navigateTo({
-          url: 'friends/friends'
-        })
-
-        
-
-
-     
-    }
-    
-
+    this.toDetail('friends/friends')
   },
   shengming(){
     wx.navigateTo({
@@ -133,13 +70,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(!app.data.show){
-      app.login();
-
-    }
-    this.setData({
-      userInfo: app.globalData.userInfo
+    var that = this
+    that.setData({
+      userInfo: wx.getStorageSync('userInfo')
     })
+    if (wx.getStorageSync('show')){
+      var callBack = {}
+      callBack.success = function(){
+        that.setData({
+          userInfo: wx.getStorageSync('userInfo')
+        })
+      }
+      app.login(callBack);
+    }
+    
     wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("constitutionId")
     wx.removeStorageSync("firstList")

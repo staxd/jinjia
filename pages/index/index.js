@@ -5,9 +5,7 @@ var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
 Page({
   data: {
-   cantotizhi:true,
-   cantozizhen:true,
-   cantoganmao:true,
+   cantodetail:true,
     jingfang: [],
     bottomHeight:0
   },
@@ -16,20 +14,16 @@ Page({
     var callback = {}
     callback.beforeSend = function () {
       that.setData({
-        cantotizhi: false
+        cantodetail: false
       })
     }
     callback.success = function () {
-      if (app.data.show) {
-        that.setData({
-          cantotizhi: true
-        })
-      } else {
+      if (wx.getStorageSync('show')){
         wx.navigateTo({
           url: res
         })
         that.setData({
-          cantotizhi: true
+          cantodetail: true
         })
       }
     }
@@ -109,7 +103,7 @@ Page({
     }
     this.getindex()
     this.getEncyclopediaList()
-    app.getPatientId()    
+    
   },
   /**
    * 生命周期函数--监听页面显示

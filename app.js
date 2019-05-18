@@ -13,6 +13,7 @@ App({
     // },
   },
   login(callback){
+    wx.setStorageSync('show', false)
     if(!callback){
       callback = {}     
     }
@@ -29,7 +30,7 @@ App({
             if (res.authSetting['scope.userInfo']) {
             wx.getUserInfo({
               success: userResult => {
-                that.globalData.userInfo = userResult.userInfo
+                wx.setStorageSync('userInfo',userResult.userInfo)
                 var platUserInfoMap = that.globalData.platUserInfoMap;
                 platUserInfoMap["userInfo"] = userResult.userInfo;
                 platUserInfoMap["rawData"] = userResult.rawData;
@@ -61,6 +62,7 @@ App({
                         }
                       })
                     } else if (res.data.code == 200){
+                      wx.setStorageSync('show', true)
                       wx.setStorageSync("api_token", res.data.api_token)
                       wx.setStorageSync("mobile", res.data.mobile)
                       wx.setStorageSync("user_id", res.data.user_id)

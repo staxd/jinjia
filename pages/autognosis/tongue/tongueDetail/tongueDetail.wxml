@@ -34,7 +34,7 @@
 </view>
 <view class='message'>仅供参考，请遵医嘱</view>
 <view class='message_bottom'></view>
-<cover-view class='sub' wx:if='{{!hide}}'>
-  <cover-view class='sub_btn' bindtap="subBtn">完成</cover-view>
-</cover-view>
+<view class='sub' wx:if='{{!hide}}'>
+  <view class='sub_btn' bindtap="subBtn">完成</view>
+</view>
 <cover-view class='box' wx:if='{{okBtn}}'><cover-image src='../../../../images/zizhenOk.png'></cover-image></cover-view>
