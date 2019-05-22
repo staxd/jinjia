@@ -27,6 +27,7 @@
   </view>
   </view>
 </view>
+<scroll-view class='messg'>仅供参考，请遵医嘱</scroll-view>
 <view class='tongue_bottom_box_null'></view>
 <cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/ganmaoOk.png'></cover-image></cover-view>
 
