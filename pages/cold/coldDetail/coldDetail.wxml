@@ -4,7 +4,7 @@
       <view bindtap='disDetail' class='tongue_content_box_btn' data-type='0' data-title='{{item.name}}' data-id="{{item.symptom_id}}" wx:for="{{list}}" wx:key='*this'>{{item.name}}</view>
   </view>
 </view>
- <view class='tongue'>
+ <view class='tongue' wx:if='{{detailShow}}'>
   <view class='tongue_title'>药方</view>
   <view class='diseaseBox'>
   <view class='diseaseBox_content' bindtap='disDetail' data-type='1' data-title='{{matchedDiseaseInfo.medicine_info.name}}' data-id='{{matchedDiseaseInfo.medicine_info.medicine_id}}'>
@@ -15,7 +15,7 @@
   </view>
   </view>
 </view>
- <view class='tongue_bottom_box'>
+ <view class='tongue_bottom_box' wx:if='{{detailShow}}'>
   <view class='tongue_title'>食方</view>
   <view class='diseaseBox'>
   <view  class='diseaseBox_content' bindtap='disDetail' data-type='2' data-title='{{matchedDiseaseInfo.diet_info.name}}' data-id='{{matchedDiseaseInfo.diet_info.diet_id}}'>

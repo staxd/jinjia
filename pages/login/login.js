@@ -137,11 +137,9 @@ Page({
                   content: '绑定成功！',
                   showCancel: false,
                   success: function (res) {
-                    wx.switchTab({
+                      wx.switchTab({
                       url: '/pages/index/index'
                     })
-                    getApp().login()
-                    getApp().data.show = false
                   }
                 });
                 

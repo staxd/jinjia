@@ -12,13 +12,20 @@ Page({
   toDetail(res){
     var that = this
     var callback = {}
-    callback.beforeSend = function () {
-      that.setData({
-        cantodetail: false
+    if (app.data.show) {
+      wx.navigateTo({
+        url: res
       })
-    }
-    callback.success = function () {
-      if (wx.getStorageSync('show')){
+      that.setData({
+        cantodetail: true
+      })
+    }else{
+      callback.beforeSend = function () {
+        that.setData({
+          cantodetail: false
+        })
+      }
+      callback.success = function () {
         wx.navigateTo({
           url: res
         })
@@ -26,10 +33,12 @@ Page({
           cantodetail: true
         })
       }
+      app.login(callback)
     }
-    app.login(callback)
   },
   tizhiBtn() {
+    console.log('sfajslkfjslkdf')
+
     this.toDetail('/pages/physical/physical')
   },
   zizhenBtn() {
@@ -109,7 +118,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(wx.getSystemInfoSync())
+    this.setData({
+      cantodetail: true
+    })
     var height = wx.getSystemInfoSync().windowHeight-180-8-8
     this.setData({
       bottomHeight:height
@@ -124,7 +135,6 @@ Page({
     wx.removeStorageSync("matchedMedicineList")
     wx.removeStorageSync("tongueList")
     wx.removeStorageSync("symptomInfo")
-    wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("option")
     wx.removeStorageSync("infoList")
 

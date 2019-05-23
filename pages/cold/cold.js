@@ -17,7 +17,7 @@ Page({
     signType: "",
     timeStamp: "",
     fenxiang: false,
-    canClick: true
+    canClick: true,
   },
   tohelp() {
     wx.navigateTo({
@@ -57,7 +57,7 @@ Page({
   },
 
   onLoad: function (symptoms) {
-
+    
     this.getsymptomList();
   },
   getsymptomList: function () {

@@ -15,13 +15,20 @@ Page({
   toDetail(res) {
     var that = this
     var callback = {}
-    callback.beforeSend = function () {
-      that.setData({
-        cantodetail: false
+    if (app.data.show) {
+      wx.navigateTo({
+        url: res
       })
-    }
-    callback.success = function () {
-      if (wx.getStorageSync('show')) {
+      that.setData({
+        cantodetail: true
+      })
+    } else {
+      callback.beforeSend = function () {
+        that.setData({
+          cantodetail: false
+        })
+      }
+      callback.success = function () {
         wx.navigateTo({
           url: res
         })
@@ -29,8 +36,8 @@ Page({
           cantodetail: true
         })
       }
+      app.login(callback)
     }
-    app.login(callback)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -74,16 +81,6 @@ Page({
     that.setData({
       userInfo: wx.getStorageSync('userInfo')
     })
-    if (wx.getStorageSync('show')){
-      var callBack = {}
-      callBack.success = function(){
-        that.setData({
-          userInfo: wx.getStorageSync('userInfo')
-        })
-      }
-      app.login(callBack);
-    }
-    
     wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("constitutionId")
     wx.removeStorageSync("firstList")

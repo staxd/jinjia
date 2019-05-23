@@ -13,7 +13,7 @@
 
     <view wx:if="{{list.type=='self_diagnosis'}}" >
         <view class='box_border_month'>{{list.created_time}}</view>
-        <view class='box_border_zizhen' data-index='{{list.archive_id}}' data-symptoms = "{{list.symptoms}}" bindtap='zizhendetailBtn'>自诊</view>
+        <view class='box_border_zizhen' data-index='{{list.archive_id}}' data-symptoms = "{{list.symptoms}}" bindtap='zizhendetailBtn'>杂病</view>
         <view class='box_border_content'>{{list.name}}</view>
         <image src='../../../../images/zizhenBorder.png'></image>
         <view data-id ="{{list.archive_id}}" data-isshow ="{{list.isshow}}" class='box_border_delect' bindtap='delectBtn'><image src='../../../../images/delect.png'></image></view>

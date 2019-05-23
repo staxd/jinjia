@@ -3,17 +3,8 @@ var url = require('config.js')
 const sendAjax = require('/utils/sendAjax.js')
 App({
   onLaunch: function () {
-    var that = this
-      // that.login()
-    // {
-    //   "selectedIconPath": "images/yianSelect.png",
-    //     "iconPath": "images/yian.png",
-    //       "pagePath": "pages/medicalrecord/medicalrecord",
-    //         "text": "医案"
-    // },
   },
   login(callback){
-    wx.setStorageSync('show', false)
     if(!callback){
       callback = {}     
     }
@@ -63,11 +54,11 @@ App({
                       })
                     } else if (res.data.code == 200){
                       wx.setStorageSync('show', true)
+                      that.data.show = true
                       wx.setStorageSync("api_token", res.data.api_token)
                       wx.setStorageSync("mobile", res.data.mobile)
                       wx.setStorageSync("user_id", res.data.user_id)
                       wx.setStorageSync("icode", res.data.icode)
-                      that.data.show = false
                       scallback(res.data)
                     }
                   }
@@ -145,7 +136,7 @@ App({
   },
   data:{
     patient_id:"",
-    show:true,
+    show:false,
     matchedMedicineList:[],
     btn1:"",
     btn2: "",
