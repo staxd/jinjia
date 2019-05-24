@@ -3,11 +3,13 @@ var url = require('config.js')
 const sendAjax = require('/utils/sendAjax.js')
 App({
   onLaunch: function () {
+    this.login(null,1)
   },
-  login(callback){
+  login(callback,first){
     if(!callback){
       callback = {}     
     }
+    var firstLogin = first?false:true
     var that = this;
     const bcallback = callback.beforeSend || function (data) {};
     const scallback = callback.success || function (data) {};
@@ -18,7 +20,7 @@ App({
         wx.setStorageSync("code", resp.code)
         wx.getSetting({
           success: res => {
-            if (res.authSetting['scope.userInfo']) {
+            if (res.authSetting['scope.userInfo']&&firstLogin) {
             wx.getUserInfo({
               success: userResult => {
                 wx.setStorageSync('userInfo',userResult.userInfo)
