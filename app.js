@@ -20,56 +20,58 @@ App({
         wx.setStorageSync("code", resp.code)
         wx.getSetting({
           success: res => {
-            if (res.authSetting['scope.userInfo']&&firstLogin) {
-            wx.getUserInfo({
-              success: userResult => {
-                wx.setStorageSync('userInfo',userResult.userInfo)
-                var platUserInfoMap = that.globalData.platUserInfoMap;
-                platUserInfoMap["userInfo"] = userResult.userInfo;
-                platUserInfoMap["rawData"] = userResult.rawData;
-                platUserInfoMap["signature"] = userResult.signature;
-                platUserInfoMap["encryptedData"] = userResult.encryptedData;
-                platUserInfoMap["iv"] = userResult.iv;
-                wx.request({
-                  url: url.loginUrl,
-                  method: 'POST',
-                  data: {
-                    code: resp.code,
-                    userInfo: JSON.stringify(platUserInfoMap)
-                  },
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  success(res) {
-                    if (res.data.code==403){
-                      wx.showModal({
-                        title: '温馨提示',
-                        content: '检测到您未绑定手机号，请先绑定手机号！',
-                        showCancel: true,
-                        success: function (res) {
-                          if (res.confirm) {
-                            wx.navigateTo({
-                              url: '/pages/login/login'
-                            })
-                          }
+            if (res.authSetting['scope.userInfo']) {
+              if (firstLogin){
+                wx.getUserInfo({
+                  success: userResult => {
+                    wx.setStorageSync('userInfo', userResult.userInfo)
+                    var platUserInfoMap = that.globalData.platUserInfoMap;
+                    platUserInfoMap["userInfo"] = userResult.userInfo;
+                    platUserInfoMap["rawData"] = userResult.rawData;
+                    platUserInfoMap["signature"] = userResult.signature;
+                    platUserInfoMap["encryptedData"] = userResult.encryptedData;
+                    platUserInfoMap["iv"] = userResult.iv;
+                    wx.request({
+                      url: url.loginUrl,
+                      method: 'POST',
+                      data: {
+                        code: resp.code,
+                        userInfo: JSON.stringify(platUserInfoMap)
+                      },
+                      header: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                      },
+                      success(res) {
+                        if (res.data.code == 403) {
+                          wx.showModal({
+                            title: '温馨提示',
+                            content: '检测到您未绑定手机号，请先绑定手机号！',
+                            showCancel: true,
+                            success: function (res) {
+                              if (res.confirm) {
+                                wx.navigateTo({
+                                  url: '/pages/login/login'
+                                })
+                              }
+                            }
+                          })
+                        } else if (res.data.code == 200) {
+                          wx.setStorageSync('show', true)
+                          that.data.show = true
+                          wx.setStorageSync("api_token", res.data.api_token)
+                          wx.setStorageSync("mobile", res.data.mobile)
+                          wx.setStorageSync("user_id", res.data.user_id)
+                          wx.setStorageSync("icode", res.data.icode)
+                          scallback(res.data)
                         }
-                      })
-                    } else if (res.data.code == 200){
-                      wx.setStorageSync('show', true)
-                      that.data.show = true
-                      wx.setStorageSync("api_token", res.data.api_token)
-                      wx.setStorageSync("mobile", res.data.mobile)
-                      wx.setStorageSync("user_id", res.data.user_id)
-                      wx.setStorageSync("icode", res.data.icode)
-                      scallback(res.data)
+                      }
+                    })
+                    if (that.userInfoReadyCallback) {
+                      that.userInfoReadyCallback(userResult)
                     }
                   }
                 })
-                if (that.userInfoReadyCallback) {
-                  that.userInfoReadyCallback(userResult)
-                }
               }
-            })
             }else{
               wx.redirectTo({
                 url: "/pages/start/start"
