@@ -18,6 +18,6 @@
 </view>
 <cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/tizhiOk.png'></cover-image></cover-view>
 
-<view class='sub' wx:if='{{show=="true"}}'>
-  <view class='sub_btn' bindtap="subBtn">完成</view>
-</view>
+<cover-view  class='sub' wx:if='{{show=="true"}}'>
+  <cover-view  class='sub_btn' bindtap="subBtn">完成</cover-view >
+</cover-view >

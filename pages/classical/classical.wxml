@@ -1,5 +1,5 @@
 <view class='classical_search'>
-  <view class='classical_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜索方剂" ></input></view>
+  <view class='classical_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜方" ></input></view>
 </view>
 <view class='classical_nav'>
  <view class='classical_nav_zz' bindtap='symptom'>症状</view>

@@ -1,5 +1,5 @@
 <view class='medicine_search'>
-  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜索药材" ></input></view>
+  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜药" ></input></view>
 </view>
 
 <view class='medicine_nav'>
@@ -48,9 +48,9 @@
       <view  wx:for="{{mbList[navId]}}" wx:key="*this" bindtap="clickSelect" class="medicine-box-content-down-button {{item.isshow?'active':''}}" data-id="{{item.effect_id}}" >{{item.effect_title}}</view>
       </view>
       </block>
-      <view class='sub'>
-        <view class='sub_btn' bindtap="subBtn">确定</view>
-      </view>
+      <cover-view  class='sub'>
+        <cover-view  class='sub_btn' bindtap="subBtn">确定</cover-view >
+      </cover-view >
  </view>
  </view>
 </view>

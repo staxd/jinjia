@@ -29,6 +29,6 @@
 </view>
     <view class='phy_bottom'></view>
 
-<view class='sub'>
-  <view class='sub_btn' bindtap="subBtn">下一步</view>
-</view>
+<cover-view  class='sub'>
+  <cover-view  class='sub_btn' bindtap="subBtn">下一步</cover-view >
+</cover-view >

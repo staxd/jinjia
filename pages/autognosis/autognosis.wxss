@@ -7,7 +7,7 @@ page{
 }
 .zizhen_left{
   width:188rpx;
-  margin-bottom: 120rpx;
+  /* margin-bottom: 120rpx; */
   position: relative;
   z-index: 10;
 }
@@ -38,8 +38,9 @@ page{
 .zizhen_right{
   width: 560rpx;
   background: #fff;
+  background-color: #fff;
   float: left;
-  margin-bottom: 120rpx;
+  /* margin-bottom: 120rpx; */
 position: relative;
   z-index: 10;
 }
@@ -152,5 +153,7 @@ image.kind_img{
   text-align: center;
   color: #fff;
 }
-
-
+.bottom_box{
+  width: 100%;
+  height: 120rpx;
+}

@@ -1,5 +1,5 @@
 <view class='medicine_search'>
-  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜索医案" ></input></view>
+  <view class='medicine_search_box'><image src='/images/search.png'></image><input bindinput="bindKeyInput" type='text' placeholder="搜案" ></input></view>
 </view>
 <block wx:if="{{list.length}}">
  <block wx:for-items="{{list}}" wx:key="*this">
