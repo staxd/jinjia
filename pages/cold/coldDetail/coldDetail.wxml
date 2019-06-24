@@ -4,19 +4,32 @@
       <view bindtap='disDetail' class='tongue_content_box_btn' data-type='0' data-title='{{item.name}}' data-id="{{item.symptom_id}}" wx:for="{{list}}" wx:key='*this'>{{item.name}}</view>
   </view>
 </view>
- <view class='tongue'>
+ <view class='tongue' wx:if='{{detailShow}}'>
   <view class='tongue_title'>药方</view>
   <view class='diseaseBox'>
-  <view  bindtap='disDetail' data-type='1' data-title='{{matchedDiseaseInfo.medicine_info.name}}' data-id='{{matchedDiseaseInfo.medicine_info.medicine_id}}'>方名:{{matchedDiseaseInfo.medicine_info.name}}</view>
+  <view class='diseaseBox_content' bindtap='disDetail' data-type='1' data-title='{{matchedDiseaseInfo.medicine_info.name}}' data-id='{{matchedDiseaseInfo.medicine_info.medicine_id}}'>
+  <view>{{matchedDiseaseInfo.medicine_info.name}}</view>
+  <view>{{matchedDiseaseInfo.medicine_info.formula}}</view>
+  <view>{{matchedDiseaseInfo.medicine_info.decoction}}</view>
+
+  </view>
   </view>
 </view>
- <view class='tongue'>
+ <view class='tongue_bottom_box' wx:if='{{detailShow}}'>
   <view class='tongue_title'>食方</view>
   <view class='diseaseBox'>
-  <view bindtap='disDetail' data-type='2' data-title='{{matchedDiseaseInfo.diet_info.name}}' data-id='{{matchedDiseaseInfo.diet_info.diet_id}}'>方名:{{matchedDiseaseInfo.diet_info.name}}</view>
+  <view  class='diseaseBox_content' bindtap='disDetail' data-type='2' data-title='{{matchedDiseaseInfo.diet_info.name}}' data-id='{{matchedDiseaseInfo.diet_info.diet_id}}'>
+  <view>{{matchedDiseaseInfo.diet_info.name}}</view>
+  <view>{{matchedDiseaseInfo.diet_info.formula}}</view>
+  <view>{{matchedDiseaseInfo.diet_info.decoction}}</view>
+  
+  
+  </view>
   </view>
 </view>
-<cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/tizhiOk.png'></cover-image></cover-view>
+<scroll-view class='messg'>仅供参考，请遵医嘱</scroll-view>
+<view class='tongue_bottom_box_null'></view>
+<cover-view class='box' wx:if='{{okBtn}}'><cover-image src='/images/ganmaoOk.png'></cover-image></cover-view>
 
 <cover-view  class='sub' wx:if='{{show=="true"}}'>
   <cover-view  class='sub_btn' bindtap="subBtn">完成</cover-view >

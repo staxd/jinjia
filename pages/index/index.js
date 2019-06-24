@@ -5,159 +5,50 @@ var url = require('../../config.js')
 const sendAjax = require('../../utils/sendAjax.js')
 Page({
   data: {
-   cantotizhi:true,
-   cantozizhen:true,
-   cantoganmao:true,
-    jingfang: []
+   cantodetail:true,
+    jingfang: [],
+    bottomHeight:0
   },
-  tizhiBtn: function () {
+  toDetail(res){
     var that = this
-    that.setData({
-      cantotizhi:false
-    })
+    var callback = {}
     if (app.data.show) {
-        // wx.showModal({
-        //   title: '提示',
-        //   content: '请您先绑定手机号！',
-        //   showCancel: true,
-        //   success: function (res) {
-        //     console.log(res)
-        //     if (res.confirm) {
-        //       wx.navigateTo({
-        //         url: '/pages/login/login?pageUrl=' + "/pages/physical/physical"
-        //       })
-        //       that.setData({
-        //         cantotizhi:true
-        //       })
-        //     }
-        //   }
-        // });
-      that.setData({
-        cantotizhi: true
+      wx.navigateTo({
+        url: res
       })
-      } else {
-          
-            wx.navigateTo({
-              url: '/pages/physical/physical'
-            })
-            that.setData({
-                cantotizhi:true
-              })
-          
-          
-        
-        
+      that.setData({
+        cantodetail: true
+      })
+    }else{
+      callback.beforeSend = function () {
+        that.setData({
+          cantodetail: false
+        })
       }
-    
-    
-
+      callback.success = function () {
+        wx.navigateTo({
+          url: res
+        })
+        that.setData({
+          cantodetail: true
+        })
+      }
+      app.login(callback)
+    }
   },
-   zizhenBtn: function () {
-     var that = this
-     that.setData({
-       cantozizhen: false
-     })
-     if (app.data.show) {
-      //  wx.showModal({
-      //    title: '提示',
-      //    content: '请您先绑定手机号！',
-      //    showCancel: true,
-      //    success: function (res) {
-      //      console.log(res)
-      //      if (res.confirm) {
-      //        wx.navigateTo({
-      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
-      //        })
-      //        that.setData({
-      //          cantozizhen:true
-      //        })
-      //      }
-      //    }
-      //  });
-       that.setData({
-         cantozizhen: true
-       })
-    } else {
-          wx.navigateTo({
-            url: '/pages/autognosis/autognosis',
-          })
-          that.setData({
-            cantozizhen: true
-          })
-      
-     
-    }
-     
-  }, zhongyaoBtn: function () {
-    var that = this
-    that.setData({
-      cantozizhen: false
-    })
-    if (app.data.show) {
-      //  wx.showModal({
-      //    title: '提示',
-      //    content: '请您先绑定手机号！',
-      //    showCancel: true,
-      //    success: function (res) {
-      //      console.log(res)
-      //      if (res.confirm) {
-      //        wx.navigateTo({
-      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
-      //        })
-      //        that.setData({
-      //          cantozizhen:true
-      //        })
-      //      }
-      //    }
-      //  });
-      that.setData({
-        cantozizhen: true
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/medicine/medicine',
-      })
-      that.setData({
-        cantozizhen: true
-      })
+  tizhiBtn() {
+    console.log('sfajslkfjslkdf')
 
-
-    }
-
-  }, ganmaoBtn: function () {
-    var that = this
-    that.setData({
-      cantoganmao: false
-    })
-    if (app.data.show) {
-      //  wx.showModal({
-      //    title: '提示',
-      //    content: '请您先绑定手机号！',
-      //    showCancel: true,
-      //    success: function (res) {
-      //      console.log(res)
-      //      if (res.confirm) {
-      //        wx.navigateTo({
-      //          url: '/pages/login/login?pageUrl=' + "/pages/autognosis/autognosis"
-      //        })
-      //        that.setData({
-      //          cantozizhen:true
-      //        })
-      //      }
-      //    }
-      //  });
-      that.setData({
-        cantoganmao: true
-      })
-    } else {
-      wx.navigateTo({
-        url: '/pages/cold/cold',
-      })
-      that.setData({
-        cantoganmao: true
-      })
-    }
-
+    this.toDetail('/pages/physical/physical')
+  },
+  zizhenBtn() {
+    this.toDetail('/pages/autognosis/autognosis')
+  },
+  zhongyaoBtn() {
+    this.toDetail('/pages/medicine/medicine')
+  },
+  ganmaoBtn() {
+    this.toDetail('/pages/cold/cold')
   },
   getEncyclopediaList(){
     var that = this
@@ -227,8 +118,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.login()
-    app.getPatientId()
+    this.setData({
+      cantodetail: true
+    })
+    var height = wx.getSystemInfoSync().windowHeight-180-8-8
+    this.setData({
+      bottomHeight:height
+    })
     wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("constitutionId")
     wx.removeStorageSync("firstList")
@@ -239,7 +135,6 @@ Page({
     wx.removeStorageSync("matchedMedicineList")
     wx.removeStorageSync("tongueList")
     wx.removeStorageSync("symptomInfo")
-    wx.removeStorageSync("patientInfolist")
     wx.removeStorageSync("option")
     wx.removeStorageSync("infoList")
 

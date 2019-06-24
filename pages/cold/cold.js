@@ -17,7 +17,7 @@ Page({
     signType: "",
     timeStamp: "",
     fenxiang: false,
-    canClick: true
+    canClick: true,
   },
   tohelp() {
     wx.navigateTo({
@@ -28,16 +28,26 @@ Page({
     var that = this;
 
     var symptom_id = e.currentTarget.dataset.id
+    var mark = e.currentTarget.dataset.mark
     var isshow = e.currentTarget.dataset.isshow
     var mbList = that.data.mbList
-
-    for (var i in mbList) {
-      for (var j = 0; j < mbList[i].symptom_list.length; j++) {
-
-        if (mbList[i].symptom_list[j].symptom_id == symptom_id) {
-          mbList[i].symptom_list[j].isshow = !mbList[i].symptom_list[j].isshow;
+    if(mark==''){
+      mark = '难受啊马飞！'
+    }
+    for (let i=0;i<mbList.length;i++) {
+        for (let j = 0; j < mbList[i].symptom_list.length;j++){
+          if (mbList[i].symptom_list[j].mark == mark){
+            if (mbList[i].symptom_list[j].symptom_id != symptom_id) {
+              mbList[i].symptom_list[j].isshow = false;
+            } else {
+              mbList[i].symptom_list[j].isshow = !mbList[i].symptom_list[j].isshow;
+            }
+          }else{
+            if (mbList[i].symptom_list[j].symptom_id == symptom_id){
+              mbList[i].symptom_list[j].isshow = !mbList[i].symptom_list[j].isshow;
+            }
+          }
         }
-      }
     }
     // console.log(mbList)
 
@@ -47,7 +57,7 @@ Page({
   },
 
   onLoad: function (symptoms) {
-
+    
     this.getsymptomList();
   },
   getsymptomList: function () {
@@ -98,7 +108,7 @@ Page({
   subBtn() {
     var that = this
     var mbList = that.data.mbList
-    var symptomId = that.data.symptomId
+    var symptomId = ''
 
     for (var i in mbList) {
       for (var j = 0; j < mbList[i].symptom_list.length; j++) {
@@ -132,6 +142,8 @@ Page({
     var mbList = that.data.mbList
     var list = []
     var symptomId = that.data.symptomId
+    // console.log(symptomId)
+
     for(let i in mbList){
       for (let j in mbList[i].symptom_list){
         if (mbList[i].symptom_list[j].isshow) {
@@ -151,6 +163,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      canClick: true
+    })
   },
 
   /**

@@ -13,9 +13,7 @@ Page({
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
-        app.login()
          wx.showToast({
-          title: '',
           icon: 'loading',
           duration: 1000
         })

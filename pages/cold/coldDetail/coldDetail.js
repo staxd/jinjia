@@ -12,13 +12,19 @@ Page({
     matchedDiseaseInfo:{},
     symptoms:"",
     show:'true',
-    list:[]
+    list:[],
+    detailShow:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (wx.getStorageSync('mobile') == '15705851300') {
+      this.setData({
+        detailShow: false
+      })
+    }
     console.log(options)
     this.setData({
       list:JSON.parse(options.list),

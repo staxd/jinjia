@@ -35,7 +35,8 @@
     "pages/medicine/medicine",
     "pages/medicine/medicineDetail/medicineDetail",
     "pages/cold/cold",
-    "pages/cold/coldDetail/coldDetail"
+    "pages/cold/coldDetail/coldDetail",
+    "pages/user/aboutUs/aboutUs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -66,5 +67,6 @@
         "text": "我的"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

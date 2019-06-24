@@ -7,7 +7,7 @@
      <view class='cold-box-content-up'>{{item.name}}<text wx:if='{{item.is_required=="1"}}' class='red'>*</text></view>
      <view class='cold-box-content-down' >
      
-      <view bindtap="clickSelect" data-isshow="{{language.isshow}}" class="cold-box-content-down-button {{language.isshow?'active':''}}" wx:for="{{item.symptom_list}}" wx:for-item="language"wx:key="language.symptom_id" data-id="{{language.symptom_id}}"  >{{language.name}}</view>
+      <view bindtap="clickSelect" data-isshow="{{language.isshow}}" class="cold-box-content-down-button {{language.isshow?'active':''}}" wx:for="{{item.symptom_list}}" wx:for-item="language"wx:key="language.symptom_id" data-id="{{language.symptom_id}}" data-mark = '{{language.mark}}'  >{{language.name}}</view>
       </view>
       </block>
  
