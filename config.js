@@ -2,10 +2,10 @@
  * 小程序配置文件
  */
 
-//测试
+//测试地址
 // var host = "http://test.jinjiazy.com/applet"
 
-//正式
+//正式地址
 var host = "https://jinjiazy.com/applet"
 
 //本地
